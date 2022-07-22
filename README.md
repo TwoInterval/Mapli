@@ -4,7 +4,7 @@ __나마의 플레이리스트 생성 앱__
 ## Members
 |Drogba|Hatchling|Lau|
 |:---|:---|:---|
-|[Drogba](https://github.com/iDrogba)|[Hatchling](https://github.com/iDrogba)|[Lau](https://github.com/iDrogba)|
+|[Drogba](https://github.com/iDrogba)|[Hatchling](https://github.com/woo0dev)|[Lau](https://github.com/lau0505)|
 
 ## Git Commit Message
 |*Type*|*Subject*|
