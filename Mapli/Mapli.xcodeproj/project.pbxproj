@@ -15,6 +15,7 @@
 		E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21D996E288ABA590065CB2A /* LaunchScreen.storyboard */; };
 		E21D997F288ACCA00065CB2A /* SongSelectionStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21D997E288ACCA00065CB2A /* SongSelectionStoryboard.storyboard */; };
 		E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */; };
+		E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E21D9971288ABA590065CB2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21D997E288ACCA00065CB2A /* SongSelectionStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SongSelectionStoryboard.storyboard; sourceTree = "<group>"; };
 		E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSelectionViewController.swift; sourceTree = "<group>"; };
+		E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSelectionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		E21D997C288ABB0C0065CB2A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			files = (
 				E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */,
 				E21D9968288ABA580065CB2A /* ViewController.swift in Sources */,
+				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
 				E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */,
 			);

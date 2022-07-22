@@ -9,9 +9,10 @@ import UIKit
 
 class SongSelectionViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
-	private var dummy = ["금요일에 만나요", "No Brainer", "Peaches", "Uptown Funk", "칵테일 사랑", "Intentions", "Treasure"]
+	var dummy = ["금요일에 만나요", "No Brainer", "Peaches", "Uptown Funk", "칵테일 사랑", "Intentions", "Treasure"]
 	override func viewDidLoad() {
-		
+		tableView.dataSource = self
+		tableView.delegate = self
 	}
 }
 
@@ -20,11 +21,16 @@ extension SongSelectionViewController: UITableViewDataSource {
 		return dummy.count
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "SongSelectionTableCell", for: indexPath) as! SongSelectionTableViewCell
 		let song = dummy[indexPath.row]
-		cell.textLabel?.text = song
+		cell.songTitle.text = song
 		
 		return cell
+	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
+		cell.selectionStyle = .none
+		cell.isCheck = !(cell.isCheck)
 	}
 }
 
