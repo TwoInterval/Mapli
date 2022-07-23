@@ -11,12 +11,6 @@ class SongSelectionTableViewCell: UITableViewCell {
 	@IBOutlet weak var songTitle: UILabel!
 	@IBOutlet weak var checkmark: UIImageView!
 	
-	var isCheck = false
-	
-	override func layoutSubviews() {
-		checkmark.image = isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
-	}
-	
     override func awakeFromNib() {
         super.awakeFromNib()
         
