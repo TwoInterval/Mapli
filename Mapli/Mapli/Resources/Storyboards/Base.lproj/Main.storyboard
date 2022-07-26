@@ -41,12 +41,22 @@
                                     <segue destination="Y6T-bx-Uek" kind="show" id="vQ9-mU-nDr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QrM-UI-h7a">
+                                <rect key="frame" x="156.5" y="572" width="101" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="플리 미리보기"/>
+                                <connections>
+                                    <segue destination="C1y-Wu-PVC" kind="show" id="h8v-8d-Zy7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aZW-rv-eya" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Dpt-G0-G3c"/>
                             <constraint firstItem="aZW-rv-eya" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="a3p-ZI-kp0"/>
+                            <constraint firstItem="QrM-UI-h7a" firstAttribute="top" secondItem="aZW-rv-eya" secondAttribute="bottom" constant="81.5" id="fve-rb-xDD"/>
+                            <constraint firstItem="QrM-UI-h7a" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="qGv-8o-Ib4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="N6L-Pa-FnD"/>
@@ -64,6 +74,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCo-y6-ldC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="716" y="108"/>
+        </scene>
+        <!--playListPreview-->
+        <scene sceneID="ifJ-4Q-wde">
+            <objects>
+                <viewControllerPlaceholder storyboardName="playListPreview" id="C1y-Wu-PVC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uuB-Ct-9Tr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yse-lC-aIv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="617" y="192"/>
         </scene>
     </scenes>
     <resources>
