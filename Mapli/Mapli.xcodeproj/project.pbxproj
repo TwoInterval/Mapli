@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E219443928957657005BE37B /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443828957657005BE37B /* SongModel.swift */; };
+		E219443B28957665005BE37B /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443A28957665005BE37B /* PlaylistModel.swift */; };
+		E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443C28957670005BE37B /* AppleMusicAPI.swift */; };
+		E219443F289576E4005BE37B /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E219443E289576E4005BE37B /* AppleMusicInfo.plist */; };
+		E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2194441289577AB005BE37B /* Mapli++Bundle.swift */; };
 		E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9963288ABA580065CB2A /* AppDelegate.swift */; };
 		E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9965288ABA580065CB2A /* SceneDelegate.swift */; };
 		E21D9968288ABA580065CB2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9967288ABA580065CB2A /* ViewController.swift */; };
@@ -19,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E219443828957657005BE37B /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongModel.swift; path = Mapli/Sources/SongModel.swift; sourceTree = SOURCE_ROOT; };
+		E219443A28957665005BE37B /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistModel.swift; path = Mapli/Sources/PlaylistModel.swift; sourceTree = SOURCE_ROOT; };
+		E219443C28957670005BE37B /* AppleMusicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppleMusicAPI.swift; path = Mapli/Sources/AppleMusicAPI.swift; sourceTree = SOURCE_ROOT; };
+		E219443E289576E4005BE37B /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
+		E2194441289577AB005BE37B /* Mapli++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mapli++Bundle.swift"; sourceTree = "<group>"; };
 		E21D9960288ABA580065CB2A /* Mapli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21D9963288ABA580065CB2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E21D9965288ABA580065CB2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +75,8 @@
 				E21D9978288ABAD00065CB2A /* Sources */,
 				E21D9977288ABA8E0065CB2A /* Resources */,
 				E21D9971288ABA590065CB2A /* Info.plist */,
+				E219443E289576E4005BE37B /* AppleMusicInfo.plist */,
+				E2194441289577AB005BE37B /* Mapli++Bundle.swift */,
 			);
 			path = Mapli;
 			sourceTree = "<group>";
@@ -104,6 +116,8 @@
 		E21D997A288ABAF60065CB2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E219443828957657005BE37B /* SongModel.swift */,
+				E219443A28957665005BE37B /* PlaylistModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +142,7 @@
 		E21D997D288ABB180065CB2A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E219443C28957670005BE37B /* AppleMusicAPI.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -193,6 +208,7 @@
 				E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */,
 				E21D996D288ABA590065CB2A /* Assets.xcassets in Resources */,
 				E21D996B288ABA580065CB2A /* Main.storyboard in Resources */,
+				E219443F289576E4005BE37B /* AppleMusicInfo.plist in Resources */,
 				E21D997F288ACCA00065CB2A /* SongSelectionStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E219443928957657005BE37B /* SongModel.swift in Sources */,
 				E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */,
+				E219443B28957665005BE37B /* PlaylistModel.swift in Sources */,
+				E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */,
+				E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */,
 				E21D9968288ABA580065CB2A /* ViewController.swift in Sources */,
 				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
@@ -284,7 +304,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -338,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
