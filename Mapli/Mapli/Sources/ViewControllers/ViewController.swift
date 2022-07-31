@@ -11,9 +11,17 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+		setupNavigatoinBar()
 	}
 
+	private func setupNavigatoinBar() {
+		let backButton = UIBarButtonItem()
+		backButton.title = "취소"
+		navigationItem.backBarButtonItem = backButton
+		navigationController?.navigationBar.backIndicatorImage = UIImage()
+		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+		navigationController?.navigationBar.tintColor = .red
+	}
 
 }
 
