@@ -10,7 +10,6 @@
 		E219443928957657005BE37B /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443828957657005BE37B /* SongModel.swift */; };
 		E219443B28957665005BE37B /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443A28957665005BE37B /* PlaylistModel.swift */; };
 		E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443C28957670005BE37B /* AppleMusicAPI.swift */; };
-		E219443F289576E4005BE37B /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E219443E289576E4005BE37B /* AppleMusicInfo.plist */; };
 		E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2194441289577AB005BE37B /* Mapli++Bundle.swift */; };
 		E21944442896735F005BE37B /* MySongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21944432896735F005BE37B /* MySongModel.swift */; };
 		E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9963288ABA580065CB2A /* AppDelegate.swift */; };
@@ -28,7 +27,6 @@
 		E219443828957657005BE37B /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongModel.swift; path = Mapli/Sources/Models/SongModel.swift; sourceTree = SOURCE_ROOT; };
 		E219443A28957665005BE37B /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistModel.swift; path = Mapli/Sources/Models/PlaylistModel.swift; sourceTree = SOURCE_ROOT; };
 		E219443C28957670005BE37B /* AppleMusicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppleMusicAPI.swift; path = Mapli/Sources/Classes/AppleMusicAPI.swift; sourceTree = SOURCE_ROOT; };
-		E219443E289576E4005BE37B /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
 		E2194441289577AB005BE37B /* Mapli++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mapli++Bundle.swift"; sourceTree = "<group>"; };
 		E21944432896735F005BE37B /* MySongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySongModel.swift; sourceTree = "<group>"; };
 		E21D9960288ABA580065CB2A /* Mapli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapli.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +75,6 @@
 				E21D9978288ABAD00065CB2A /* Sources */,
 				E21D9977288ABA8E0065CB2A /* Resources */,
 				E21D9971288ABA590065CB2A /* Info.plist */,
-				E219443E289576E4005BE37B /* AppleMusicInfo.plist */,
 				E2194441289577AB005BE37B /* Mapli++Bundle.swift */,
 			);
 			path = Mapli;
@@ -211,7 +208,6 @@
 				E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */,
 				E21D996D288ABA590065CB2A /* Assets.xcassets in Resources */,
 				E21D996B288ABA580065CB2A /* Main.storyboard in Resources */,
-				E219443F289576E4005BE37B /* AppleMusicInfo.plist in Resources */,
 				E21D997F288ACCA00065CB2A /* SongSelectionStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
