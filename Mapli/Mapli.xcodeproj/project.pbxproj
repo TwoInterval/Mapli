@@ -13,6 +13,8 @@
 		E219443F289576E4005BE37B /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E219443E289576E4005BE37B /* AppleMusicInfo.plist */; };
 		E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2194441289577AB005BE37B /* Mapli++Bundle.swift */; };
 		E21944442896735F005BE37B /* MySongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21944432896735F005BE37B /* MySongModel.swift */; };
+		E21944462896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21944452896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard */; };
+		E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21944472896A6C6005BE37B /* ChooseTemplateViewController.swift */; };
 		E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9963288ABA580065CB2A /* AppDelegate.swift */; };
 		E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9965288ABA580065CB2A /* SceneDelegate.swift */; };
 		E21D9968288ABA580065CB2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9967288ABA580065CB2A /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 		E219443E289576E4005BE37B /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
 		E2194441289577AB005BE37B /* Mapli++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mapli++Bundle.swift"; sourceTree = "<group>"; };
 		E21944432896735F005BE37B /* MySongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySongModel.swift; sourceTree = "<group>"; };
+		E21944452896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseTemplateStoryboard.storyboard; sourceTree = "<group>"; };
+		E21944472896A6C6005BE37B /* ChooseTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTemplateViewController.swift; sourceTree = "<group>"; };
 		E21D9960288ABA580065CB2A /* Mapli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21D9963288ABA580065CB2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E21D9965288ABA580065CB2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				E21D996E288ABA590065CB2A /* LaunchScreen.storyboard */,
 				E21D9969288ABA580065CB2A /* Main.storyboard */,
 				E21D997E288ACCA00065CB2A /* SongSelectionStoryboard.storyboard */,
+				E21944452896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 			children = (
 				E21D9967288ABA580065CB2A /* ViewController.swift */,
 				E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */,
+				E21944472896A6C6005BE37B /* ChooseTemplateViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -213,6 +219,7 @@
 				E21D996B288ABA580065CB2A /* Main.storyboard in Resources */,
 				E219443F289576E4005BE37B /* AppleMusicInfo.plist in Resources */,
 				E21D997F288ACCA00065CB2A /* SongSelectionStoryboard.storyboard in Resources */,
+				E21944462896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +238,7 @@
 				E21D9968288ABA580065CB2A /* ViewController.swift in Sources */,
 				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
+				E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */,
 				E21944442896735F005BE37B /* MySongModel.swift in Sources */,
 				E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */,
 			);

@@ -24,8 +24,11 @@ class SongSelectionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
+		setupNavigatoinBar()
 		
 		navigationItem.title = "음악 선택"
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonTapped))
+		
 	}
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
@@ -75,6 +78,15 @@ class SongSelectionViewController: UIViewController {
 		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
 	}
 	
+	private func setupNavigatoinBar() {
+		let backButton = UIBarButtonItem()
+		backButton.title = "이전"
+		navigationItem.backBarButtonItem = backButton
+		navigationController?.navigationBar.backIndicatorImage = UIImage()
+		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+		navigationController?.navigationBar.tintColor = .red
+	}
+	
 	private func CheckIfSelected() -> Bool {
 		var isSelected = false
 		for row in 0..<dummy.count {
@@ -83,6 +95,11 @@ class SongSelectionViewController: UIViewController {
 			}
 		}
 		return isSelected
+	}
+	
+	@objc private func nextButtonTapped() {
+		let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") ?? UIViewController()
+		self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
 	}
 }
 
