@@ -24,9 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E219443828957657005BE37B /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongModel.swift; path = Mapli/Sources/SongModel.swift; sourceTree = SOURCE_ROOT; };
-		E219443A28957665005BE37B /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistModel.swift; path = Mapli/Sources/PlaylistModel.swift; sourceTree = SOURCE_ROOT; };
-		E219443C28957670005BE37B /* AppleMusicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppleMusicAPI.swift; path = Mapli/Sources/AppleMusicAPI.swift; sourceTree = SOURCE_ROOT; };
+		E219443828957657005BE37B /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongModel.swift; path = Mapli/Sources/Models/SongModel.swift; sourceTree = SOURCE_ROOT; };
+		E219443A28957665005BE37B /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistModel.swift; path = Mapli/Sources/Models/PlaylistModel.swift; sourceTree = SOURCE_ROOT; };
+		E219443C28957670005BE37B /* AppleMusicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppleMusicAPI.swift; path = Mapli/Sources/Classes/AppleMusicAPI.swift; sourceTree = SOURCE_ROOT; };
 		E219443E289576E4005BE37B /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
 		E2194441289577AB005BE37B /* Mapli++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mapli++Bundle.swift"; sourceTree = "<group>"; };
 		E21D9960288ABA580065CB2A /* Mapli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mapli.app; sourceTree = BUILT_PRODUCTS_DIR; };
