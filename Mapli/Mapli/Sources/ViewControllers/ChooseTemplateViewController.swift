@@ -11,20 +11,27 @@ class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var titleTextField: UITextField!
 	@IBOutlet weak var imagePickerButton: UIButton!
+	@IBOutlet weak var templateScrollView: UIScrollView!
 	
 	private let imagePicker = UIImagePickerController()
+	private let imageList = ["template1", "template2", "template3", "template4", "template5"]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTitleLabelStyle()
 		setupTitleTextFieldStyle()
 		setupImagePicker()
+		setupTemplateImage()
 		
 		navigationItem.title = "템플릿 선택"
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
 		present(imagePicker, animated: true)
+	}
+	
+	@objc func chooseTemplate(gesture: CustomTapGesture) {
+		print(gesture.text ?? "")
 	}
 	
 	private func setupTitleLabelStyle() {
@@ -46,6 +53,24 @@ class ChooseTemplateViewController: UIViewController {
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = true
 		imagePicker.delegate = self
+	}
+	
+	private func setupTemplateImage() {
+		for i in 0..<imageList.count{
+			let imageView = UIImageView()
+			imageView.image = UIImage(named: "\(imageList[i])") ?? UIImage()
+			imageView.contentMode = .scaleAspectFit
+			let xPosition = self.view.frame.width * CGFloat(i)
+			imageView.frame = CGRect(x: xPosition, y: 0, width: 210, height: 309)
+			
+			let tapGesture = CustomTapGesture(target: self, action: #selector(chooseTemplate(gesture:)))
+			tapGesture.text = imageList[i]
+			imageView.addGestureRecognizer(tapGesture)
+			imageView.isUserInteractionEnabled = true
+			
+			templateScrollView.contentSize.width = self.view.frame.width * CGFloat(1+i)
+			templateScrollView.addSubview(imageView)
+		}
 	}
 }
 
@@ -77,4 +102,8 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		}
 		return renderImage
 	}
+}
+
+class CustomTapGesture: UITapGestureRecognizer {
+  var text: String?
 }

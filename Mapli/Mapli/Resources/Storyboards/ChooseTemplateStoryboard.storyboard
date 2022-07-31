@@ -54,6 +54,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-bT-ENn">
+                                <rect key="frame" x="20" y="461" width="374" height="401"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="i5J-9Q-rwj"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9X6-px-yeC"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -73,13 +79,14 @@
                     </view>
                     <connections>
                         <outlet property="imagePickerButton" destination="fu0-fc-mJ1" id="iJd-rb-IXy"/>
+                        <outlet property="templateScrollView" destination="D0e-bT-ENn" id="919-Ml-HfQ"/>
                         <outlet property="titleLabel" destination="Vk5-XL-kWr" id="QLN-is-DLP"/>
                         <outlet property="titleTextField" destination="4X1-xk-NTd" id="UFD-Rt-W1T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14" y="106"/>
+            <point key="canvasLocation" x="13.043478260869566" y="105.80357142857143"/>
         </scene>
     </scenes>
     <resources>
