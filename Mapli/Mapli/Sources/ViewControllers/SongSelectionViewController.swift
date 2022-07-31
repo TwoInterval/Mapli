@@ -23,7 +23,6 @@ class SongSelectionViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		setupSearchController()
 		setupTableView()
 		
 		navigationItem.title = "음악 선택"
