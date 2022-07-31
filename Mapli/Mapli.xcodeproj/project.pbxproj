@@ -390,6 +390,7 @@
 				DEVELOPMENT_TEAM = SXSNK823Y9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "대표 이미지 추가를 위한 앨범 접근 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -419,6 +420,7 @@
 				DEVELOPMENT_TEAM = SXSNK823Y9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "대표 이미지 추가를 위한 앨범 접근 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
