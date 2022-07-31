@@ -22,6 +22,7 @@
 		E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */; };
 		E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */; };
 		E2821A522896E90800982AE7 /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2821A512896E90800982AE7 /* AppleMusicInfo.plist */; };
+		E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSelectionViewController.swift; sourceTree = "<group>"; };
 		E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E2821A512896E90800982AE7 /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
+		E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				E219443C28957670005BE37B /* AppleMusicAPI.swift */,
+				E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
 				E21944442896735F005BE37B /* MySongModel.swift in Sources */,
+				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,
 				E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +386,7 @@
 				DEVELOPMENT_TEAM = SXSNK823Y9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Apple Music 접근 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -411,6 +416,7 @@
 				DEVELOPMENT_TEAM = SXSNK823Y9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Apple Music 접근 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
