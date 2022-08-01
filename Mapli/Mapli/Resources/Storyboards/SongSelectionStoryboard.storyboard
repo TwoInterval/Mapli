@@ -100,6 +100,14 @@
             </objects>
             <point key="canvasLocation" x="53.846153846153847" y="105.92417061611374"/>
         </scene>
+        <!--ChooseTemplateStoryboard-->
+        <scene sceneID="3e9-ZA-blG">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ChooseTemplateVC" storyboardName="ChooseTemplateStoryboard" id="EQM-ch-4Rr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qmH-mX-aRy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="613" y="115"/>
+        </scene>
     </scenes>
     <resources>
         <image name="UnSelected" width="24" height="24"/>

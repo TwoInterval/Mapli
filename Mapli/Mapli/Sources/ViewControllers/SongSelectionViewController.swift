@@ -25,9 +25,11 @@ class SongSelectionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
+    setupNavigatoinBar()
 		initRefresh()
 		
 		navigationItem.title = "음악 선택"
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonTapped))
 		
 	}
 	
@@ -78,6 +80,15 @@ class SongSelectionViewController: UIViewController {
 		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
 	}
 	
+	private func setupNavigatoinBar() {
+		let backButton = UIBarButtonItem()
+		backButton.title = "이전"
+		navigationItem.backBarButtonItem = backButton
+		navigationController?.navigationBar.backIndicatorImage = UIImage()
+		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+		navigationController?.navigationBar.tintColor = .red
+	}
+	
 	private func CheckIfSelected() -> Bool {
 		var isSelected = false
 		for row in 0..<musicList.count {
@@ -99,6 +110,10 @@ class SongSelectionViewController: UIViewController {
 		refresh.endRefreshing()
 		musicList = viewModel.mySongs
 		self.tableView.reloadData()
+    
+	@objc private func nextButtonTapped() {
+		let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") ?? UIViewController()
+		self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
 	}
 }
 
