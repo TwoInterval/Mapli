@@ -22,8 +22,7 @@ class ChooseTemplateViewController: UIViewController {
 		setupTitleTextFieldStyle()
 		setupImagePicker()
 		setupTemplateImage()
-		
-		navigationItem.title = "템플릿 선택"
+		setupNavigationBar()
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
@@ -32,6 +31,10 @@ class ChooseTemplateViewController: UIViewController {
 	
 	@objc func chooseTemplate(gesture: CustomTapGesture) {
 		print(gesture.text ?? "")
+	}
+	
+	private func setupNavigationBar() {
+		navigationItem.title = "템플릿 선택"
 	}
 	
 	private func setupTitleLabelStyle() {
