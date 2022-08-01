@@ -25,6 +25,8 @@
 		E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */; };
 		E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */; };
 		E2821A562897C15500982AE7 /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2821A552897C15500982AE7 /* AppleMusicInfo.plist */; };
+		E2821A592897F2CB00982AE7 /* DeviceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A582897F2CB00982AE7 /* DeviceSize.swift */; };
+		E2821A5C2897FB6800982AE7 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A5B2897FB6800982AE7 /* UIScreen+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicViewModel.swift; sourceTree = "<group>"; };
 		E2821A552897C15500982AE7 /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
+		E2821A582897F2CB00982AE7 /* DeviceSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSize.swift; sourceTree = "<group>"; };
+		E2821A5B2897FB6800982AE7 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 		E21D9978288ABAD00065CB2A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E2821A5A2897FB5B00982AE7 /* Extension */,
 				E21D997D288ABB180065CB2A /* Classes */,
 				E21D997C288ABB0C0065CB2A /* Cells */,
 				E21D997B288ABAFF0065CB2A /* ViewControllers */,
@@ -125,6 +130,7 @@
 		E21D997A288ABAF60065CB2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E2821A582897F2CB00982AE7 /* DeviceSize.swift */,
 				E219443828957657005BE37B /* SongModel.swift */,
 				E219443A28957665005BE37B /* PlaylistModel.swift */,
 				E21944432896735F005BE37B /* MySongModel.swift */,
@@ -157,6 +163,14 @@
 				E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		E2821A5A2897FB5B00982AE7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E2821A5B2897FB6800982AE7 /* UIScreen+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,10 +251,12 @@
 				E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */,
 				E219443B28957665005BE37B /* PlaylistModel.swift in Sources */,
 				E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */,
+				E2821A592897F2CB00982AE7 /* DeviceSize.swift in Sources */,
 				E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */,
 				E21D9968288ABA580065CB2A /* ViewController.swift in Sources */,
 				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
+				E2821A5C2897FB6800982AE7 /* UIScreen+.swift in Sources */,
 				E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */,
 				E21944442896735F005BE37B /* MySongModel.swift in Sources */,
 				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,

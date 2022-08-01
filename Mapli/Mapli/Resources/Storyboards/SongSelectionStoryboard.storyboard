@@ -93,6 +93,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchButton" destination="hN3-6h-ApX" id="DD7-EL-S0P"/>
+                        <outlet property="selectAllButton" destination="FyO-kP-xTR" id="0wm-HX-gLb"/>
                         <outlet property="tableView" destination="jYQ-pe-Rfv" id="pLM-71-UxF"/>
                     </connections>
                 </viewController>
