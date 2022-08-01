@@ -30,7 +30,7 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	@objc func chooseTemplate(gesture: CustomTapGesture) {
-		print(gesture.text ?? "")
+		print(gesture.imageName ?? "")
 	}
 	
 	private func setupNavigationBar() {
@@ -67,7 +67,7 @@ class ChooseTemplateViewController: UIViewController {
 			imageView.frame = CGRect(x: xPosition, y: 0, width: 210, height: 309)
 			
 			let tapGesture = CustomTapGesture(target: self, action: #selector(chooseTemplate(gesture:)))
-			tapGesture.text = imageList[i]
+			tapGesture.imageName = imageList[i]
 			imageView.addGestureRecognizer(tapGesture)
 			imageView.isUserInteractionEnabled = true
 			
@@ -108,5 +108,5 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 }
 
 class CustomTapGesture: UITapGestureRecognizer {
-  var text: String?
+  var imageName: String?
 }
