@@ -14,7 +14,7 @@ class AppleMusicAPI {
 	func fetchUserToken() async throws -> String {
 		return try await SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken)
 	}
-	
+
 	func fetchPlaylists(userToken: String) async throws -> [Playlist] {
 		guard let musicURL = URL(string: "https://api.music.apple.com/v1/me/library/playlists") else { throw NetworkError.invalidURL }
 		var musicRequest = URLRequest(url: musicURL)
@@ -27,7 +27,7 @@ class AppleMusicAPI {
 		return playlist.data
 	}
 	
-	func fetchSongs(userToken: String, id: String) async throws -> [Song] {
+	func fetchSongs(userToken: String, id: String) async throws -> [MySong] {
 		guard let musicURL = URL(string: "https://api.music.apple.com/v1/me/library/playlists/\(id)/tracks") else { throw NetworkError.invalidURL }
 		var musicRequest = URLRequest(url: musicURL)
 		musicRequest.httpMethod = "GET"
@@ -36,6 +36,10 @@ class AppleMusicAPI {
 		
 		let (data, _) = try await URLSession.shared.data(for: musicRequest)
 		let song = try JSONDecoder().decode(SongDatum.self, from: data)
-		return song.data
+		var mySongs = [MySong]()
+		for s in song.data {
+			mySongs.append(MySong(title: s.attributes.name, isCheck: false))
+		}
+		return mySongs
 	}
 }

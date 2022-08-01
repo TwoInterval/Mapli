@@ -10,6 +10,8 @@ import UIKit
 class SongSelectionViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
+	private let viewModel = AppleMusicViewModel()
+	
 	private var isFiltering: Bool {
 		let searchController = self.navigationItem.searchController
 		let isActive = searchController?.isActive ?? false
@@ -17,14 +19,14 @@ class SongSelectionViewController: UIViewController {
 		return isActive && isSearchText
 	}
 	private var isSearchBar = false
-	
-	var dummy = [MySong(title: "금요일에 만나요", isCheck: false), MySong(title: "No Brainer", isCheck: false), MySong(title: "Peaches", isCheck: false), MySong(title: "Uptown Funk", isCheck: false), MySong(title: "칵테일 사랑", isCheck: false), MySong(title: "Intentions", isCheck: false), MySong(title: "Treasure", isCheck: false), MySong(title: "아무노래", isCheck: false), MySong(title: "Monologue", isCheck: false), MySong(title: "사랑앓이", isCheck: false), MySong(title: "METHOR", isCheck: false), MySong(title: "People", isCheck: false)]
-	var searchDummy = [MySong]()
+	private var musicList = [MySong]()
+	private var searchMusicList = [MySong]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
-		setupNavigatoinBar()
+    setupNavigatoinBar()
+		initRefresh()
 		
 		navigationItem.title = "음악 선택"
 		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonTapped))
@@ -45,25 +47,25 @@ class SongSelectionViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
-		if CheckIfSelected() {
-			for row in 0..<tableView.numberOfRows(inSection: 0) {
-				let indexPath = IndexPath(row: row, section: 0)
-				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
-				cell.selectionStyle = .none
-				dummy[indexPath.row].isCheck = false
-				cell.checkmark.image = UIImage(named: "UnSelected")
-			}
-		} else {
-			for row in 0..<(tableView.numberOfRows(inSection: 0) < 9 ? tableView.numberOfRows(inSection: 0) : 9) {
-				let indexPath = IndexPath(row: row, section: 0)
-				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
-				cell.selectionStyle = .none
-				dummy[indexPath.row].isCheck = !(dummy[indexPath.row].isCheck)
-				cell.checkmark.image = (dummy[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
-			}
-		}
-	}
+//	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
+//		if CheckIfSelected() {
+//			for row in 0..<tableView.numberOfRows(inSection: 0) {
+//				let indexPath = IndexPath(row: row, section: 0)
+//				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
+//				cell.selectionStyle = .none
+//				musicList[indexPath.row].isCheck = false
+//				cell.checkmark.image = UIImage(named: "UnSelected")
+//			}
+//		} else {
+//			for row in 0..<(tableView.numberOfRows(inSection: 0) < 9 ? tableView.numberOfRows(inSection: 0) : 9) {
+//				let indexPath = IndexPath(row: row, section: 0)
+//				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
+//				cell.selectionStyle = .none
+//				musicList[indexPath.row].isCheck.toggle()
+//				cell.checkmark.image = (musicList[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+//			}
+//		}
+//	}
 	
 	private func setupTableView() {
 		tableView.dataSource = self
@@ -89,14 +91,26 @@ class SongSelectionViewController: UIViewController {
 	
 	private func CheckIfSelected() -> Bool {
 		var isSelected = false
-		for row in 0..<dummy.count {
-			if dummy[row].isCheck {
+		for row in 0..<musicList.count {
+			if musicList[row].isCheck {
 				isSelected = true
 			}
 		}
 		return isSelected
 	}
 	
+	private func initRefresh() {
+		let refresh = UIRefreshControl()
+		refresh.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
+		refresh.attributedTitle = NSAttributedString(string: "RELOAD")
+		tableView.refreshControl = refresh
+	}
+	
+	@objc func updateUI(refresh: UIRefreshControl) {
+		refresh.endRefreshing()
+		musicList = viewModel.mySongs
+		self.tableView.reloadData()
+    
 	@objc private func nextButtonTapped() {
 		let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") ?? UIViewController()
 		self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
@@ -105,18 +119,18 @@ class SongSelectionViewController: UIViewController {
 
 extension SongSelectionViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return isFiltering ? searchDummy.count : dummy.count
+		return isFiltering ? searchMusicList.count : musicList.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "SongSelectionTableCell", for: indexPath) as! SongSelectionTableViewCell
 		
 		if isFiltering {
-			let song = searchDummy[indexPath.row]
+			let song = searchMusicList[indexPath.row]
 			cell.songTitle.text = song.title
 			cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 		} else {
-			let song = dummy[indexPath.row]
+			let song = musicList[indexPath.row]
 			cell.songTitle.text = song.title
 			cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 		}
@@ -130,16 +144,16 @@ extension SongSelectionViewController: UITableViewDataSource {
 		cell.selectionStyle = .none
 		
 		if isFiltering {
-			if let row = self.dummy.firstIndex(where: { $0.title == searchDummy[indexPath.row].title }) {
-				dummy[row].isCheck.toggle()
+			if let row = self.musicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
+				musicList[row].isCheck.toggle()
 			}
-			if let row = self.searchDummy.firstIndex(where: { $0.title == searchDummy[indexPath.row].title }) {
-				searchDummy[row].isCheck.toggle()
+			if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
+				searchMusicList[row].isCheck.toggle()
 			}
-			cell.checkmark.image = searchDummy[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 		} else {
-			dummy[indexPath.row].isCheck.toggle()
-			cell.checkmark.image = dummy[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			musicList[indexPath.row].isCheck.toggle()
+			cell.checkmark.image = musicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 		}
 	}
 }
@@ -151,7 +165,7 @@ extension SongSelectionViewController: UITableViewDelegate {
 extension SongSelectionViewController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
 		guard let text = searchController.searchBar.text else { return }
-		searchDummy = dummy.filter { return $0.title.localizedCaseInsensitiveContains(text) }
+		searchMusicList = musicList.filter { return $0.title.localizedCaseInsensitiveContains(text) }
 		
 		tableView.reloadData()
 	}
