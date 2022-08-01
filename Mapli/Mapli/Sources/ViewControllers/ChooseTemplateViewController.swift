@@ -16,7 +16,7 @@ class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var templateScrollView: UIScrollView!
 	
 	private let imagePicker = UIImagePickerController()
-	private let imageList = ["template1", "template2", "template3", "template4", "template5"]
+	private let imageList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
