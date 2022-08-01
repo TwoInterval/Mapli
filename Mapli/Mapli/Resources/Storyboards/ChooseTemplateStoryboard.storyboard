@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Choose Template View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ChooseTemplateVC" id="Y6W-OH-hqX" customClass="ChooseTemplateViewController" customModule="Mapli" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk5-XL-kWr">
+                                <rect key="frame" x="20" y="84" width="37" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="4X1-xk-NTd">
+                                <rect key="frame" x="20" y="115" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대표 이미지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnU-TR-MAI">
+                                <rect key="frame" x="20" y="189" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu0-fc-mJ1">
+                                <rect key="frame" x="20" y="220" width="170" height="170"/>
+                                <color key="backgroundColor" red="0.64705882349999999" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="US8-dI-je0"/>
+                                    <constraint firstAttribute="height" constant="170" id="cJw-we-9O7"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="이미지 선택">
+                                    <backgroundConfiguration key="background"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="imagePickerButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5Ds-7o-LZC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="템플릿" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxQ-Tz-hlI">
+                                <rect key="frame" x="20" y="430" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-bT-ENn">
+                                <rect key="frame" x="20" y="461" width="374" height="401"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="i5J-9Q-rwj"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="9X6-px-yeC"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sxQ-Tz-hlI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="3Tl-jV-UbT"/>
+                            <constraint firstItem="Vk5-XL-kWr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="5UH-ko-ccB"/>
+                            <constraint firstItem="4X1-xk-NTd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="PSH-Dj-EEz"/>
+                            <constraint firstItem="fu0-fc-mJ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="RCW-w4-UYI"/>
+                            <constraint firstItem="CnU-TR-MAI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="UHp-1y-4ZY"/>
+                            <constraint firstItem="CnU-TR-MAI" firstAttribute="top" secondItem="4X1-xk-NTd" secondAttribute="bottom" constant="40" id="XT8-Ui-Ce0"/>
+                            <constraint firstItem="4X1-xk-NTd" firstAttribute="top" secondItem="Vk5-XL-kWr" secondAttribute="bottom" constant="10" id="aHw-Jn-ogp"/>
+                            <constraint firstItem="fu0-fc-mJ1" firstAttribute="top" secondItem="CnU-TR-MAI" secondAttribute="bottom" constant="10" id="m9b-27-POM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4X1-xk-NTd" secondAttribute="trailing" constant="20" id="rqW-rC-Hds"/>
+                            <constraint firstItem="sxQ-Tz-hlI" firstAttribute="top" secondItem="fu0-fc-mJ1" secondAttribute="bottom" constant="40" id="tBW-Z4-17S"/>
+                            <constraint firstItem="Vk5-XL-kWr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="40" id="xM0-Yn-8LB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imagePickerButton" destination="fu0-fc-mJ1" id="iJd-rb-IXy"/>
+                        <outlet property="templateScrollView" destination="D0e-bT-ENn" id="919-Ml-HfQ"/>
+                        <outlet property="titleLabel" destination="Vk5-XL-kWr" id="QLN-is-DLP"/>
+                        <outlet property="titleTextField" destination="4X1-xk-NTd" id="UFD-Rt-W1T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="13.043478260869566" y="105.80357142857143"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
