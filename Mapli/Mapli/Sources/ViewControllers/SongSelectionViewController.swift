@@ -110,6 +110,7 @@ class SongSelectionViewController: UIViewController {
 		refresh.endRefreshing()
 		musicList = viewModel.mySongs
 		self.tableView.reloadData()
+	}
     
 	@objc private func nextButtonTapped() {
 		let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") ?? UIViewController()
