@@ -70,9 +70,7 @@ class SongSelectionViewController: UIViewController {
 	
 	private func setupConstraint() {
 		self.searchButton.translatesAutoresizingMaskIntoConstraints = false
-		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leftPadding)).isActive = true
-		self.selectAllButton.translatesAutoresizingMaskIntoConstraints = false
-		self.selectAllButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leftPadding)).isActive = true
+		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
 	}
 	
 	private func setupTableView() {

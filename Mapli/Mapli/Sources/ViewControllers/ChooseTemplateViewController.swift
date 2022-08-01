@@ -10,7 +10,9 @@ import UIKit
 class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var titleTextField: UITextField!
+	@IBOutlet weak var imageTitleLabel: UILabel!
 	@IBOutlet weak var imagePickerButton: UIButton!
+	@IBOutlet weak var templateTitleLabel: UILabel!
 	@IBOutlet weak var templateScrollView: UIScrollView!
 	
 	private let imagePicker = UIImagePickerController()
@@ -18,6 +20,7 @@ class ChooseTemplateViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupConstraint()
 		setupTitleLabelStyle()
 		setupTitleTextFieldStyle()
 		setupImagePicker()
@@ -31,6 +34,18 @@ class ChooseTemplateViewController: UIViewController {
 	
 	@objc func chooseTemplate(gesture: CustomTapGesture) {
 		print(gesture.imageName ?? "")
+	}
+	
+	private func setupConstraint() {
+		self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+		self.titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
+		self.titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		self.imageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+		self.imageTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
+		self.imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		self.templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+		self.templateTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
+		self.templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
 	}
 	
 	private func setupNavigationBar() {
