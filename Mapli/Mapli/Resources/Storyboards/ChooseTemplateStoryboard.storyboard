@@ -79,7 +79,9 @@
                     </view>
                     <connections>
                         <outlet property="imagePickerButton" destination="fu0-fc-mJ1" id="iJd-rb-IXy"/>
+                        <outlet property="imageTitleLabel" destination="CnU-TR-MAI" id="z2x-FI-pJf"/>
                         <outlet property="templateScrollView" destination="D0e-bT-ENn" id="919-Ml-HfQ"/>
+                        <outlet property="templateTitleLabel" destination="sxQ-Tz-hlI" id="ZIP-ry-pFV"/>
                         <outlet property="titleLabel" destination="Vk5-XL-kWr" id="QLN-is-DLP"/>
                         <outlet property="titleTextField" destination="4X1-xk-NTd" id="UFD-Rt-W1T"/>
                     </connections>

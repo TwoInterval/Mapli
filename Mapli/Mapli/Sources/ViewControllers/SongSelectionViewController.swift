@@ -9,6 +9,8 @@ import UIKit
 
 class SongSelectionViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var searchButton: UIButton!
+	@IBOutlet weak var selectAllButton: UIButton!
 	
 	private let viewModel = AppleMusicViewModel()
 	
@@ -24,12 +26,11 @@ class SongSelectionViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupConstraint()
 		setupTableView()
-    setupNavigatoinBar()
+		setupNavigatoinBar()
 		initRefresh()
 		
-		navigationItem.title = "음악 선택"
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonTapped))
 		
 	}
 	
@@ -67,6 +68,11 @@ class SongSelectionViewController: UIViewController {
 //		}
 //	}
 	
+	private func setupConstraint() {
+		self.searchButton.translatesAutoresizingMaskIntoConstraints = false
+		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+	}
+	
 	private func setupTableView() {
 		tableView.dataSource = self
 		tableView.delegate = self
@@ -83,6 +89,8 @@ class SongSelectionViewController: UIViewController {
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
 		backButton.title = "이전"
+		navigationItem.title = "음악 선택"
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonTapped))
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -106,7 +114,7 @@ class SongSelectionViewController: UIViewController {
 		tableView.refreshControl = refresh
 	}
 	
-	@objc func updateUI(refresh: UIRefreshControl) {
+	@objc private func updateUI(refresh: UIRefreshControl) {
 		refresh.endRefreshing()
 		viewModel.viewDidLoad()
 		musicList = viewModel.mySongs
