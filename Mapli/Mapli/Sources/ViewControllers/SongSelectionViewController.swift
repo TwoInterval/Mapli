@@ -108,6 +108,7 @@ class SongSelectionViewController: UIViewController {
 	
 	@objc func updateUI(refresh: UIRefreshControl) {
 		refresh.endRefreshing()
+		viewModel.viewDidLoad()
 		musicList = viewModel.mySongs
 		self.tableView.reloadData()
 	}
