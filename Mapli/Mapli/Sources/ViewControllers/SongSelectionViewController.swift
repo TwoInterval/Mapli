@@ -31,7 +31,6 @@ class SongSelectionViewController: UIViewController {
 		setupNavigatoinBar()
 		initRefresh()
 		
-		
 	}
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
@@ -48,25 +47,22 @@ class SongSelectionViewController: UIViewController {
 		}
 	}
 	
-//	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
-//		if CheckIfSelected() {
-//			for row in 0..<tableView.numberOfRows(inSection: 0) {
-//				let indexPath = IndexPath(row: row, section: 0)
-//				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
-//				cell.selectionStyle = .none
-//				musicList[indexPath.row].isCheck = false
-//				cell.checkmark.image = UIImage(named: "UnSelected")
-//			}
-//		} else {
-//			for row in 0..<(tableView.numberOfRows(inSection: 0) < 9 ? tableView.numberOfRows(inSection: 0) : 9) {
-//				let indexPath = IndexPath(row: row, section: 0)
-//				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
-//				cell.selectionStyle = .none
-//				musicList[indexPath.row].isCheck.toggle()
-//				cell.checkmark.image = (musicList[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
-//			}
-//		}
-//	}
+	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
+		if CheckIfSelected() {
+			for row in 0..<tableView.numberOfRows(inSection: 0) {
+				musicList[row].isCheck = false
+				tableView.reloadData()
+			}
+		} else {
+			for row in 0..<(tableView.numberOfRows(inSection: 0) < 9 ? tableView.numberOfRows(inSection: 0) : 9) {
+				let indexPath = IndexPath(row: row, section: 0)
+				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
+				cell.selectionStyle = .none
+				musicList[indexPath.row].isCheck.toggle()
+				cell.checkmark.image = (musicList[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			}
+		}
+	}
 	
 	private func setupConstraint() {
 		self.searchButton.translatesAutoresizingMaskIntoConstraints = false
