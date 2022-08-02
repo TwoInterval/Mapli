@@ -55,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-bT-ENn">
-                                <rect key="frame" x="20" y="461" width="374" height="401"/>
+                                <rect key="frame" x="20" y="494" width="374" height="309"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="i5J-9Q-rwj"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="9X6-px-yeC"/>

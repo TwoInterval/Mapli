@@ -37,15 +37,15 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	private func setupConstraint() {
-		self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		self.titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
-		self.titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
-		self.imageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		self.imageTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
-		self.imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
-		self.templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		self.templateTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
-		self.templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		titleLabel.translatesAutoresizingMaskIntoConstraints = false
+		titleLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
+		titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		imageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+		imageTitleLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
+		imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
+		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
 	}
 	
 	private func setupNavigationBar() {
