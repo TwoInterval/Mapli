@@ -18,6 +18,9 @@ class ChooseTemplateViewController: UIViewController {
 	private let imagePicker = UIImagePickerController()
 	private let imageList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
 	
+	private var buttonList = [UIButton]()
+	private var selectedTemplates = "templates1"
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupConstraint()
@@ -32,10 +35,6 @@ class ChooseTemplateViewController: UIViewController {
 		present(imagePicker, animated: true)
 	}
 	
-	@objc func chooseTemplate(gesture: CustomTapGesture) {
-		print(gesture.imageName ?? "")
-	}
-	
 	private func setupConstraint() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		titleLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
@@ -46,6 +45,11 @@ class ChooseTemplateViewController: UIViewController {
 		templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
 		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
 		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		templateScrollView.translatesAutoresizingMaskIntoConstraints = false
+		templateScrollView.topAnchor.constraint(equalTo: templateTitleLabel.bottomAnchor, constant: 10).isActive = true
+		templateScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		templateScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+		templateScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 	}
 	
 	private func setupNavigationBar() {
@@ -75,19 +79,44 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func setupTemplateImage() {
 		for i in 0..<imageList.count{
-			let imageView = UIImageView()
-			imageView.image = UIImage(named: "\(imageList[i])") ?? UIImage()
-			imageView.contentMode = .scaleAspectFit
-			let xPosition = self.view.frame.width * CGFloat(i)
-			imageView.frame = CGRect(x: xPosition, y: 0, width: 210, height: 309)
+			let xPosition = CGFloat(DeviceSize.templatesWidth+DeviceSize.leadingPadding) * CGFloat(i)
+			let templatesButton = UIButton(frame: CGRect(x: xPosition, y: 0, width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight)))
+			templatesButton.setImage(UIImage(named: "\(imageList[i])") ?? UIImage(), for: .normal)
+			templatesButton.imageView?.contentMode = .scaleAspectFit
 			
 			let tapGesture = CustomTapGesture(target: self, action: #selector(chooseTemplate(gesture:)))
 			tapGesture.imageName = imageList[i]
-			imageView.addGestureRecognizer(tapGesture)
-			imageView.isUserInteractionEnabled = true
+			tapGesture.button = templatesButton
+			templatesButton.addGestureRecognizer(tapGesture)
+			templatesButton.isUserInteractionEnabled = true
 			
-			templateScrollView.contentSize.width = self.view.frame.width * CGFloat(1+i)
-			templateScrollView.addSubview(imageView)
+			if i == 0 {
+				templatesButton.isSelected = true
+				templatesButton.layer.borderColor = UIColor.red.cgColor
+				templatesButton.layer.borderWidth = 1
+			}
+			
+			buttonList.append(templatesButton)
+			
+			templateScrollView.contentSize.width = CGFloat(DeviceSize.templatesWidth+DeviceSize.leadingPadding) * CGFloat(1+i)
+			templateScrollView.addSubview(templatesButton)
+		}
+	}
+	
+	@objc func chooseTemplate(gesture: CustomTapGesture) {
+		print(gesture.imageName ?? "")
+		buttonList.map {
+			$0.isSelected = false
+		}
+		gesture.button.isSelected = true
+		buttonList.map {
+			if $0.isSelected {
+				$0.layer.borderColor = UIColor.red.cgColor
+				$0.layer.borderWidth = 1
+			} else {
+				$0.layer.borderColor = UIColor.clear.cgColor
+				$0.layer.borderWidth = 0
+			}
 		}
 	}
 }
@@ -120,8 +149,4 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		}
 		return renderImage
 	}
-}
-
-class CustomTapGesture: UITapGestureRecognizer {
-  var imageName: String?
 }

@@ -27,6 +27,7 @@
 		E2821A562897C15500982AE7 /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2821A552897C15500982AE7 /* AppleMusicInfo.plist */; };
 		E2821A592897F2CB00982AE7 /* DeviceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A582897F2CB00982AE7 /* DeviceSize.swift */; };
 		E2821A5C2897FB6800982AE7 /* UIScreen+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A5B2897FB6800982AE7 /* UIScreen+.swift */; };
+		E2821A5E2899976C00982AE7 /* CustomTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A5D2899976B00982AE7 /* CustomTapGesture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		E2821A552897C15500982AE7 /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
 		E2821A582897F2CB00982AE7 /* DeviceSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSize.swift; sourceTree = "<group>"; };
 		E2821A5B2897FB6800982AE7 /* UIScreen+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+.swift"; sourceTree = "<group>"; };
+		E2821A5D2899976B00982AE7 /* CustomTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTapGesture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			children = (
 				E219443C28957670005BE37B /* AppleMusicAPI.swift */,
 				E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */,
+				E2821A5D2899976B00982AE7 /* CustomTapGesture.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */,
 				E2821A592897F2CB00982AE7 /* DeviceSize.swift in Sources */,
 				E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */,
+				E2821A5E2899976C00982AE7 /* CustomTapGesture.swift in Sources */,
 				E21D9968288ABA580065CB2A /* ViewController.swift in Sources */,
 				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
