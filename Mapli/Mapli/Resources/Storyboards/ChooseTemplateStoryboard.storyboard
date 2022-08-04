@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,12 +55,46 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-bT-ENn">
-                                <rect key="frame" x="20" y="494" width="374" height="309"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="i5J-9Q-rwj"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="9X6-px-yeC"/>
-                            </scrollView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SGa-Vy-L83">
+                                <rect key="frame" x="20" y="461" width="374" height="401"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yPn-Cl-U5O">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TamplatesCollectionCell" id="MsO-FX-RZP" customClass="TemplatesCollectionViewCell" customModule="Mapli" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="46" width="210" height="309"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OaH-w3-oXO">
+                                            <rect key="frame" x="0.0" y="0.0" width="210" height="309"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="grX-6j-TD2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="309"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mRG-sB-mTc">
+                                                    <rect key="frame" x="80" y="129" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="grX-6j-TD2" firstAttribute="top" secondItem="OaH-w3-oXO" secondAttribute="top" id="Ad6-3k-EeP"/>
+                                                <constraint firstItem="grX-6j-TD2" firstAttribute="leading" secondItem="OaH-w3-oXO" secondAttribute="leading" id="DiW-qP-unj"/>
+                                                <constraint firstAttribute="trailing" secondItem="grX-6j-TD2" secondAttribute="trailing" id="cKJ-FM-wpf"/>
+                                                <constraint firstAttribute="bottom" secondItem="grX-6j-TD2" secondAttribute="bottom" id="i1h-iL-rTv"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="210" height="309"/>
+                                        <connections>
+                                            <outlet property="templatesCheckImageView" destination="mRG-sB-mTc" id="hHD-9p-MvU"/>
+                                            <outlet property="templatesImageView" destination="grX-6j-TD2" id="bij-c3-0GH"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,17 +105,21 @@
                             <constraint firstItem="fu0-fc-mJ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="RCW-w4-UYI"/>
                             <constraint firstItem="CnU-TR-MAI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="UHp-1y-4ZY"/>
                             <constraint firstItem="CnU-TR-MAI" firstAttribute="top" secondItem="4X1-xk-NTd" secondAttribute="bottom" constant="40" id="XT8-Ui-Ce0"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="SGa-Vy-L83" secondAttribute="bottom" id="a3J-kq-NMn"/>
                             <constraint firstItem="4X1-xk-NTd" firstAttribute="top" secondItem="Vk5-XL-kWr" secondAttribute="bottom" constant="10" id="aHw-Jn-ogp"/>
+                            <constraint firstItem="SGa-Vy-L83" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="lP6-ga-CXV"/>
                             <constraint firstItem="fu0-fc-mJ1" firstAttribute="top" secondItem="CnU-TR-MAI" secondAttribute="bottom" constant="10" id="m9b-27-POM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4X1-xk-NTd" secondAttribute="trailing" constant="20" id="rqW-rC-Hds"/>
                             <constraint firstItem="sxQ-Tz-hlI" firstAttribute="top" secondItem="fu0-fc-mJ1" secondAttribute="bottom" constant="40" id="tBW-Z4-17S"/>
+                            <constraint firstItem="SGa-Vy-L83" firstAttribute="top" secondItem="sxQ-Tz-hlI" secondAttribute="bottom" constant="10" id="wJ5-PY-CmT"/>
                             <constraint firstItem="Vk5-XL-kWr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="40" id="xM0-Yn-8LB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SGa-Vy-L83" secondAttribute="trailing" constant="20" id="y1G-LF-gPJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="SGa-Vy-L83" id="7d1-MI-L1E"/>
                         <outlet property="imagePickerButton" destination="fu0-fc-mJ1" id="iJd-rb-IXy"/>
                         <outlet property="imageTitleLabel" destination="CnU-TR-MAI" id="z2x-FI-pJf"/>
-                        <outlet property="templateScrollView" destination="D0e-bT-ENn" id="919-Ml-HfQ"/>
                         <outlet property="templateTitleLabel" destination="sxQ-Tz-hlI" id="ZIP-ry-pFV"/>
                         <outlet property="titleLabel" destination="Vk5-XL-kWr" id="QLN-is-DLP"/>
                         <outlet property="titleTextField" destination="4X1-xk-NTd" id="UFD-Rt-W1T"/>
