@@ -13,12 +13,11 @@ class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var imageTitleLabel: UILabel!
 	@IBOutlet weak var imagePickerButton: UIButton!
 	@IBOutlet weak var templateTitleLabel: UILabel!
-	@IBOutlet weak var templateScrollView: UIScrollView!
+	@IBOutlet weak var collectionView: UICollectionView!
 	
 	private let imagePicker = UIImagePickerController()
-	private let imageList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
 	
-	private var buttonList = [UIButton]()
+	private var templatesList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
 	private var selectedTemplates = "templates1"
 	
 	override func viewDidLoad() {
@@ -27,8 +26,8 @@ class ChooseTemplateViewController: UIViewController {
 		setupTitleLabelStyle()
 		setupTitleTextFieldStyle()
 		setupImagePicker()
-		setupTemplateImage()
 		setupNavigationBar()
+		setupCollectionView()
 		
 		imagePickerButton.layer.cornerRadius = 20
 	}
@@ -47,11 +46,6 @@ class ChooseTemplateViewController: UIViewController {
 		templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
 		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
 		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
-		templateScrollView.translatesAutoresizingMaskIntoConstraints = false
-		templateScrollView.topAnchor.constraint(equalTo: templateTitleLabel.bottomAnchor, constant: 10).isActive = true
-		templateScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
-		templateScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-		templateScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 	}
 	
 	private func setupNavigationBar() {
@@ -79,48 +73,49 @@ class ChooseTemplateViewController: UIViewController {
 		imagePicker.delegate = self
 	}
 	
-	private func setupTemplateImage() {
-		for i in 0..<imageList.count{
-			let xPosition = CGFloat(DeviceSize.templatesWidth+DeviceSize.leadingPadding) * CGFloat(i)
-			let templatesButton = UIButton(frame: CGRect(x: xPosition, y: 0, width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight)))
-			templatesButton.setImage(UIImage(named: "\(imageList[i])") ?? UIImage(), for: .normal)
-			templatesButton.imageView?.contentMode = .scaleAspectFit
+	private func setupCollectionView() {
+		collectionView.dataSource = self
+		collectionView.delegate = self
+	}
+}
+
+extension ChooseTemplateViewController: UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return templatesList.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TamplatesCollectionCell", for: indexPath) as? TemplatesCollectionViewCell {
 			
-			let tapGesture = CustomTapGesture(target: self, action: #selector(chooseTemplate(gesture:)))
-			tapGesture.imageName = imageList[i]
-			tapGesture.button = templatesButton
-			templatesButton.addGestureRecognizer(tapGesture)
-			templatesButton.isUserInteractionEnabled = true
+			var newImage = UIImage(named: "\(templatesList[indexPath.item])")
+			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight))
+			cell.templatesImageView.image = newImage
+			cell.templatesImageView.contentMode = .scaleAspectFit
+			cell.templatesCheckImageView.image = UIImage(named: "Selected")
+			cell.imageName = "\(templatesList[indexPath.item])"
 			
-			if i == 0 {
-				templatesButton.isSelected = true
-				templatesButton.layer.borderColor = UIColor.red.cgColor
-				templatesButton.layer.borderWidth = 1
+			if indexPath.item == 0 {
+				cell.isSelected = true
+				collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+			} else {
+				cell.isSelected = false
 			}
 			
-			buttonList.append(templatesButton)
-			
-			templateScrollView.contentSize.width = CGFloat(DeviceSize.templatesWidth+DeviceSize.leadingPadding) * CGFloat(1+i)
-			templateScrollView.addSubview(templatesButton)
+			return cell
+		} else {
+			return UICollectionViewCell()
 		}
 	}
 	
-	@objc func chooseTemplate(gesture: CustomTapGesture) {
-		print(gesture.imageName ?? "")
-		buttonList.map {
-			$0.isSelected = false
-		}
-		gesture.button.isSelected = true
-		buttonList.map {
-			if $0.isSelected {
-				$0.layer.borderColor = UIColor.red.cgColor
-				$0.layer.borderWidth = 1
-			} else {
-				$0.layer.borderColor = UIColor.clear.cgColor
-				$0.layer.borderWidth = 0
-			}
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if let cell = collectionView.cellForItem(at: indexPath) as? TemplatesCollectionViewCell {
+			selectedTemplates = "\(cell.imageName)"
 		}
 	}
+}
+
+extension ChooseTemplateViewController: UICollectionViewDelegate {
+	
 }
 
 extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -134,7 +129,7 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		}
 		
 		imagePickerButton.setTitle("", for: .normal)
-		newImage = resize(image: newImage ?? UIImage())
+		newImage = resize(image: newImage ?? UIImage(), width: imagePickerButton.frame.size.width, height: imagePickerButton.frame.size.height)
 		newImage = newImage?.withRoundedCorners(radius: 20)
 		imagePickerButton.setImage(newImage, for: .normal)
 		imagePickerButton.imageView?.contentMode = .scaleAspectFit
@@ -142,9 +137,7 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		picker.dismiss(animated: true, completion: nil)
 	}
 	
-	func resize(image: UIImage) -> UIImage {
-		let width = imagePickerButton.frame.size.width
-		let height = imagePickerButton.frame.size.height
+	func resize(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
 		let size = CGSize(width: width, height: height)
 		let render = UIGraphicsImageRenderer(size: size)
 		let renderImage = render.image { context in
