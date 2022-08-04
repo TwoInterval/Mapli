@@ -29,6 +29,8 @@ class ChooseTemplateViewController: UIViewController {
 		setupImagePicker()
 		setupTemplateImage()
 		setupNavigationBar()
+		
+		imagePickerButton.layer.cornerRadius = 20
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
@@ -133,6 +135,7 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		
 		imagePickerButton.setTitle("", for: .normal)
 		newImage = resize(image: newImage ?? UIImage())
+		newImage = newImage?.withRoundedCorners(radius: 20)
 		imagePickerButton.setImage(newImage, for: .normal)
 		imagePickerButton.imageView?.contentMode = .scaleAspectFit
 		imagePickerButton.semanticContentAttribute = .forceRightToLeft

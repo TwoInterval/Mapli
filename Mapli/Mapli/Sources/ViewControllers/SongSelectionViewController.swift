@@ -56,10 +56,11 @@ class SongSelectionViewController: UIViewController {
 		} else {
 			for row in 0..<(tableView.numberOfRows(inSection: 0) < 9 ? tableView.numberOfRows(inSection: 0) : 9) {
 				let indexPath = IndexPath(row: row, section: 0)
-				let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
-				cell.selectionStyle = .none
-				musicList[indexPath.row].isCheck.toggle()
-				cell.checkmark.image = (musicList[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				if let cell = tableView.cellForRow(at: indexPath) as? SongSelectionTableViewCell {
+					cell.selectionStyle = .none
+					musicList[indexPath.row].isCheck.toggle()
+					cell.checkmark.image = (musicList[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				}
 			}
 		}
 	}
@@ -129,37 +130,40 @@ extension SongSelectionViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "SongSelectionTableCell", for: indexPath) as! SongSelectionTableViewCell
-		
-		if isFiltering {
-			let song = searchMusicList[indexPath.row]
-			cell.songTitle.text = song.title
-			cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+		if let cell = tableView.dequeueReusableCell(withIdentifier: "SongSelectionTableCell", for: indexPath) as? SongSelectionTableViewCell {
+			
+			if isFiltering {
+				let song = searchMusicList[indexPath.row]
+				cell.songTitle.text = song.title
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			} else {
+				let song = musicList[indexPath.row]
+				cell.songTitle.text = song.title
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			}
+			
+			return cell
 		} else {
-			let song = musicList[indexPath.row]
-			cell.songTitle.text = song.title
-			cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			return UITableViewCell()
 		}
-		
-		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let cell = tableView.cellForRow(at: indexPath) as! SongSelectionTableViewCell
-		
-		cell.selectionStyle = .none
-		
-		if isFiltering {
-			if let row = self.musicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
-				musicList[row].isCheck.toggle()
+		if let cell = tableView.cellForRow(at: indexPath) as? SongSelectionTableViewCell {
+			cell.selectionStyle = .none
+			
+			if isFiltering {
+				if let row = self.musicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
+					musicList[row].isCheck.toggle()
+				}
+				if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
+					searchMusicList[row].isCheck.toggle()
+				}
+				cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+			} else {
+				musicList[indexPath.row].isCheck.toggle()
+				cell.checkmark.image = musicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 			}
-			if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
-				searchMusicList[row].isCheck.toggle()
-			}
-			cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
-		} else {
-			musicList[indexPath.row].isCheck.toggle()
-			cell.checkmark.image = musicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 		}
 	}
 }
