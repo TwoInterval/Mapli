@@ -38,6 +38,7 @@ private extension AppleMusicViewModel {
 				self.usetToken = try await AppleMusicAPI().fetchUserToken()
 				self.playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
 				self.mySongs = try await AppleMusicAPI().fetchSongs(userToken: usetToken, id: playlists[0].id)
+                print("완료")
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}
