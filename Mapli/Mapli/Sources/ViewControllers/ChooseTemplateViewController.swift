@@ -13,7 +13,7 @@ class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var imageTitleLabel: UILabel!
 	@IBOutlet weak var imagePickerButton: UIButton!
 	@IBOutlet weak var templateTitleLabel: UILabel!
-	@IBOutlet weak var collectionView: UICollectionView!
+	@IBOutlet weak private var collectionView: UICollectionView!
 	
 	private let imagePicker = UIImagePickerController()
 	
