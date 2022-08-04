@@ -23,8 +23,8 @@ class AppleMusicAPI {
 		musicRequest.addValue(userToken, forHTTPHeaderField: "Music-User-Token")
 		
 		let (data, _) = try await URLSession.shared.data(for: musicRequest)
-		let playlist = try JSONDecoder().decode(PlaylistDatum.self, from: data)
-		return playlist.data
+		let playlists = try JSONDecoder().decode(PlaylistDatum.self, from: data)
+        return playlists.data
 	}
 	
 	func fetchSongs(userToken: String, id: String) async throws -> [MySong] {
@@ -35,10 +35,10 @@ class AppleMusicAPI {
 		musicRequest.addValue(userToken, forHTTPHeaderField: "Music-User-Token")
 		
 		let (data, _) = try await URLSession.shared.data(for: musicRequest)
-		let song = try JSONDecoder().decode(SongDatum.self, from: data)
+		let songs = try JSONDecoder().decode(SongDatum.self, from: data)
 		var mySongs = [MySong]()
-		for s in song.data {
-			mySongs.append(MySong(title: s.attributes.name, isCheck: false))
+		for song in songs.data {
+			mySongs.append(MySong(title: song.attributes.name, isCheck: false))
 		}
 		return mySongs
 	}
