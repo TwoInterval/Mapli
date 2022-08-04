@@ -11,5 +11,7 @@ enum DeviceSize {
 	static let leadingPadding = UIScreen.main.proDevice ? 20 : 15
 	static let topPaddong = UIScreen.main.proDevice ? 40 : 15
 	static let fontSize = UIScreen.main.proDevice ? 17 : 15
-	static let playlistImageSize = UIScreen.main.proDevice ? 170 : 150
+	static let playlistImageSize = UIScreen.main.proDevice ? 170 : 155
+	static let templatesWidth = UIScreen.main.proDevice ? 210 : 183
+	static let templatesHeight = UIScreen.main.proDevice ? 309 : 269
 }
