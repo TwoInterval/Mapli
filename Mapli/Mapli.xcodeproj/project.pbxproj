@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E457259289C06D800516E83 /* AppleMusicPlaylist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */; };
+		8E45725B289C078300516E83 /* AppleMusicPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */; };
+		8E45725D289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */; };
 		8E556EAE289BEAEA008E6D97 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E556EAD289BEAEA008E6D97 /* MainCollectionViewCell.swift */; };
 		8E5CE480289BDF39009ABD5E /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E5CE47F289BDF39009ABD5E /* AppleMusicInfo.plist */; };
 		E219443928957657005BE37B /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E219443828957657005BE37B /* SongModel.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleMusicPlaylist.storyboard; sourceTree = "<group>"; };
+		8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistViewController.swift; sourceTree = "<group>"; };
+		8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E556EAD289BEAEA008E6D97 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E5CE47F289BDF39009ABD5E /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
 		E219443828957657005BE37B /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongModel.swift; path = Mapli/Sources/Models/SongModel.swift; sourceTree = SOURCE_ROOT; };
@@ -133,6 +139,7 @@
 				E21D9969288ABA580065CB2A /* Main.storyboard */,
 				E21D997E288ACCA00065CB2A /* SongSelectionStoryboard.storyboard */,
 				E21944452896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard */,
+				8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -155,6 +162,7 @@
 				E21D9967288ABA580065CB2A /* MainViewController.swift */,
 				E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */,
 				E21944472896A6C6005BE37B /* ChooseTemplateViewController.swift */,
+				8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 				E24B5659288AD68D0071CF5E /* SongSelectionTableViewCell.swift */,
 				E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */,
 				8E556EAD289BEAEA008E6D97 /* MainCollectionViewCell.swift */,
+				8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E457259289C06D800516E83 /* AppleMusicPlaylist.storyboard in Resources */,
 				E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */,
 				8E5CE480289BDF39009ABD5E /* AppleMusicInfo.plist in Resources */,
 				E21D996D288ABA590065CB2A /* Assets.xcassets in Resources */,
@@ -263,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E219443928957657005BE37B /* SongModel.swift in Sources */,
+				8E45725B289C078300516E83 /* AppleMusicPlaylistViewController.swift in Sources */,
 				E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */,
 				E219443B28957665005BE37B /* PlaylistModel.swift in Sources */,
 				E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */,
@@ -281,6 +292,7 @@
 				E21944442896735F005BE37B /* MySongModel.swift in Sources */,
 				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,
 				E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */,
+				8E45725D289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,7 +23,7 @@ class AppleMusicAPI {
 		musicRequest.addValue(userToken, forHTTPHeaderField: "Music-User-Token")
 		
 		let (data, _) = try await URLSession.shared.data(for: musicRequest)
-		let playlists = try JSONDecoder().decode(PlaylistDatum.self, from: data)
+        let playlists = try JSONDecoder().decode(PlaylistDatum.self, from: data)
         return playlists.data
 	}
 	

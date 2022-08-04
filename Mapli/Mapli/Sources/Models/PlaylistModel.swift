@@ -8,46 +8,30 @@
 import Foundation
 
 struct PlaylistDatum: Codable {
-	let meta: PlaylistMeta
-	let data: [Playlist]
+    let data: [Playlist]
+    let meta: Meta
 }
 
 struct Playlist: Codable {
-	let href, type, id: String
-	let attributes: PlaylistAttributes
+    let id, type, href: String
+    let attributes: Attributes
 }
 
-struct PlaylistAttributes: Codable {
-	let attributesDescription: Description
-	let canEdit, hasCatalog, isPublic: Bool
-	let dateAdded, name: String
-	let playParams: PlaylistPlayParams
-
-	enum CodingKeys: String, CodingKey {
-		case playParams, canEdit, dateAdded, hasCatalog, name
-		case attributesDescription = "description"
-		case isPublic
-	}
+struct Attributes: Codable {
+    let playParams: PlayParams
+    let hasCatalog, canEdit, isPublic: Bool
+    let name, dateAdded: String
 }
 
-struct Description: Codable {
-	let standard: String
+struct PlayParams: Codable {
+    let id, kind: String
+    let isLibrary: Bool
 }
 
-struct PlaylistPlayParams: Codable {
-	let globalID, kind, id: String
-	let isLibrary: Bool
-
-	enum CodingKeys: String, CodingKey {
-		case globalID = "globalId"
-		case kind, isLibrary, id
-	}
-}
-
-struct PlaylistMeta: Codable {
-	let total: Int
+struct Meta: Codable {
+    let total: Int
 }
 
 enum NetworkError: Error {
-	case invalidURL
+    case invalidURL
 }

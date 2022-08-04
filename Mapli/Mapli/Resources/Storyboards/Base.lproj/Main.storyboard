@@ -35,7 +35,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만의 플레이리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3c-Vg-N9r">
                                 <rect key="frame" x="20" y="98" width="350" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -100,6 +100,10 @@
                     <navigationItem key="navigationItem" id="N6L-Pa-FnD">
                         <barButtonItem key="rightBarButtonItem" title="추가" style="done" id="lWV-9c-5YL">
                             <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="4wx-NJ-Jeu"/>
+                                <segue destination="M0F-qc-G2A" kind="show" identifier="segue" id="KFE-Kw-jhM"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -109,6 +113,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="56.92307692307692" y="105.92417061611374"/>
+        </scene>
+        <!--AppleMusicPlaylist-->
+        <scene sceneID="5s1-jZ-Sf9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AppleMusicPlaylist" id="M0F-qc-G2A" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Cu3-sC-uxr"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4P-t3-HYz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="106"/>
         </scene>
     </scenes>
     <resources>

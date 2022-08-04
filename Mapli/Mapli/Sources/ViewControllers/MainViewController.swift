@@ -8,13 +8,30 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak private var collectionView: UICollectionView!
+    
+    var viewModel = AppleMusicViewModel()
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavigatoinBar()
         setupCollectionView()
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue,sender: Any?){
+        if segue.identifier == "segue" {
+            let viewController = segue.destination as! AppleMusicPlaylistViewController
+            viewController.viewModel = viewModel
+        }
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+//        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "AppleMusicPlaylistViewController") as? AppleMusicPlaylistViewController else { return }
+//
+//        viewController.viewModel = viewModel
+//
+//        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -27,7 +44,7 @@ class MainViewController: UIViewController {
 
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
-		backButton.title = "취소"
+		backButton.title = "이전"
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
