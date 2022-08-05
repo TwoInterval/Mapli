@@ -5,27 +5,41 @@
 //  Created by 전호정 on 2022/08/04.
 //
 
+import Combine
 import UIKit
 
 class AppleMusicPlaylistViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
-    
-    var viewModel: AppleMusicViewModel?
+	
+	private var cancelBag = Set<AnyCancellable>()
+	private var songs = [Song]()
+	
+	var viewModel = AppleMusicViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        guard viewModel != nil else {
-            return
-        }
-        print(viewModel?.playlists)
-        print(viewModel?.mySongs)
+		setupViewModel()
+		initRefresh()
     }
-    
+	
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+	
+	private func initRefresh() {
+		let refresh = UIRefreshControl()
+		refresh.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
+		refresh.attributedTitle = NSAttributedString(string: "RELOAD")
+		collectionView.refreshControl = refresh
+	}
+	
+	@objc private func updateUI(refresh: UIRefreshControl) {
+		refresh.endRefreshing()
+		songs = viewModel.songs
+		collectionView.reloadData()
+	}
     
     func resize(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
         let size = CGSize(width: width, height: height)
@@ -41,7 +55,7 @@ class AppleMusicPlaylistViewController: UIViewController {
 extension AppleMusicPlaylistViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if (viewModel != nil ? viewModel!.playlists.count : 0) == 0 {
+        if viewModel.playlists.count == 0 {
             let label = UILabel()
             label.text = "Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"
             label.numberOfLines = 9
@@ -50,17 +64,21 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource {
             collectionView.backgroundView = label
         }
         
-        return viewModel != nil ? viewModel!.playlists.count : 0
+        return viewModel.playlists.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
-            
-            var newImage = UIImage(named: "templates3")
-            newImage = resize(image: newImage ?? UIImage(), width: 170, height: 170)
-            cell.playlistImage.image = newImage
-            cell.playlistImage.contentMode = .scaleAspectFit
-            cell.playlistLabel.text = "aaaa"
+			if !songs.isEmpty {
+				var url = songs[0].attributes.artwork.url
+				url = url.replacingOccurrences(of: "{w}", with: "\(songs[0].attributes.artwork.width)")
+				url = url.replacingOccurrences(of: "{h}", with: "\(songs[0].attributes.artwork.height)")
+
+				if URL(string: url) != nil {
+					cell.playlistImage.load(url: URL(string: url)!)
+				}
+			}
+			cell.playlistLabel.text = viewModel.playlists[indexPath.item].attributes.name
             
             return cell
         } else {
@@ -71,4 +89,26 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource {
 
 extension AppleMusicPlaylistViewController: UICollectionViewDelegate {
     
+}
+
+private extension AppleMusicPlaylistViewController {
+	func setupViewModel() {
+		viewModel.$playlists
+			.receive(on: DispatchQueue.main)
+			.sink { [weak self] playlist in
+				if !playlist.isEmpty {
+					self?.viewModel.fetchSongs(playlistId: "\(playlist[0].id)")
+					self?.collectionView.backgroundView = nil
+				}
+			}
+			.store(in: &cancelBag)
+		
+		viewModel.$songs
+			.receive(on: DispatchQueue.main)
+			.sink { [weak self] song in
+				self?.songs = song
+				self?.collectionView.reloadData()
+			}
+			.store(in: &cancelBag)
+	}
 }

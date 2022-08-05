@@ -35,6 +35,7 @@
 		E2821A60289A472000982AE7 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A5F289A472000982AE7 /* UIImage+.swift */; };
 		E2821A62289B97A500982AE7 /* TemplatesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */; };
 		E2AD46C4289BA4AC00E513B7 /* TemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */; };
+		E2AD46C6289C46A900E513B7 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD46C5289C46A900E513B7 /* UIImageView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		E2821A5F289A472000982AE7 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesModel.swift; sourceTree = "<group>"; };
+		E2AD46C5289C46A900E513B7 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 			children = (
 				E2821A5B2897FB6800982AE7 /* UIScreen+.swift */,
 				E2821A5F289A472000982AE7 /* UIImage+.swift */,
+				E2AD46C5289C46A900E513B7 /* UIImageView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */,
 				E2AD46C4289BA4AC00E513B7 /* TemplatesModel.swift in Sources */,
 				E2821A62289B97A500982AE7 /* TemplatesCollectionViewCell.swift in Sources */,
+				E2AD46C6289C46A900E513B7 /* UIImageView+.swift in Sources */,
 				E2821A5E2899976C00982AE7 /* CustomTapGesture.swift in Sources */,
 				E21D9968288ABA580065CB2A /* MainViewController.swift in Sources */,
 				8E556EAE289BEAEA008E6D97 /* MainCollectionViewCell.swift in Sources */,

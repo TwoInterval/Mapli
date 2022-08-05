@@ -27,7 +27,7 @@ class AppleMusicAPI {
         return playlists.data
 	}
 	
-	func fetchSongs(userToken: String, id: String) async throws -> [MySong] {
+	func fetchMySongs(userToken: String, id: String) async throws -> [MySong] {
 		guard let musicURL = URL(string: "https://api.music.apple.com/v1/me/library/playlists/\(id)/tracks") else { throw NetworkError.invalidURL }
 		var musicRequest = URLRequest(url: musicURL)
 		musicRequest.httpMethod = "GET"
@@ -41,5 +41,17 @@ class AppleMusicAPI {
 			mySongs.append(MySong(title: song.attributes.name, isCheck: false))
 		}
 		return mySongs
+	}
+	
+	func fetchSongs(userToken: String, id: String) async throws -> [Song] {
+		guard let musicURL = URL(string: "https://api.music.apple.com/v1/me/library/playlists/\(id)/tracks") else { throw NetworkError.invalidURL }
+		var musicRequest = URLRequest(url: musicURL)
+		musicRequest.httpMethod = "GET"
+		musicRequest.addValue("Bearer \(developerToken)", forHTTPHeaderField: "Authorization")
+		musicRequest.addValue(userToken, forHTTPHeaderField: "Music-User-Token")
+		
+		let (data, _) = try await URLSession.shared.data(for: musicRequest)
+		let songs = try JSONDecoder().decode(SongDatum.self, from: data)
+		return songs.data
 	}
 }

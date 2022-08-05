@@ -25,14 +25,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-//        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "AppleMusicPlaylistViewController") as? AppleMusicPlaylistViewController else { return }
-//
-//        viewController.viewModel = viewModel
-//
-//        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
