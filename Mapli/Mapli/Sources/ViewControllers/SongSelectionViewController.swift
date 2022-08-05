@@ -12,8 +12,6 @@ class SongSelectionViewController: UIViewController {
 	@IBOutlet weak var searchButton: UIButton!
 	@IBOutlet weak var selectAllButton: UIButton!
 	
-	private let viewModel = AppleMusicViewModel()
-	
 	private var isFiltering: Bool {
 		let searchController = self.navigationItem.searchController
 		let isActive = searchController?.isActive ?? false
@@ -21,8 +19,9 @@ class SongSelectionViewController: UIViewController {
 		return isActive && isSearchText
 	}
 	private var isSearchBar = false
-	private var musicList = [MySong]()
 	private var searchMusicList = [MySong]()
+	
+	var musicList = [MySong]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,7 +29,7 @@ class SongSelectionViewController: UIViewController {
 		setupTableView()
 		setupNavigatoinBar()
 		initRefresh()
-		
+		print(musicList)
 	}
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
@@ -113,8 +112,6 @@ class SongSelectionViewController: UIViewController {
 	
 	@objc private func updateUI(refresh: UIRefreshControl) {
 		refresh.endRefreshing()
-		viewModel.viewDidLoad()
-		musicList = viewModel.mySongs
 		self.tableView.reloadData()
 	}
     

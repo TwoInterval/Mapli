@@ -18,10 +18,33 @@ class AppleMusicPlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		setupNavigatoinBar()
         setupCollectionView()
 		setupViewModel()
 		initRefresh()
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "SongSelectionSegue" {
+			let cell = sender as? AppleMusicPlaylistCollectionViewCell ?? UICollectionViewCell()
+			let indexPath = collectionView.indexPath(for: cell)
+			if let SongSelectionViewController = segue.destination as? SongSelectionViewController {
+				if let indexPath = indexPath {
+					SongSelectionViewController.musicList = songs[indexPath.item+1]
+				}
+			}
+			
+		}
+	}
+	
+	private func setupNavigatoinBar() {
+		let backButton = UIBarButtonItem()
+		backButton.title = "이전"
+		navigationItem.backBarButtonItem = backButton
+		navigationController?.navigationBar.backIndicatorImage = UIImage()
+		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
+		navigationController?.navigationBar.tintColor = .red
+	}
 	
     private func setupCollectionView() {
         collectionView.dataSource = self
