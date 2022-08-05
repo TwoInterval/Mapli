@@ -10,20 +10,11 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
     
-    var viewModel = AppleMusicViewModel()
-    
-	override func viewDidLoad() {
+    override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavigatoinBar()
         setupCollectionView()
 	}
-    
-    override func prepare(for segue: UIStoryboardSegue,sender: Any?){
-        if segue.identifier == "segue" {
-            let viewController = segue.destination as! AppleMusicPlaylistViewController
-            viewController.viewModel = viewModel
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

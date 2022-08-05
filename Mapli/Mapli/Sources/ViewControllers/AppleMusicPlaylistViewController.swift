@@ -13,8 +13,7 @@ class AppleMusicPlaylistViewController: UIViewController {
 	
 	private var cancelBag = Set<AnyCancellable>()
 	private var songs = [Song]()
-	
-	var viewModel = AppleMusicViewModel()
+	private var viewModel = AppleMusicViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
