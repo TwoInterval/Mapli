@@ -38,7 +38,6 @@ extension AppleMusicViewModel {
 			do {
 				self.usetToken = try await AppleMusicAPI().fetchUserToken()
 				self.playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
-				self.mySongs = try await AppleMusicAPI().fetchMySongs(userToken: usetToken, id: playlists[0].id)
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}
@@ -49,6 +48,16 @@ extension AppleMusicViewModel {
 		Task {
 			do {
 				self.songs = try await AppleMusicAPI().fetchSongs(userToken: usetToken, id: playlistId)
+			} catch NetworkError.invalidURL {
+				print("Invalid URL ERROR!")
+			}
+		}
+	}
+	
+	func fetchMySong(playlistId: String) {
+		Task {
+			do {
+				self.mySongs = try await AppleMusicAPI().fetchMySongs(userToken: usetToken, id: playlistId)
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}

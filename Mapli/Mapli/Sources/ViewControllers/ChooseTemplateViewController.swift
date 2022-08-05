@@ -79,7 +79,7 @@ class ChooseTemplateViewController: UIViewController {
 	}
 }
 
-extension ChooseTemplateViewController: UICollectionViewDataSource {
+extension ChooseTemplateViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return templatesList.count
 	}
@@ -112,10 +112,6 @@ extension ChooseTemplateViewController: UICollectionViewDataSource {
 			selectedTemplates = "\(cell.imageName)"
 		}
 	}
-}
-
-extension ChooseTemplateViewController: UICollectionViewDelegate {
-	
 }
 
 extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

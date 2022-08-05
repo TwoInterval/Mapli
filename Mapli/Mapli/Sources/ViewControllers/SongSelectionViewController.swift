@@ -124,7 +124,7 @@ class SongSelectionViewController: UIViewController {
 	}
 }
 
-extension SongSelectionViewController: UITableViewDataSource {
+extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return isFiltering ? searchMusicList.count : musicList.count
 	}
@@ -166,10 +166,6 @@ extension SongSelectionViewController: UITableViewDataSource {
 			}
 		}
 	}
-}
-
-extension SongSelectionViewController: UITableViewDelegate {
-	
 }
 
 extension SongSelectionViewController: UISearchResultsUpdating {
