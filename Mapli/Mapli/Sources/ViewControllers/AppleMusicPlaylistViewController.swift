@@ -49,6 +49,9 @@ class AppleMusicPlaylistViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
+		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
     }
 	
 	private func initRefresh() {
@@ -113,6 +116,10 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize+27)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+		return CGFloat(DeviceSize.playlistSpacing)
 	}
 }
 

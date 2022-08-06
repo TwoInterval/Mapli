@@ -30,8 +30,6 @@ class ChooseTemplateViewController: UIViewController {
 		setupImagePicker()
 		setupNavigationBar()
 		setupCollectionView()
-		print(selectedMusicList)
-		imagePickerButton.layer.cornerRadius = 20
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
@@ -70,6 +68,7 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	private func setupImagePicker() {
+		imagePickerButton.layer.cornerRadius = 20
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = true
 		imagePicker.delegate = self
