@@ -113,10 +113,17 @@ class SongSelectionViewController: UIViewController {
 		refresh.endRefreshing()
 		self.tableView.reloadData()
 	}
-    
+	
 	@objc private func nextButtonTapped() {
-		let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") ?? UIViewController()
-		self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
+		let selectedMySongList = musicList.filter { $0.isCheck }
+		let selectedMusicList = selectedMySongList.map { $0.title }
+		if !selectedMusicList.isEmpty {
+			let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") as! ChooseTemplateViewController
+			chooseTemplateVC.selectedMusicList = selectedMusicList
+			self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
+		} else {
+			showToastMessage("최소 1곡 이상 선택해주세요.")
+		}
 	}
 }
 
@@ -170,5 +177,28 @@ extension SongSelectionViewController: UISearchResultsUpdating {
 		searchMusicList = musicList.filter { return $0.title.localizedCaseInsensitiveContains(text) }
 		
 		tableView.reloadData()
+	}
+}
+
+extension SongSelectionViewController {
+	func showToastMessage(_ message: String, font: UIFont = UIFont.systemFont(ofSize: 12, weight: .light)) {
+		let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 150, y: view.frame.height - 120, width: 300, height: 50))
+		
+		toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+		toastLabel.textColor = UIColor.white
+		toastLabel.numberOfLines = 2
+		toastLabel.font = font
+		toastLabel.text = message
+		toastLabel.textAlignment = .center
+		toastLabel.layer.cornerRadius = 10
+		toastLabel.clipsToBounds = true
+		
+		self.view.addSubview(toastLabel)
+
+		UIView.animate(withDuration: 1.5, delay: 0.7, options: .curveEaseOut) {
+			toastLabel.alpha = 0.0
+		} completion: { _ in
+			toastLabel.removeFromSuperview()
+		}
 	}
 }

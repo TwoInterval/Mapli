@@ -20,6 +20,8 @@ class ChooseTemplateViewController: UIViewController {
 	private var templatesList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
 	private var selectedTemplates = "templates1"
 	
+	var selectedMusicList = [String]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupConstraint()
@@ -28,7 +30,7 @@ class ChooseTemplateViewController: UIViewController {
 		setupImagePicker()
 		setupNavigationBar()
 		setupCollectionView()
-		
+		print(selectedMusicList)
 		imagePickerButton.layer.cornerRadius = 20
 	}
 	
