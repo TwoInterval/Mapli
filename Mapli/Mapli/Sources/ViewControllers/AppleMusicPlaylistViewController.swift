@@ -74,7 +74,7 @@ class AppleMusicPlaylistViewController: UIViewController {
 
 }
 
-extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if viewModel.playlists.count == 0 {
             let label = UILabel()
@@ -96,6 +96,7 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
 
 				if URL(string: url) != nil {
 					cell.playlistImage.load(url: URL(string: url)!)
+					cell.playlistImage.layer.cornerRadius = 20
 				}
 				
 				for playlist in viewModel.playlists {
@@ -109,6 +110,10 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
             return UICollectionViewCell()
         }
     }
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize+27)
+	}
 }
 
 private extension AppleMusicPlaylistViewController {

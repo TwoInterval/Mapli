@@ -29,7 +29,6 @@ class SongSelectionViewController: UIViewController {
 		setupTableView()
 		setupNavigatoinBar()
 		initRefresh()
-		print(musicList)
 	}
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
