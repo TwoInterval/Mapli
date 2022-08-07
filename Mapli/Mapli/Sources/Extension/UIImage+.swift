@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIImage {
-	public func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
+	func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
 		let maxRadius = min(size.width, size.height) / 2
 		let cornerRadius: CGFloat
 		if let radius = radius, radius > 0 && radius <= maxRadius {

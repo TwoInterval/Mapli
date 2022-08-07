@@ -45,9 +45,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="운동할 때" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZP7-KZ-8rf">
-                                                    <rect key="frame" x="0.0" y="178" width="170" height="23"/>
+                                                    <rect key="frame" x="0.0" y="171" width="170" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -57,6 +57,7 @@
                                         <connections>
                                             <outlet property="playlistImage" destination="lTt-ed-HpK" id="tDM-5d-fvW"/>
                                             <outlet property="playlistLabel" destination="ZP7-KZ-8rf" id="ny9-mo-ZaJ"/>
+                                            <segue destination="nab-s9-fRd" kind="show" identifier="SongSelectionSegue" id="ga4-DG-MrX"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -81,6 +82,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="31.884057971014496" y="93.75"/>
+        </scene>
+        <!--SongSelectionStoryboard-->
+        <scene sceneID="GfS-6M-N3v">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SongSelectionVC" storyboardName="SongSelectionStoryboard" id="nab-s9-fRd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zYg-FJ-aI1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PJ2-p8-XCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="94"/>
         </scene>
     </scenes>
     <resources>

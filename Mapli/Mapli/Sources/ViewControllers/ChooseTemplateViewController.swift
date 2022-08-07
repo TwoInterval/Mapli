@@ -20,6 +20,8 @@ class ChooseTemplateViewController: UIViewController {
 	private var templatesList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
 	private var selectedTemplates = "templates1"
 	
+	var selectedMusicList = [String]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupConstraint()
@@ -28,8 +30,6 @@ class ChooseTemplateViewController: UIViewController {
 		setupImagePicker()
 		setupNavigationBar()
 		setupCollectionView()
-		
-		imagePickerButton.layer.cornerRadius = 20
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
@@ -68,6 +68,7 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	private func setupImagePicker() {
+		imagePickerButton.layer.cornerRadius = 20
 		imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = true
 		imagePicker.delegate = self
@@ -79,7 +80,7 @@ class ChooseTemplateViewController: UIViewController {
 	}
 }
 
-extension ChooseTemplateViewController: UICollectionViewDataSource {
+extension ChooseTemplateViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return templatesList.count
 	}
@@ -112,10 +113,6 @@ extension ChooseTemplateViewController: UICollectionViewDataSource {
 			selectedTemplates = "\(cell.imageName)"
 		}
 	}
-}
-
-extension ChooseTemplateViewController: UICollectionViewDelegate {
-	
 }
 
 extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

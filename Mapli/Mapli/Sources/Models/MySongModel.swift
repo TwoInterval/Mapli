@@ -9,5 +9,9 @@ import Foundation
 
 struct MySong {
 	var title: String
+	var imageURL: String
+	var id: String
+	var width: Int
+	var height: Int
 	var isCheck: Bool
 }

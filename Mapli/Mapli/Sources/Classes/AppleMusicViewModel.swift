@@ -9,9 +9,10 @@ import Combine
 import Foundation
 import StoreKit
 
-final class AppleMusicViewModel: ObservableObject {
+class AppleMusicViewModel: ObservableObject {
 	@Published var mySongs = [MySong]()
 	@Published var playlists = [Playlist]()
+	@Published var songs = [Song]()
 	var usetToken = String()
 
 	init() {
@@ -31,14 +32,32 @@ final class AppleMusicViewModel: ObservableObject {
 	}
 }
 
-private extension AppleMusicViewModel {
+extension AppleMusicViewModel {
 	func fetchAPI() {
 		Task {
 			do {
 				self.usetToken = try await AppleMusicAPI().fetchUserToken()
 				self.playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
-				self.mySongs = try await AppleMusicAPI().fetchSongs(userToken: usetToken, id: playlists[0].id)
-                print("완료")
+			} catch NetworkError.invalidURL {
+				print("Invalid URL ERROR!")
+			}
+		}
+	}
+	
+	func fetchSongs(playlistId: String) {
+		Task {
+			do {
+				self.songs = try await AppleMusicAPI().fetchSongs(userToken: usetToken, id: playlistId)
+			} catch NetworkError.invalidURL {
+				print("Invalid URL ERROR!")
+			}
+		}
+	}
+	
+	func fetchMySong(playlistId: String) {
+		Task {
+			do {
+				self.mySongs = try await AppleMusicAPI().fetchMySongs(userToken: usetToken, id: playlistId)
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}
