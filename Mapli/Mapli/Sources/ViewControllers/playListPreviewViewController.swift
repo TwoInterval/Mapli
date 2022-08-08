@@ -14,11 +14,27 @@ class playListPreviewViewController: UIViewController {
         super.viewDidLoad()
         DispatchQueue.main.async {
             self.configureImageView()
+            self.configureNavigationBar()
         }
     }
 
     private func configureImageView() {
         templateImageView.image = UIImage(named: "blackBoard.png")
+    }
+    
+    private func configureNavigationBar() {
+        let leftBarButtonItem = UIBarButtonItem(title: "이전", style: .done, target: self, action: #selector(onTapBackButton))
+        
+        let rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onTapBackButton))
+
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    @objc func onTapBackButton() {
+        print("ddd")
+//        self.navigationController?.dismiss(animated: true)
+        
     }
 }
 
