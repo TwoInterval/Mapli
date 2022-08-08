@@ -7,9 +7,11 @@
 
 import UIKit
 
-class playListPreviewViewController: UIViewController {
+class PlayListPreviewViewController: UIViewController {
     @IBOutlet var templateImageView: UIImageView!
     
+    var myPlayListModel: MyPlayListModel? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -19,7 +21,8 @@ class playListPreviewViewController: UIViewController {
     }
 
     private func configureImageView() {
-        templateImageView.image = UIImage(named: "blackBoard.png")
+        guard let templateImage = myPlayListModel?.templateName else { return }
+        templateImageView.image = UIImage(named: templateImage)
     }
     
     private func configureNavigationBar() {
@@ -33,12 +36,10 @@ class playListPreviewViewController: UIViewController {
     
     @objc func onTapBackButton() {
         print("ddd")
-//        self.navigationController?.dismiss(animated: true)
-        
     }
 }
 
-extension playListPreviewViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension PlayListPreviewViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }

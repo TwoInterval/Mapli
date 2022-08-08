@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A091E2C28A0FE7800680E8D /* MyPlayListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E2B28A0FE7800680E8D /* MyPlayListModel.swift */; };
+		0A091E2E28A11ACC00680E8D /* ImageDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E2D28A11ACC00680E8D /* ImageDataManager.swift */; };
 		0A2DFBEB28900DE500A68A73 /* playListPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEA28900DE500A68A73 /* playListPreview.storyboard */; };
-		0A2DFBED28900E0B00A68A73 /* playListPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEC28900E0B00A68A73 /* playListPreviewViewController.swift */; };
+		0A2DFBED28900E0B00A68A73 /* PlayListPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEC28900E0B00A68A73 /* PlayListPreviewViewController.swift */; };
 		8E457259289C06D800516E83 /* AppleMusicPlaylist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */; };
 		8E45725B289C078300516E83 /* AppleMusicPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */; };
 		8E45725D289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */; };
@@ -41,8 +43,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A091E2B28A0FE7800680E8D /* MyPlayListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlayListModel.swift; sourceTree = "<group>"; };
+		0A091E2D28A11ACC00680E8D /* ImageDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataManager.swift; sourceTree = "<group>"; };
 		0A2DFBEA28900DE500A68A73 /* playListPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = playListPreview.storyboard; sourceTree = "<group>"; };
-		0A2DFBEC28900E0B00A68A73 /* playListPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playListPreviewViewController.swift; sourceTree = "<group>"; };
+		0A2DFBEC28900E0B00A68A73 /* PlayListPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListPreviewViewController.swift; sourceTree = "<group>"; };
 		8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleMusicPlaylist.storyboard; sourceTree = "<group>"; };
 		8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistViewController.swift; sourceTree = "<group>"; };
 		8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				E219443A28957665005BE37B /* PlaylistModel.swift */,
 				E21944432896735F005BE37B /* MySongModel.swift */,
 				E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */,
+				0A091E2B28A0FE7800680E8D /* MyPlayListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,7 +173,7 @@
 			children = (
 				E21D9967288ABA580065CB2A /* MainViewController.swift */,
 				E21D9980288ACCB20065CB2A /* SongSelectionViewController.swift */,
-				0A2DFBEC28900E0B00A68A73 /* playListPreviewViewController.swift */,
+				0A2DFBEC28900E0B00A68A73 /* PlayListPreviewViewController.swift */,
 				E21944472896A6C6005BE37B /* ChooseTemplateViewController.swift */,
 				8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */,
 			);
@@ -192,6 +197,7 @@
 				E219443C28957670005BE37B /* AppleMusicAPI.swift */,
 				E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */,
 				E2821A5D2899976B00982AE7 /* CustomTapGesture.swift */,
+				0A091E2D28A11ACC00680E8D /* ImageDataManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E219443928957657005BE37B /* SongModel.swift in Sources */,
+				0A091E2C28A0FE7800680E8D /* MyPlayListModel.swift in Sources */,
 				8E45725B289C078300516E83 /* AppleMusicPlaylistViewController.swift in Sources */,
 				E21D9981288ACCB20065CB2A /* SongSelectionViewController.swift in Sources */,
 				E219443B28957665005BE37B /* PlaylistModel.swift in Sources */,
@@ -302,8 +309,9 @@
 				E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */,
 				E21944442896735F005BE37B /* MySongModel.swift in Sources */,
 				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,
+				0A091E2E28A11ACC00680E8D /* ImageDataManager.swift in Sources */,
 				E21D9966288ABA580065CB2A /* SceneDelegate.swift in Sources */,
-				0A2DFBED28900E0B00A68A73 /* playListPreviewViewController.swift in Sources */,
+				0A2DFBED28900E0B00A68A73 /* PlayListPreviewViewController.swift in Sources */,
 				8E45725D289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +460,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZNH7978JJQ;
 				DEVELOPMENT_TEAM = JGTT93XJ3D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
@@ -486,7 +493,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZNH7978JJQ;
 				DEVELOPMENT_TEAM = JGTT93XJ3D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
