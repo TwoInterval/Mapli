@@ -8,21 +8,30 @@
 import UIKit
 
 class PlayListPreviewViewController: UIViewController {
-    @IBOutlet var templateImageView: UIImageView!
+    @IBOutlet var templateCollectionView: UICollectionView!
+    @IBOutlet var templateCollectionViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var templateCollectionViewBottomConstraint: NSLayoutConstraint!
     
     var myPlayListModel: MyPlayListModel? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
+            self.setConstraint()
             self.configureImageView()
             self.configureNavigationBar()
         }
     }
-
+    
+    private func setConstraint() {
+        templateCollectionViewTopConstraint.constant = CGFloat(DeviceSize.previewTopPadding)
+        templateCollectionViewBottomConstraint.constant = CGFloat(DeviceSize.previewBottomPadding)
+    }
+    
     private func configureImageView() {
         guard let templateImage = myPlayListModel?.templateName else { return }
-        templateImageView.image = UIImage(named: templateImage)
+        templateCollectionView.backgroundView = UIImageView(image:  UIImage(named: templateImage)
+)
     }
     
     private func configureNavigationBar() {

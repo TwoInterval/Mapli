@@ -16,4 +16,6 @@ enum DeviceSize {
 	static let playlistSpacing = UIScreen.main.proDevice ? 10 : 15
 	static let templatesWidth = UIScreen.main.proDevice ? 210 : 183
 	static let templatesHeight = UIScreen.main.proDevice ? 309 : 269
+    static let previewTopPadding = UIScreen.main.proDevice ? 97 : 50
+    static let previewBottomPadding = UIScreen.main.proDevice ? 107 : 50
 }
