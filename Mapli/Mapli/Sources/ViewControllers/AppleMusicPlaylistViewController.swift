@@ -67,6 +67,20 @@ class AppleMusicPlaylistViewController: UIViewController {
 		collectionView.reloadData()
 	}
     
+    @objc private func accessToExternalApp() {
+        let appSchme = "music://geo.itunes.apple.com/kr/"
+        let storeUrl = "https://apps.apple.com/kr/app/apple-music/id1108187390"
+        
+        if let openApp = URL(string: appSchme), UIApplication.shared.canOpenURL(openApp) {
+            UIApplication.shared.open(openApp, options: [:], completionHandler: nil)
+        }
+        else {
+            if let openStore = URL(string: storeUrl), UIApplication.shared.canOpenURL(openStore) {
+                UIApplication.shared.open(openStore, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
     func resize(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
         let size = CGSize(width: width, height: height)
         let render = UIGraphicsImageRenderer(size: size)
@@ -92,6 +106,7 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
                 backgroundButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
                 backgroundButton.titleLabel?.lineBreakMode = .byWordWrapping
                 backgroundButton.titleLabel?.textAlignment = .center
+                backgroundButton.addTarget(self, action: #selector(self.accessToExternalApp), for: .touchUpInside)
                 collectionView.backgroundView = backgroundButton
             }
         }
