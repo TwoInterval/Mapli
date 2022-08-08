@@ -50,6 +50,7 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func setupNavigationBar() {
 		navigationItem.title = "템플릿 선택"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "미리보기", style: .plain, target: self, action: #selector(nextButtonTapped))
 	}
 	
 	private func setupTitleLabelStyle() {
@@ -78,6 +79,31 @@ class ChooseTemplateViewController: UIViewController {
 		collectionView.dataSource = self
 		collectionView.delegate = self
 	}
+    
+    @objc private func nextButtonTapped() {
+        guard let title = titleTextField.text else {
+            if title == "" {
+                showToastMessage("제목을 입력해주세요.")
+                return
+            }
+            showToastMessage("제목을 입력해주세요.")
+            return
+        }
+        let templateName = selectedTemplates
+        guard let image = imagePickerButton.image(for: .normal) else {
+            showToastMessage("대표 이미지를 선택해주세요.")
+            return
+        }
+        
+        let imageDataManager = ImageDataManager.shared
+        guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
+        
+        let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, templateName: templateName, playListImageName: nil)
+        let storyBoard = UIStoryboard(name: "playListPreview", bundle: nil)
+        guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PlayListPreviewViewController else { return }
+        playListPreviewVC.myPlayListModel = myPlayListModel
+        self.navigationController?.pushViewController(playListPreviewVC, animated: true)
+    }
 }
 
 extension ChooseTemplateViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -142,4 +168,28 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		}
 		return renderImage
 	}
+}
+
+
+extension ChooseTemplateViewController {
+    func showToastMessage(_ message: String, font: UIFont = UIFont.systemFont(ofSize: 12, weight: .light)) {
+        let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 150, y: view.frame.height - 120, width: 300, height: 50))
+        
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        toastLabel.textColor = UIColor.white
+        toastLabel.numberOfLines = 2
+        toastLabel.font = font
+        toastLabel.text = message
+        toastLabel.textAlignment = .center
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+        
+        self.view.addSubview(toastLabel)
+
+        UIView.animate(withDuration: 1.5, delay: 0.7, options: .curveEaseOut) {
+            toastLabel.alpha = 0.0
+        } completion: { _ in
+            toastLabel.removeFromSuperview()
+        }
+    }
 }
