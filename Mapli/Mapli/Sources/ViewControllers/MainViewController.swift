@@ -19,6 +19,9 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     private func setupCollectionView() {
@@ -57,12 +60,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as? MainCollectionViewCell {
             
-            let myPlayList = myPlayListModelManager.myPlayListModelArray[indexPath.item]
-            guard let imageName = myPlayList.playListImageName else {
-                return UICollectionViewCell()
+            DispatchQueue.main.async {
+                let myPlayList = self.myPlayListModelManager.myPlayListModelArray[indexPath.item]
+                let imageName = myPlayList.titleImageName
+                cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
+                cell.pliName.text = myPlayList.title
             }
-            cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
-            cell.pliName.text = myPlayList.title
             
             return cell
         } else {
@@ -71,7 +74,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     // Cell 모양 어떻게 할래?
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.frame.width
+        let cellHorizontalSpace = DeviceSize.playlistSpacing
+        let cellWidth = ((collectionViewWidth - CGFloat(cellHorizontalSpace)) / 2)
+        let cellHeight = cellWidth + 25
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
 }
