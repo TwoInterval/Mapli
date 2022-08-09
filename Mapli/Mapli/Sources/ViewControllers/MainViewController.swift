@@ -73,6 +73,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = myPlayListModelManager.myPlayListModelArray[indexPath.item]
+        let storyBoard = UIStoryboard(name: "PlayListDetailedScreen", bundle: nil)
+        guard let viewController = storyBoard.instantiateViewController(withIdentifier: "MyPlayListDetailedScreenViewController") as? MyPlayListDetailedScreenViewController else { return }
+        viewController.myPlayListModel = model
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
     // Cell 모양 어떻게 할래?
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewWidth = collectionView.frame.width
