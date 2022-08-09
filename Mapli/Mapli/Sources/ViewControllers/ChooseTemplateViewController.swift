@@ -102,6 +102,7 @@ class ChooseTemplateViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "playListPreview", bundle: nil)
         guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PlayListPreviewViewController else { return }
         playListPreviewVC.myPlayListModel = myPlayListModel
+        playListPreviewVC.selectedMusicList = self.selectedMusicList
         self.navigationController?.pushViewController(playListPreviewVC, animated: true)
     }
 }
