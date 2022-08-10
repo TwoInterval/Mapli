@@ -9,6 +9,7 @@ import UIKit
 
 class MyPlayListDetailedScreenViewController: UIViewController {
     @IBOutlet var myPlayListImageView: UIImageView!
+    private let myPlayListModelManager = MyPlayListModelManager.shared
     var myPlayListModel: MyPlayListModel? = nil
     
     override func viewDidLoad() {
@@ -31,9 +32,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         self.navigationController?.popViewController(animated: false)
     }
     @objc private func onTapRightBarButtonItem() {
-        let alert = UIAlertController(title: "메뉴", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-
-        // 메시지 창 컨트롤러에 들어갈 버튼 액션 객체 생성
+        let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let shareAction =  UIAlertAction(title: "공유하기", style: UIAlertAction.Style.default){_ in
             guard let imageName = self.myPlayListModel?.playListImageName else { return }
             guard let image = ImageDataManager.shared.fetchImage(named: imageName) else { return }
@@ -42,19 +41,15 @@ class MyPlayListDetailedScreenViewController: UIViewController {
             self.present(activityViewController, animated: true, completion: nil)
         }
         let destructiveAction = UIAlertAction(title: "삭제하기", style: UIAlertAction.Style.destructive){(_) in
-            // 버튼 클릭시 실행되는 코드
+            self.popRemoveAlert()
         }
-        let cancelAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) {_ in
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default) {_ in
             self.dismiss(animated: true)
         }
-        
-        //메시지 창 컨트롤러에 버튼 액션을 추가
-        alert.addAction(shareAction)
-        alert.addAction(destructiveAction)
-        alert.addAction(cancelAction)
-
-        //메시지 창 컨트롤러를 표시
-        self.present(alert, animated: true)
+        actionSheet.addAction(shareAction)
+        actionSheet.addAction(destructiveAction)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true)
     }
     
     private func setImageView() {
@@ -62,6 +57,21 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         guard let myPlayListModel = myPlayListModel else { return }
         guard let imageName = myPlayListModel.playListImageName else { return }
         myPlayListImageView.image = ImageDataManager.shared.fetchImage(named: imageName)
+    }
+    
+    private func popRemoveAlert() {
+        let alert = UIAlertController(title: "플레이리스트 삭제", message: "플레이리스트를 삭제하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction(title: "취소", style: .default) { (_) in
+            self.dismiss(animated: true)
+        }
+        let removeAction = UIAlertAction(title: "삭제", style: .destructive) { (_) in
+            guard let myPlayListModel = self.myPlayListModel else { return }
+            self.myPlayListModelManager.removeMyPlayListModel(myPlayListModel)
+            self.navigationController?.popViewController(animated: false)
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(removeAction)
+        self.present(alert, animated: true)
     }
     
 }
