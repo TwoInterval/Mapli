@@ -24,6 +24,12 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let _ = self.collectionView(self.collectionView, numberOfItemsInSection: 0)
+        self.collectionView.reloadData()
+    }
+    
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -88,5 +94,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cellWidth = ((collectionViewWidth - CGFloat(cellHorizontalSpace)) / 2)
         let cellHeight = cellWidth + 25
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
+
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0.05 * Double(indexPath.row),
+            animations: {
+                cell.alpha = 1
+        })
     }
 }

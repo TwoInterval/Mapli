@@ -16,5 +16,10 @@ class MainCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 20
     }
     
+    override func prepareForReuse() {
+        imageView.image = nil
+        pliName.text = ""
+    }
+    
 }
 
