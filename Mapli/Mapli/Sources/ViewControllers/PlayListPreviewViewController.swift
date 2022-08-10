@@ -32,8 +32,7 @@ class PlayListPreviewViewController: UIViewController {
     
     private func configureImageView() {
         guard let templateImage = myPlayListModel?.templateName else { return }
-        templateCollectionView.backgroundView = UIImageView(image:  UIImage(named: templateImage)
-)
+        templateCollectionView.backgroundView = UIImageView(image:  UIImage(named: templateImage))
     }
     
     private func configureNavigationBar() {

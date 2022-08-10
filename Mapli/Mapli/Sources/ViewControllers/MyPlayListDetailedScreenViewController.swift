@@ -34,7 +34,13 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         let alert = UIAlertController(title: "메뉴", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
 
         // 메시지 창 컨트롤러에 들어갈 버튼 액션 객체 생성
-        let shareAction =  UIAlertAction(title: "공유하기", style: UIAlertAction.Style.default)
+        let shareAction =  UIAlertAction(title: "공유하기", style: UIAlertAction.Style.default){_ in
+            guard let imageName = self.myPlayListModel?.playListImageName else { return }
+            guard let image = ImageDataManager.shared.fetchImage(named: imageName) else { return }
+            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+        }
         let destructiveAction = UIAlertAction(title: "삭제하기", style: UIAlertAction.Style.destructive){(_) in
             // 버튼 클릭시 실행되는 코드
         }
