@@ -61,7 +61,9 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	private func setupTitleTextFieldStyle() {
+		titleTextField.delegate = self
 		titleTextField.borderStyle = .none
+		titleTextField.font = UIFont(name: titleTextField.font != nil ? titleTextField.font!.fontName : "AppleSDGothicNeo-Regular", size: 17)
 		let border = CALayer()
 		border.frame = CGRect(x: 0, y: titleTextField.frame.size.height-10, width: titleTextField.frame.width-40, height: 1)
 		border.backgroundColor = UIColor.black.cgColor
@@ -191,4 +193,15 @@ extension ChooseTemplateViewController {
             toastLabel.removeFromSuperview()
         }
     }
+}
+
+extension ChooseTemplateViewController: UITextFieldDelegate {
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
 }
