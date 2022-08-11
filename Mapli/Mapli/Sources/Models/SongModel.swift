@@ -21,7 +21,7 @@ struct Song: Codable {
 
 struct SongAttributes: Codable {
 	let name, albumName: String
-	let genreNames: [GenreName]
+	let genreNames: [String]
 	let artwork: Artwork
 	let hasLyrics: Bool
 	let artistName: String
@@ -37,19 +37,9 @@ struct Artwork: Codable {
 	let height, width: Int
 }
 
-enum GenreName: String, Codable {
-	case folk = "Folk"
-	case hipHop = "Hip-Hop"
-	case hipHopRap = "Hip-Hop/Rap"
-	case kPop = "K-Pop"
-	case koreanHipHop = "Korean Hip-Hop"
-	case pop = "Pop"
-	case rBSoul = "R&B/Soul"
-	case soundtrack = "Soundtrack"
-}
-
 struct SongPlayParams: Codable {
-	let reportingID, catalogID, id: String
+	let reportingID: String?
+	let catalogID, id: String
 	let kind: Kind
 	let reporting, isLibrary: Bool
 
