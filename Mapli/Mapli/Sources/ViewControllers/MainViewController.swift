@@ -84,7 +84,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let storyBoard = UIStoryboard(name: "PlayListDetailedScreen", bundle: nil)
         guard let viewController = storyBoard.instantiateViewController(withIdentifier: "MyPlayListDetailedScreenViewController") as? MyPlayListDetailedScreenViewController else { return }
         viewController.myPlayListModel = model
-        self.navigationController?.pushViewController(viewController, animated: false)
+        self.navigationController?.show(viewController, sender: self)
     }
     
     // Cell 모양 어떻게 할래?
