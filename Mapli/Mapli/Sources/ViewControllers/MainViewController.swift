@@ -24,6 +24,12 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let _ = self.collectionView(self.collectionView, numberOfItemsInSection: 0)
+        self.collectionView.reloadData()
+    }
+    
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -73,6 +79,14 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = myPlayListModelManager.myPlayListModelArray[indexPath.item]
+        let storyBoard = UIStoryboard(name: "PlayListDetailedScreen", bundle: nil)
+        guard let viewController = storyBoard.instantiateViewController(withIdentifier: "MyPlayListDetailedScreenViewController") as? MyPlayListDetailedScreenViewController else { return }
+        viewController.myPlayListModel = model
+        self.navigationController?.pushViewController(viewController, animated: false)
+    }
+    
     // Cell 모양 어떻게 할래?
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewWidth = collectionView.frame.width
@@ -80,5 +94,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cellWidth = ((collectionViewWidth - CGFloat(cellHorizontalSpace)) / 2)
         let cellHeight = cellWidth + 25
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
+
+        UIView.animate(
+            withDuration: 0.3,
+            delay: 0.05 * Double(indexPath.row),
+            animations: {
+                cell.alpha = 1
+        })
     }
 }
