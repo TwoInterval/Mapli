@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlayListPreviewViewController: UIViewController {
+class PreviewMyPlayListViewController: UIViewController {
     @IBOutlet var templateCollectionView: UICollectionView!
     @IBOutlet var templateCollectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var templateCollectionViewBottomConstraint: NSLayoutConstraint!
@@ -31,7 +31,7 @@ class PlayListPreviewViewController: UIViewController {
     }
     
     private func configureImageView() {
-        guard let templateImage = myPlayListModel?.templateName else { return }
+        guard let templateImage = myPlayListModel?.template.rawValue else { return }
         guard let image = UIImage(named: templateImage) else { return }
         templateCollectionView.backgroundView = UIImageView(image: image)
     }
@@ -59,14 +59,16 @@ class PlayListPreviewViewController: UIViewController {
     }
 }
 
-extension PlayListPreviewViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension PreviewMyPlayListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedMusicList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TemplateCollectionViewCell", for: indexPath) as? TemplateCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewMyPlayListCollectionViewCell", for: indexPath) as? PreviewMyPlayListCollectionViewCell else { return UICollectionViewCell() }
+        guard let myPlayListModel = myPlayListModel else { return cell}
         let musicTitle = selectedMusicList[indexPath.item]
+        cell.selectedTemplate = myPlayListModel.template
         cell.setUI(musicTitle)
         
         return cell
@@ -79,18 +81,4 @@ extension PlayListPreviewViewController: UICollectionViewDataSource, UICollectio
         return CGSize
     }
    
-}
-
-class TemplateCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var titleLabel: UILabel!
-    
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    func setUI(_ titleText: String) {
-        DispatchQueue.main.async {
-            self.titleLabel.text = titleText
-        }
-    }
 }

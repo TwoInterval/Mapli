@@ -58,6 +58,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             collectionView.backgroundView = label
             return 0
         } else {
+            collectionView.backgroundView = nil
             return myPlayListModelManager.myPlayListModelArray.count
         }
     }

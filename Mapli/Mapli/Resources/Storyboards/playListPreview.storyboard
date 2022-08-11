@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Play List Preview View Controller-->
+        <!--Preview My Play List View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="playListPreview" id="Y6W-OH-hqX" customClass="PlayListPreviewViewController" customModule="Mapli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="playListPreview" id="Y6W-OH-hqX" customClass="PreviewMyPlayListViewController" customModule="Mapli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TemplateCollectionViewCell" id="E7O-sB-mlx" customClass="TemplateCollectionViewCell" customModule="Mapli" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PreviewMyPlayListCollectionViewCell" id="E7O-sB-mlx" customClass="PreviewMyPlayListCollectionViewCell" customModule="Mapli" customModuleProvider="target">
                                         <rect key="frame" x="45.5" y="0.0" width="283" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aeY-Up-4Qc">

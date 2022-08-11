@@ -10,13 +10,13 @@ import Foundation
 struct MyPlayListModel: Codable, Equatable {
     var title: String
     var titleImageName: String
-    var templateName: String
+    var template: Template
     var playListImageName: String?
     
     public static func == (lhs: MyPlayListModel, rhs: MyPlayListModel) -> Bool {
         guard lhs.title == rhs.title else {return false}
         guard lhs.titleImageName == rhs.titleImageName else {return false}
-        guard lhs.templateName == rhs.templateName else {return false}
+        guard lhs.template == rhs.template else {return false}
         guard lhs.playListImageName == rhs.playListImageName else {return false}
         return true
     }

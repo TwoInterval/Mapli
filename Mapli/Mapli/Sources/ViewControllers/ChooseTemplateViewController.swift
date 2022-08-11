@@ -17,8 +17,8 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private let imagePicker = UIImagePickerController()
 	
-	private var templatesList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
-	private var selectedTemplates = "templates1"
+//	private var templatesList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
+    private var selectedTemplates: Template = .templates1
 	
 	var selectedMusicList = [String]()
 	
@@ -89,7 +89,6 @@ class ChooseTemplateViewController: UIViewController {
             showToastMessage("제목을 입력해주세요.")
             return
         }
-        let templateName = selectedTemplates
         guard let image = imagePickerButton.image(for: .normal) else {
             showToastMessage("대표 이미지를 선택해주세요.")
             return
@@ -98,9 +97,9 @@ class ChooseTemplateViewController: UIViewController {
         let imageDataManager = ImageDataManager.shared
         guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
         
-        let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, templateName: templateName, playListImageName: nil)
+        let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, template: selectedTemplates, playListImageName: nil)
         let storyBoard = UIStoryboard(name: "playListPreview", bundle: nil)
-        guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PlayListPreviewViewController else { return }
+        guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PreviewMyPlayListViewController else { return }
         playListPreviewVC.myPlayListModel = myPlayListModel
         playListPreviewVC.selectedMusicList = self.selectedMusicList
         self.navigationController?.pushViewController(playListPreviewVC, animated: true)
@@ -109,18 +108,18 @@ class ChooseTemplateViewController: UIViewController {
 
 extension ChooseTemplateViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return templatesList.count
+        return Template.allCases.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TamplatesCollectionCell", for: indexPath) as? TemplatesCollectionViewCell {
-			
-			var newImage = UIImage(named: "\(templatesList[indexPath.item])")
+            let templateImage = Template.allCases[indexPath.item]
+            var newImage = UIImage(named: templateImage.rawValue)
 			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight))
 			cell.templatesImageView.image = newImage
 			cell.templatesImageView.contentMode = .scaleAspectFit
 			cell.templatesCheckImageView.image = UIImage(named: "Selected")
-			cell.imageName = "\(templatesList[indexPath.item])"
+            cell.template = templateImage
 			
 			if indexPath.item == 0 {
 				cell.isSelected = true
@@ -137,7 +136,8 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TemplatesCollectionViewCell {
-			selectedTemplates = "\(cell.imageName)"
+            guard let cellTemplate = cell.template else {return}
+            selectedTemplates = cellTemplate
 		}
 	}
 }
