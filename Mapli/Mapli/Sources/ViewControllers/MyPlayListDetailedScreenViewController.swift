@@ -20,16 +20,10 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         }
     }
     private func setNavigationBar() {
-        let leftBarButtonItem = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: #selector(onTapLeftBarButtonItem))
         let image = UIImage(systemName: "ellipsis.circle")
         let rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(onTapRightBarButtonItem))
-        self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
         self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
-    }
-    
-    @objc private func onTapLeftBarButtonItem() {
-        self.navigationController?.popViewController(animated: false)
     }
     @objc private func onTapRightBarButtonItem() {
         let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: UIAlertController.Style.actionSheet)

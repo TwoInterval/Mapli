@@ -32,7 +32,8 @@ class PlayListPreviewViewController: UIViewController {
     
     private func configureImageView() {
         guard let templateImage = myPlayListModel?.templateName else { return }
-        templateCollectionView.backgroundView = UIImageView(image:  UIImage(named: templateImage))
+        guard let image = UIImage(named: templateImage) else { return }
+        templateCollectionView.backgroundView = UIImageView(image: image)
     }
     
     private func configureNavigationBar() {
@@ -49,12 +50,11 @@ class PlayListPreviewViewController: UIViewController {
     }
     
     @objc func onTapCompleteButton() {
-        guard let image = templateCollectionView.transfromToImage() else { return }
-        guard let imageFileName = ImageDataManager().saveImage(image: image) else { return }
+        guard let image = templateCollectionView.transformToImage() else { return }
+        guard let imageFileName = ImageDataManager.shared.saveImage(image: image) else { return }
         guard var myPlayListModel = myPlayListModel else { return }
         myPlayListModel.playListImageName = imageFileName
         MyPlayListModelManager.shared.appendMyPlayListModelArray(myPlayListModel)
-        print(MyPlayListModelManager.shared.myPlayListModelArray)
         self.navigationController?.popToRootViewController(animated: false)
     }
 }
@@ -92,19 +92,5 @@ class TemplateCollectionViewCell: UICollectionViewCell {
         DispatchQueue.main.async {
             self.titleLabel.text = titleText
         }
-    }
-}
-
-extension UIView {
-    func transfromToImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        if let context = UIGraphicsGetCurrentContext() {
-            layer.render(in: context)
-            return UIGraphicsGetImageFromCurrentImageContext()
-        }
-        return nil
     }
 }
