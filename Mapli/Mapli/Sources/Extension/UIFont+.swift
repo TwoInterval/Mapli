@@ -13,7 +13,7 @@ extension UIFont {
     enum Font: String {
         case ChosunCentennial, EBS훈민정음L, EBS훈민정음R, EBS훈민정음SB, Eulyoo1945, UhBeemysen, UhBeeSeulvely, Chalkduster
         case GowunBatangRegular = "GowunBatang-Regular"
-        // UhBeemysenBold
+        // UhBeemysenBold 적용안됨
     }
     
     static func font(size: CGFloat, font: Font) -> UIFont {
