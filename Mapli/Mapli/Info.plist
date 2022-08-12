@@ -5,6 +5,16 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>ChosunCentennial_otf.otf</string>
+		<string>EBS훈민정음L.otf</string>
+		<string>EBS훈민정음R.otf</string>
+		<string>EBS훈민정음SB.otf</string>
+		<string>Eulyoo1945-Regular.otf</string>
+		<string>Eulyoo1945-SemiBold.otf</string>
+		<string>GowunBatang-Bold.ttf</string>
+		<string>GowunBatang-Regular.ttf</string>
+		<string>UhBee mysen Bold.ttf</string>
+		<string>UhBee mysen.ttf</string>
+		<string>UhBee Seulvely.ttf</string>
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>

@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="ChosunCentennial_otf.otf">
-            <string>ChosunCentennial</string>
+        <array key="GowunBatang-Regular.ttf">
+            <string>GowunBatang-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -41,7 +41,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="OEP-Db-rB7">
                                                     <rect key="frame" x="0.0" y="0.0" width="283" height="37"/>
-                                                    <fontDescription key="fontDescription" name="ChosunCentennial" family="Chosun Centennial" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="GowunBatang-Regular" family="Gowun Batang" pointSize="20"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

@@ -86,19 +86,25 @@ extension PreviewMyPlayListViewController: UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var width = collectionView.bounds.width * 0.8
-        var height = collectionView.bounds.height * 0.05
+        var widthMultiplier = 0.8
+        var heightMultiplier = 0.05
+        
         guard let myPlayListModel = myPlayListModel else { return CGSize() }
         switch myPlayListModel.template {
         case .templates1:
-            height = collectionView.bounds.height * 0.04
+            heightMultiplier = 0.04
         case .templates2:
-            height = collectionView.bounds.height * 0.04
+            heightMultiplier = 0.04
         case .templates3:
-            width = collectionView.bounds.width * 0.51
-            height = collectionView.bounds.height * 0.04
+            widthMultiplier = 0.51
+            heightMultiplier = 0.04
+        case .templates5:
+            widthMultiplier = 0.7
         default: break
         }
+        
+        let width = collectionView.bounds.width * widthMultiplier
+        let height = collectionView.bounds.height * heightMultiplier
         let CGSize = CGSize(width: width, height: height)
         return CGSize
     }

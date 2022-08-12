@@ -16,6 +16,16 @@
 		0A091E3A28A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3928A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift */; };
 		0A091E3E28A5487500680E8D /* ChosunCentennial_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */; };
 		0A091E4028A54A6B00680E8D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3F28A54A6B00680E8D /* UIFont+.swift */; };
+		0A091E4B28A6538F00680E8D /* GowunBatang-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4128A6538E00680E8D /* GowunBatang-Bold.ttf */; };
+		0A091E4C28A6538F00680E8D /* GowunBatang-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4228A6538E00680E8D /* GowunBatang-Regular.ttf */; };
+		0A091E4D28A6538F00680E8D /* EBS훈민정음R.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4328A6538E00680E8D /* EBS훈민정음R.otf */; };
+		0A091E4E28A6538F00680E8D /* EBS훈민정음SB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4428A6538E00680E8D /* EBS훈민정음SB.otf */; };
+		0A091E4F28A6538F00680E8D /* UhBee mysen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4528A6538E00680E8D /* UhBee mysen.ttf */; };
+		0A091E5028A6538F00680E8D /* UhBee mysen Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4628A6538E00680E8D /* UhBee mysen Bold.ttf */; };
+		0A091E5128A6538F00680E8D /* Eulyoo1945-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4728A6538E00680E8D /* Eulyoo1945-Regular.otf */; };
+		0A091E5228A6538F00680E8D /* UhBee Seulvely.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4828A6538F00680E8D /* UhBee Seulvely.ttf */; };
+		0A091E5328A6538F00680E8D /* EBS훈민정음L.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */; };
+		0A091E5428A6538F00680E8D /* Eulyoo1945-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */; };
 		0A2DFBEB28900DE500A68A73 /* playListPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEA28900DE500A68A73 /* playListPreview.storyboard */; };
 		0A2DFBED28900E0B00A68A73 /* PreviewMyPlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */; };
 		8E457259289C06D800516E83 /* AppleMusicPlaylist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */; };
@@ -59,6 +69,16 @@
 		0A091E3928A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunCentennial_otf.otf; sourceTree = "<group>"; };
 		0A091E3F28A54A6B00680E8D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		0A091E4128A6538E00680E8D /* GowunBatang-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GowunBatang-Bold.ttf"; sourceTree = "<group>"; };
+		0A091E4228A6538E00680E8D /* GowunBatang-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GowunBatang-Regular.ttf"; sourceTree = "<group>"; };
+		0A091E4328A6538E00680E8D /* EBS훈민정음R.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBS훈민정음R.otf"; sourceTree = "<group>"; };
+		0A091E4428A6538E00680E8D /* EBS훈민정음SB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBS훈민정음SB.otf"; sourceTree = "<group>"; };
+		0A091E4528A6538E00680E8D /* UhBee mysen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee mysen.ttf"; sourceTree = "<group>"; };
+		0A091E4628A6538E00680E8D /* UhBee mysen Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee mysen Bold.ttf"; sourceTree = "<group>"; };
+		0A091E4728A6538E00680E8D /* Eulyoo1945-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eulyoo1945-Regular.otf"; sourceTree = "<group>"; };
+		0A091E4828A6538F00680E8D /* UhBee Seulvely.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Seulvely.ttf"; sourceTree = "<group>"; };
+		0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBS훈민정음L.otf"; sourceTree = "<group>"; };
+		0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eulyoo1945-SemiBold.otf"; sourceTree = "<group>"; };
 		0A2DFBEA28900DE500A68A73 /* playListPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = playListPreview.storyboard; sourceTree = "<group>"; };
 		0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListViewController.swift; sourceTree = "<group>"; };
 		8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleMusicPlaylist.storyboard; sourceTree = "<group>"; };
@@ -108,6 +128,16 @@
 		0A091E3C28A5485B00680E8D /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */,
+				0A091E4328A6538E00680E8D /* EBS훈민정음R.otf */,
+				0A091E4428A6538E00680E8D /* EBS훈민정음SB.otf */,
+				0A091E4728A6538E00680E8D /* Eulyoo1945-Regular.otf */,
+				0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */,
+				0A091E4128A6538E00680E8D /* GowunBatang-Bold.ttf */,
+				0A091E4228A6538E00680E8D /* GowunBatang-Regular.ttf */,
+				0A091E4628A6538E00680E8D /* UhBee mysen Bold.ttf */,
+				0A091E4528A6538E00680E8D /* UhBee mysen.ttf */,
+				0A091E4828A6538F00680E8D /* UhBee Seulvely.ttf */,
 				0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */,
 			);
 			path = Font;
@@ -299,15 +329,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A091E4E28A6538F00680E8D /* EBS훈민정음SB.otf in Resources */,
 				0A091E3228A280E500680E8D /* PlayListDetailedScreen.storyboard in Resources */,
+				0A091E4F28A6538F00680E8D /* UhBee mysen.ttf in Resources */,
 				8E457259289C06D800516E83 /* AppleMusicPlaylist.storyboard in Resources */,
 				E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */,
+				0A091E4C28A6538F00680E8D /* GowunBatang-Regular.ttf in Resources */,
+				0A091E5228A6538F00680E8D /* UhBee Seulvely.ttf in Resources */,
+				0A091E5028A6538F00680E8D /* UhBee mysen Bold.ttf in Resources */,
 				8E5CE480289BDF39009ABD5E /* AppleMusicInfo.plist in Resources */,
 				E21D996D288ABA590065CB2A /* Assets.xcassets in Resources */,
+				0A091E5428A6538F00680E8D /* Eulyoo1945-SemiBold.otf in Resources */,
+				0A091E5128A6538F00680E8D /* Eulyoo1945-Regular.otf in Resources */,
 				0A2DFBEB28900DE500A68A73 /* playListPreview.storyboard in Resources */,
 				E21D996B288ABA580065CB2A /* Main.storyboard in Resources */,
 				E21D997F288ACCA00065CB2A /* SongSelectionStoryboard.storyboard in Resources */,
+				0A091E4B28A6538F00680E8D /* GowunBatang-Bold.ttf in Resources */,
 				0A091E3E28A5487500680E8D /* ChosunCentennial_otf.otf in Resources */,
+				0A091E5328A6538F00680E8D /* EBS훈민정음L.otf in Resources */,
+				0A091E4D28A6538F00680E8D /* EBS훈민정음R.otf in Resources */,
 				E21944462896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
