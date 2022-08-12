@@ -56,6 +56,7 @@
                                         <size key="customSize" width="283" height="37"/>
                                         <connections>
                                             <outlet property="titleLabel" destination="OEP-Db-rB7" id="leR-fY-2So"/>
+                                            <outlet property="titleLabelLeadingConstraints" destination="PuO-5c-MBr" id="X2K-Qa-SxZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

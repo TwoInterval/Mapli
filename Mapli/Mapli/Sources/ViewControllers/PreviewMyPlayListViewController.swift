@@ -27,7 +27,20 @@ class PreviewMyPlayListViewController: UIViewController {
     private func setConstraint() {
         templateCollectionViewTopConstraint.constant = CGFloat(DeviceSize.previewTopPadding)
         templateCollectionViewBottomConstraint.constant = CGFloat(DeviceSize.previewBottomPadding)
-        templateCollectionView.contentInset.top = max((templateCollectionView.frame.height - templateCollectionView.contentSize.height) / 4.5, 0)
+        
+        guard let myPlayListModel = myPlayListModel else { return }
+        var insetMultiplier = CGFloat(1)
+        switch myPlayListModel.template {
+        case .templates1:
+            insetMultiplier = 6
+        case .templates2:
+            insetMultiplier = 4
+        case .templates3:
+            insetMultiplier = 4
+        default:
+            insetMultiplier = 4.5
+        }
+        templateCollectionView.contentInset.top = max((templateCollectionView.frame.height - templateCollectionView.contentSize.height) / insetMultiplier, 0)
     }
     
     private func configureImageView() {
@@ -37,11 +50,8 @@ class PreviewMyPlayListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let leftBarButtonItem = UIBarButtonItem(title: "이전", style: .done, target: self, action: #selector(onTapBackButton))
-        
         let rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onTapCompleteButton))
 
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
@@ -76,10 +86,20 @@ extension PreviewMyPlayListViewController: UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width * 0.8
-        let height = collectionView.bounds.height * 0.05
+        var width = collectionView.bounds.width * 0.8
+        var height = collectionView.bounds.height * 0.05
+        guard let myPlayListModel = myPlayListModel else { return CGSize() }
+        switch myPlayListModel.template {
+        case .templates1:
+            height = collectionView.bounds.height * 0.04
+        case .templates2:
+            height = collectionView.bounds.height * 0.04
+        case .templates3:
+            width = collectionView.bounds.width * 0.51
+            height = collectionView.bounds.height * 0.04
+        default: break
+        }
         let CGSize = CGSize(width: width, height: height)
         return CGSize
     }
-   
 }

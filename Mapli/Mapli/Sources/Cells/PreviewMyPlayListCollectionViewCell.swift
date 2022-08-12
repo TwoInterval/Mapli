@@ -9,6 +9,8 @@ import UIKit
 
 class PreviewMyPlayListCollectionViewCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var titleLabelLeadingConstraints: NSLayoutConstraint!
+    
     var selectedTemplate: Template? = nil
     
     override class func awakeFromNib() {
@@ -21,6 +23,7 @@ class PreviewMyPlayListCollectionViewCell: UICollectionViewCell {
         case .templates1:
             self.titleLabel.textColor = .darkGray
         case .templates2:
+            self.titleLabelLeadingConstraints.constant = self.contentView.frame.width * 0.1
             self.titleLabel.textColor = .black
         case .templates3:
             self.titleLabel.textColor = .white
