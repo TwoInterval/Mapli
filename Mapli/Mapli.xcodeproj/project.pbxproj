@@ -14,6 +14,8 @@
 		0A091E3628A4EE8400680E8D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3528A4EE8400680E8D /* UIView+.swift */; };
 		0A091E3828A50B8000680E8D /* TemplateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3728A50B8000680E8D /* TemplateModel.swift */; };
 		0A091E3A28A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3928A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift */; };
+		0A091E3E28A5487500680E8D /* ChosunCentennial_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */; };
+		0A091E4028A54A6B00680E8D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3F28A54A6B00680E8D /* UIFont+.swift */; };
 		0A2DFBEB28900DE500A68A73 /* playListPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEA28900DE500A68A73 /* playListPreview.storyboard */; };
 		0A2DFBED28900E0B00A68A73 /* PreviewMyPlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */; };
 		8E457259289C06D800516E83 /* AppleMusicPlaylist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */; };
@@ -55,6 +57,8 @@
 		0A091E3528A4EE8400680E8D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		0A091E3728A50B8000680E8D /* TemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateModel.swift; sourceTree = "<group>"; };
 		0A091E3928A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunCentennial_otf.otf; sourceTree = "<group>"; };
+		0A091E3F28A54A6B00680E8D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		0A2DFBEA28900DE500A68A73 /* playListPreview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = playListPreview.storyboard; sourceTree = "<group>"; };
 		0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListViewController.swift; sourceTree = "<group>"; };
 		8E457258289C06D800516E83 /* AppleMusicPlaylist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppleMusicPlaylist.storyboard; sourceTree = "<group>"; };
@@ -101,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A091E3C28A5485B00680E8D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		E21D9957288ABA580065CB2A = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,7 @@
 		E21D9977288ABA8E0065CB2A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0A091E3C28A5485B00680E8D /* Font */,
 				E21D996C288ABA590065CB2A /* Assets.xcassets */,
 				E21D9963288ABA580065CB2A /* AppDelegate.swift */,
 				E21D9965288ABA580065CB2A /* SceneDelegate.swift */,
@@ -223,6 +236,7 @@
 				E2821A5F289A472000982AE7 /* UIImage+.swift */,
 				E2AD46C5289C46A900E513B7 /* UIImageView+.swift */,
 				0A091E3528A4EE8400680E8D /* UIView+.swift */,
+				0A091E3F28A54A6B00680E8D /* UIFont+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -293,6 +307,7 @@
 				0A2DFBEB28900DE500A68A73 /* playListPreview.storyboard in Resources */,
 				E21D996B288ABA580065CB2A /* Main.storyboard in Resources */,
 				E21D997F288ACCA00065CB2A /* SongSelectionStoryboard.storyboard in Resources */,
+				0A091E3E28A5487500680E8D /* ChosunCentennial_otf.otf in Resources */,
 				E21944462896A6AE005BE37B /* ChooseTemplateStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +341,7 @@
 				E24B565A288AD68D0071CF5E /* SongSelectionTableViewCell.swift in Sources */,
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
 				E2821A5C2897FB6800982AE7 /* UIScreen+.swift in Sources */,
+				0A091E4028A54A6B00680E8D /* UIFont+.swift in Sources */,
 				E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */,
 				E21944442896735F005BE37B /* MySongModel.swift in Sources */,
 				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,

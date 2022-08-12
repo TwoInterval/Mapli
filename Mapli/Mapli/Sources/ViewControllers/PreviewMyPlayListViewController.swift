@@ -68,15 +68,16 @@ extension PreviewMyPlayListViewController: UICollectionViewDataSource, UICollect
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewMyPlayListCollectionViewCell", for: indexPath) as? PreviewMyPlayListCollectionViewCell else { return UICollectionViewCell() }
         guard let myPlayListModel = myPlayListModel else { return cell}
         let musicTitle = selectedMusicList[indexPath.item]
-        cell.selectedTemplate = myPlayListModel.template
-        cell.setUI(musicTitle)
-        
+        DispatchQueue.main.async {
+            cell.selectedTemplate = myPlayListModel.template
+            cell.setUI(musicTitle)
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width * 0.9
-        let height = (collectionView.bounds.height * 0.05)
+        let width = collectionView.bounds.width * 0.8
+        let height = collectionView.bounds.height * 0.05
         let CGSize = CGSize(width: width, height: height)
         return CGSize
     }
