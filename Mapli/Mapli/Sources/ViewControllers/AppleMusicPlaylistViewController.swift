@@ -95,20 +95,7 @@ class AppleMusicPlaylistViewController: UIViewController {
 extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if viewModel.playlists.count == 0 {
-            DispatchQueue.main.async {
-                let buttonTitle = "Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"
-                let attributedString = NSMutableAttributedString(string: buttonTitle)
-                attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music 앱"))
-                attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"))
-                let backgroundButton = UIButton()
-                backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
-                backgroundButton.setAttributedTitle(attributedString, for: .normal)
-                backgroundButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-                backgroundButton.titleLabel?.lineBreakMode = .byWordWrapping
-                backgroundButton.titleLabel?.textAlignment = .center
-                backgroundButton.addTarget(self, action: #selector(self.accessToExternalApp), for: .touchUpInside)
-                collectionView.backgroundView = backgroundButton
-            }
+			collectionView.backgroundView = self.setEmptyView()
         }
         return viewModel.playlists.count
     }
@@ -170,5 +157,27 @@ private extension AppleMusicPlaylistViewController {
 				self?.collectionView.reloadData()
 			}
 			.store(in: &cancelBag)
+	}
+}
+
+private extension AppleMusicPlaylistViewController {
+	func setEmptyView() -> UIView {
+		let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+		let buttonTitle = "Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"
+		let attributedString = NSMutableAttributedString(string: buttonTitle)
+		attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music 앱"))
+		attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"))
+		let backgroundButton = UIButton()
+		backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
+		backgroundButton.setAttributedTitle(attributedString, for: .normal)
+		backgroundButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+		backgroundButton.titleLabel?.lineBreakMode = .byWordWrapping
+		backgroundButton.titleLabel?.textAlignment = .center
+		backgroundButton.addTarget(self, action: #selector(self.accessToExternalApp), for: .touchUpInside)
+		emptyView.addSubview(backgroundButton)
+		backgroundButton.translatesAutoresizingMaskIntoConstraints = false
+		backgroundButton.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
+		backgroundButton.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
+		return emptyView
 	}
 }

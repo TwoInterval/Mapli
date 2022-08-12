@@ -17,8 +17,8 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private let imagePicker = UIImagePickerController()
 	
-	private var templatesList = ["templates1", "templates2", "templates3", "templates4", "templates5"]
-	private var selectedTemplates = "templates1"
+	private var templatesList = [TemplatesModel(imageName: "templates1", isCheck: false), TemplatesModel(imageName: "templates2", isCheck: false), TemplatesModel(imageName: "templates3", isCheck: false), TemplatesModel(imageName: "templates4", isCheck: false), TemplatesModel(imageName: "templates5", isCheck: false)]
+	private var selectedTemplates: TemplatesModel?
 	
 	var selectedMusicList = [String]()
 	
@@ -61,7 +61,9 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	private func setupTitleTextFieldStyle() {
+		titleTextField.delegate = self
 		titleTextField.borderStyle = .none
+		titleTextField.font = UIFont(name: titleTextField.font != nil ? titleTextField.font!.fontName : "AppleSDGothicNeo-Regular", size: 17)
 		let border = CALayer()
 		border.frame = CGRect(x: 0, y: titleTextField.frame.size.height-10, width: titleTextField.frame.width-40, height: 1)
 		border.backgroundColor = UIColor.black.cgColor
@@ -89,16 +91,19 @@ class ChooseTemplateViewController: UIViewController {
             showToastMessage("제목을 입력해주세요.")
             return
         }
-        let templateName = selectedTemplates
         guard let image = imagePickerButton.image(for: .normal) else {
             showToastMessage("대표 이미지를 선택해주세요.")
             return
         }
+		guard let templateName = selectedTemplates?.imageName else {
+			showToastMessage("템플릿을 선택해주세요.")
+			return
+		}
         
         let imageDataManager = ImageDataManager.shared
         guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
         
-        let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, templateName: templateName, playListImageName: nil)
+		let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, templateName: templateName, playListImageName: nil)
         let storyBoard = UIStoryboard(name: "playListPreview", bundle: nil)
         guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PlayListPreviewViewController else { return }
         playListPreviewVC.myPlayListModel = myPlayListModel
@@ -115,19 +120,14 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TamplatesCollectionCell", for: indexPath) as? TemplatesCollectionViewCell {
 			
-			var newImage = UIImage(named: "\(templatesList[indexPath.item])")
+			var newImage = UIImage(named: "\(templatesList[indexPath.item].imageName)")
 			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight))
 			cell.templatesImageView.image = newImage
 			cell.templatesImageView.contentMode = .scaleAspectFit
 			cell.templatesCheckImageView.image = UIImage(named: "Selected")
-			cell.imageName = "\(templatesList[indexPath.item])"
+			cell.imageName = "\(templatesList[indexPath.item].imageName)"
 			
-			if indexPath.item == 0 {
-				cell.isSelected = true
-				collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-			} else {
-				cell.isSelected = false
-			}
+			cell.isSelected = templatesList[indexPath.item].isCheck
 			
 			return cell
 		} else {
@@ -137,7 +137,7 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TemplatesCollectionViewCell {
-			selectedTemplates = "\(cell.imageName)"
+			selectedTemplates = TemplatesModel(imageName: cell.imageName, isCheck: cell.isSelected)
 		}
 	}
 }
@@ -193,4 +193,15 @@ extension ChooseTemplateViewController {
             toastLabel.removeFromSuperview()
         }
     }
+}
+
+extension ChooseTemplateViewController: UITextFieldDelegate {
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		return true
+	}
 }
