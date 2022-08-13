@@ -12,7 +12,6 @@
 		0A091E3228A280E500680E8D /* PlayListDetailedScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E3128A280E500680E8D /* PlayListDetailedScreen.storyboard */; };
 		0A091E3428A2810100680E8D /* MyPlayListDetailedScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3328A2810100680E8D /* MyPlayListDetailedScreenViewController.swift */; };
 		0A091E3628A4EE8400680E8D /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3528A4EE8400680E8D /* UIView+.swift */; };
-		0A091E3828A50B8000680E8D /* TemplateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3728A50B8000680E8D /* TemplateModel.swift */; };
 		0A091E3A28A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3928A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift */; };
 		0A091E3E28A5487500680E8D /* ChosunCentennial_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */; };
 		0A091E4028A54A6B00680E8D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A091E3F28A54A6B00680E8D /* UIFont+.swift */; };
@@ -65,7 +64,6 @@
 		0A091E3128A280E500680E8D /* PlayListDetailedScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlayListDetailedScreen.storyboard; sourceTree = "<group>"; };
 		0A091E3328A2810100680E8D /* MyPlayListDetailedScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlayListDetailedScreenViewController.swift; sourceTree = "<group>"; };
 		0A091E3528A4EE8400680E8D /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		0A091E3728A50B8000680E8D /* TemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateModel.swift; sourceTree = "<group>"; };
 		0A091E3928A5163600680E8D /* PreviewMyPlayListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A091E3D28A5487500680E8D /* ChosunCentennial_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ChosunCentennial_otf.otf; sourceTree = "<group>"; };
 		0A091E3F28A54A6B00680E8D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				E21944432896735F005BE37B /* MySongModel.swift */,
 				E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */,
 				0A091E2B28A0FE7800680E8D /* MyPlayListModel.swift */,
-				0A091E3728A50B8000680E8D /* TemplateModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -366,7 +363,6 @@
 				0A091E3428A2810100680E8D /* MyPlayListDetailedScreenViewController.swift in Sources */,
 				E219443B28957665005BE37B /* PlaylistModel.swift in Sources */,
 				E219443D28957670005BE37B /* AppleMusicAPI.swift in Sources */,
-				0A091E3828A50B8000680E8D /* TemplateModel.swift in Sources */,
 				E2821A592897F2CB00982AE7 /* DeviceSize.swift in Sources */,
 				E2821A60289A472000982AE7 /* UIImage+.swift in Sources */,
 				E2194442289577AB005BE37B /* Mapli++Bundle.swift in Sources */,
