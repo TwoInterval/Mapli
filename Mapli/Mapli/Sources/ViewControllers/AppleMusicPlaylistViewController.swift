@@ -24,13 +24,15 @@ class AppleMusicPlaylistViewController: UIViewController {
 		initRefresh()
     }
 	
+    // 네트워킹 다 안끝났을때 누르면 고장남. 예외 처리 필요.
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "SongSelectionSegue" {
-			let cell = sender as? AppleMusicPlaylistCollectionViewCell ?? UICollectionViewCell()
+            guard let cell = sender as? AppleMusicPlaylistCollectionViewCell else { return }
+            guard let playListImage = cell.playlistImage.image else { return }
 			let indexPath = collectionView.indexPath(for: cell)
 			if let SongSelectionViewController = segue.destination as? SongSelectionViewController {
 				if let indexPath = indexPath {
-					SongSelectionViewController.musicList = songs[indexPath.item+1]
+                    SongSelectionViewController.appleMusicPlayList = AppleMusicPlayList(playListImage: playListImage, songs: songs[indexPath.item + 1])
 				}
 			}
 			
