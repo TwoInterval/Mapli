@@ -33,8 +33,25 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
-		present(imagePicker, animated: true)
-	}
+        let actionSheet = UIAlertController(title: "대표 이미지 선택", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cameraAction =  UIAlertAction(title: "사진 촬영", style: UIAlertAction.Style.default){_ in
+            self.openCamera()
+        }
+        let galleryAction =  UIAlertAction(title: "갤러리에서 선택", style: UIAlertAction.Style.default){_ in
+            self.openLibrary()
+        }
+        let defaultImageAction =  UIAlertAction(title: "플레이리스트 이미지 사용", style: UIAlertAction.Style.default){_ in
+            
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel) {_ in
+            self.dismiss(animated: true)
+        }
+        actionSheet.addAction(cameraAction)
+        actionSheet.addAction(galleryAction)
+        actionSheet.addAction(defaultImageAction)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true)
+    }
 	
 	private func setupConstraint() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -83,11 +100,8 @@ class ChooseTemplateViewController: UIViewController {
 	}
     
     @objc private func nextButtonTapped() {
-        guard let title = titleTextField.text else {
-            if title == "" {
-                showToastMessage("제목을 입력해주세요.")
-                return
-            }
+        guard let title = titleTextField.text else { return }
+        if title == "" {
             showToastMessage("제목을 입력해주세요.")
             return
         }
@@ -145,6 +159,20 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 }
 
 extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func openCamera(){
+        if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Camera not available")
+        }
+    }
+    
+    func openLibrary(){
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		var newImage: UIImage? = nil
 		

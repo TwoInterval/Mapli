@@ -536,6 +536,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Apple Music 접근 권한";
+				INFOPLIST_KEY_NSCameraUsageDescription = "대표 이미지 추가를 위한 카메라 접근 권한";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "대표 이미지 추가를 위한 앨범 접근 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -569,6 +570,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Apple Music 접근 권한";
+				INFOPLIST_KEY_NSCameraUsageDescription = "대표 이미지 추가를 위한 카메라 접근 권한";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "대표 이미지 추가를 위한 앨범 접근 권한";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
