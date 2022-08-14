@@ -11,12 +11,19 @@ class TemplatesCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var templatesImageView: UIImageView!
 	@IBOutlet weak var templatesCheckImageView: UIImageView!
 	
-	var imageName = String()
+    var template: Template? = nil
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
 	
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        template = nil
+        templatesImageView.image = nil
+        templatesCheckImageView.image = nil
+    }
+    
 	override var isSelected: Bool {
 		didSet {
 			if isSelected {

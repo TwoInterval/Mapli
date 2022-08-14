@@ -8,6 +8,14 @@
 import Foundation
 
 struct TemplatesModel {
-	var imageName: String
+	var imageName: Template
 	var isCheck: Bool
+}
+
+enum Template: String, CaseIterable, Codable {
+    case templates1
+    case templates2
+    case templates3
+    case templates4
+    case templates5
 }
