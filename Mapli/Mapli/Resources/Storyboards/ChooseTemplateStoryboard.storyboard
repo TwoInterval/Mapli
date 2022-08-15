@@ -34,7 +34,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu0-fc-mJ1">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu0-fc-mJ1">
                                 <rect key="frame" x="20" y="220" width="170" height="170"/>
                                 <color key="backgroundColor" red="0.93288300555161752" green="0.93288300555161752" blue="0.93288300555161752" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>

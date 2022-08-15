@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>applemusic</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ChosunCentennial_otf.otf</string>
@@ -15,10 +19,6 @@
 		<string>UhBee mysen Bold.ttf</string>
 		<string>UhBee mysen.ttf</string>
 		<string>UhBee Seulvely.ttf</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>applemusic</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

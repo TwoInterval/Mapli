@@ -14,13 +14,11 @@ class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var imagePickerButton: UIButton!
 	@IBOutlet weak var templateTitleLabel: UILabel!
 	@IBOutlet weak private var collectionView: UICollectionView!
-	
+    
 	private let imagePicker = UIImagePickerController()
-
     private var templatesList = [TemplatesModel(imageName: .templates1, isCheck: false), TemplatesModel(imageName: .templates2, isCheck: false), TemplatesModel(imageName: .templates3, isCheck: false), TemplatesModel(imageName: .templates4, isCheck: false), TemplatesModel(imageName: .templates5, isCheck: false)]
 	private var selectedTemplates: TemplatesModel?
-	
-	var selectedMusicList = [String]()
+    var selectedMusicList: AppleMusicPlayList!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,8 +31,29 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
-		present(imagePicker, animated: true)
-	}
+        let actionSheet = UIAlertController(title: "대표 이미지 선택", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cameraAction =  UIAlertAction(title: "사진 촬영", style: UIAlertAction.Style.default){_ in
+            self.openCamera()
+        }
+        let galleryAction =  UIAlertAction(title: "갤러리에서 선택", style: UIAlertAction.Style.default){_ in
+            self.openLibrary()
+        }
+        let defaultImageAction =  UIAlertAction(title: "플레이리스트 이미지 사용", style: UIAlertAction.Style.default){_ in
+            DispatchQueue.main.async {
+                guard let image = self.selectedMusicList.playListImage else { return }
+                let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
+                self.imagePickerButton.setImage(resizedImage, for: .normal)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel) {_ in
+            self.dismiss(animated: true)
+        }
+        actionSheet.addAction(cameraAction)
+        actionSheet.addAction(galleryAction)
+        actionSheet.addAction(defaultImageAction)
+        actionSheet.addAction(cancelAction)
+        self.present(actionSheet, animated: true)
+    }
 	
 	private func setupConstraint() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +91,7 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func setupImagePicker() {
 		imagePickerButton.layer.cornerRadius = 20
-		imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = true
 		imagePicker.delegate = self
 	}
@@ -83,11 +102,8 @@ class ChooseTemplateViewController: UIViewController {
 	}
     
     @objc private func nextButtonTapped() {
-        guard let title = titleTextField.text else {
-            if title == "" {
-                showToastMessage("제목을 입력해주세요.")
-                return
-            }
+        guard let title = titleTextField.text else { return }
+        if title == "" {
             showToastMessage("제목을 입력해주세요.")
             return
         }
@@ -145,6 +161,20 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 }
 
 extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func openCamera(){
+        if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("Camera not available")
+        }
+    }
+    
+    func openLibrary(){
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		var newImage: UIImage? = nil
 		
@@ -157,7 +187,7 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 		imagePickerButton.setTitle("", for: .normal)
 		newImage = resize(image: newImage ?? UIImage(), width: imagePickerButton.frame.size.width, height: imagePickerButton.frame.size.height)
 		newImage = newImage?.withRoundedCorners(radius: 20)
-		imagePickerButton.setImage(newImage, for: .normal)
+        imagePickerButton.setImage(newImage, for: .normal)
 		imagePickerButton.imageView?.contentMode = .scaleAspectFit
 		imagePickerButton.semanticContentAttribute = .forceRightToLeft
 		picker.dismiss(animated: true, completion: nil)

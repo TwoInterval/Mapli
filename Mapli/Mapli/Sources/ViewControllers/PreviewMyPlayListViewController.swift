@@ -13,7 +13,7 @@ class PreviewMyPlayListViewController: UIViewController {
     @IBOutlet var templateCollectionViewBottomConstraint: NSLayoutConstraint!
     
     var myPlayListModel: MyPlayListModel? = nil
-    var selectedMusicList = [String]()
+    var selectedMusicList: AppleMusicPlayList!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +71,15 @@ class PreviewMyPlayListViewController: UIViewController {
 
 extension PreviewMyPlayListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectedMusicList.count
+        guard let songs = selectedMusicList.songsString else { return 0 }
+        return songs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PreviewMyPlayListCollectionViewCell", for: indexPath) as? PreviewMyPlayListCollectionViewCell else { return UICollectionViewCell() }
-        guard let myPlayListModel = myPlayListModel else { return cell}
-        let musicTitle = selectedMusicList[indexPath.item]
+        guard let myPlayListModel = myPlayListModel else { return cell }
+        guard let songs = selectedMusicList.songsString else { return cell }
+        let musicTitle = songs[indexPath.item]
         DispatchQueue.main.async {
             cell.selectedTemplate = myPlayListModel.template
             cell.setUI(musicTitle)

@@ -6,6 +6,13 @@
 //
 
 import Foundation
+import UIKit
+
+struct AppleMusicPlayList {
+    var playListImage: UIImage? = nil
+    var songs: [MySong]
+    var songsString: [String]? = nil
+}
 
 struct MySong {
 	var title: String

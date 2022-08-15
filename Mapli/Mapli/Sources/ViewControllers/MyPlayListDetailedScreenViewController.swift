@@ -37,7 +37,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         let destructiveAction = UIAlertAction(title: "삭제하기", style: UIAlertAction.Style.destructive){(_) in
             self.popRemoveAlert()
         }
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default) {_ in
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel) {_ in
             self.dismiss(animated: true)
         }
         actionSheet.addAction(shareAction)
