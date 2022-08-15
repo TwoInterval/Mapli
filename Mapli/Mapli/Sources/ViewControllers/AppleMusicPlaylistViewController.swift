@@ -14,6 +14,7 @@ class AppleMusicPlaylistViewController: UIViewController {
 	private var cancelBag = Set<AnyCancellable>()
 	private var songs = [[MySong]]()
 	private var songsImage = [MySong]()
+	private var appleMusicPlaylist = [AppleMusicPlayList]()
 	private var viewModel = AppleMusicViewModel()
     
     override func viewDidLoad() {
@@ -24,15 +25,13 @@ class AppleMusicPlaylistViewController: UIViewController {
 		initRefresh()
     }
 	
-    // 네트워킹 다 안끝났을때 누르면 고장남. 예외 처리 필요.
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "SongSelectionSegue" {
             guard let cell = sender as? AppleMusicPlaylistCollectionViewCell else { return }
-            guard let playListImage = cell.playlistImage.image else { return }
 			let indexPath = collectionView.indexPath(for: cell)
 			if let SongSelectionViewController = segue.destination as? SongSelectionViewController {
 				if let indexPath = indexPath {
-                    SongSelectionViewController.appleMusicPlayList = AppleMusicPlayList(playListImage: playListImage, songs: songs[indexPath.item + 1])
+					SongSelectionViewController.appleMusicPlayList = appleMusicPlaylist[indexPath.item]
 				}
 			}
 			
@@ -96,28 +95,19 @@ class AppleMusicPlaylistViewController: UIViewController {
 
 extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if viewModel.playlists.count == 0 {
+        if appleMusicPlaylist.count == 0 {
 			collectionView.backgroundView = self.setEmptyView()
         }
-        return viewModel.playlists.count
+        return appleMusicPlaylist.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
-			if songsImage.count == viewModel.playlists.count {
-				var url = songsImage[indexPath.item].imageURL
-				url = url.replacingOccurrences(of: "{w}", with: "\(songsImage[indexPath.item].width)")
-				url = url.replacingOccurrences(of: "{h}", with: "\(songsImage[indexPath.item].height)")
-
-				if URL(string: url) != nil {
-					cell.playlistImage.load(url: URL(string: url)!)
-					cell.playlistImage.layer.cornerRadius = 20
-				}
-				
-				for playlist in viewModel.playlists {
-					if playlist.id == songsImage[indexPath.item].id {
-						cell.playlistLabel.text = playlist.attributes.name
-					}
+			cell.playlistImage.image = appleMusicPlaylist[indexPath.item].playListImage
+			cell.playlistImage.layer.cornerRadius = 20
+			for playlist in viewModel.playlists {
+				if playlist.id == appleMusicPlaylist[indexPath.item].songs[0].id {
+					cell.playlistLabel.text = playlist.attributes.name
 				}
 			}
             return cell
@@ -153,9 +143,19 @@ private extension AppleMusicPlaylistViewController {
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] song in
 				if !song.isEmpty {
-					self?.songsImage.append(MySong(title: song[0].title, imageURL: song[0].imageURL, id: song[0].id, width: song[0].width, height: song[0].height, isCheck: song[0].isCheck))
+					let songsString = song.map {
+						return $0.title
+					}
+					var imageUrl = song[0].imageURL
+					imageUrl = imageUrl.replacingOccurrences(of: "{w}", with: "\(song[0].width)")
+					imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "\(song[0].height)")
+					
+					if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
+						if let image = UIImage(data: data) {
+							self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: image, songs: song, songsString: songsString))
+						}
+					}
 				}
-				self?.songs.append(song)
 				self?.collectionView.reloadData()
 			}
 			.store(in: &cancelBag)
