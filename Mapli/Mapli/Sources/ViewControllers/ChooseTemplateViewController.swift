@@ -32,13 +32,13 @@ class ChooseTemplateViewController: UIViewController {
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "대표 이미지 선택", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let cameraAction =  UIAlertAction(title: "사진 촬영", style: UIAlertAction.Style.default){_ in
+        let cameraAction =  UIAlertAction(title: "사진 촬영", style: UIAlertAction.Style.default) { _ in
             self.openCamera()
         }
-        let galleryAction =  UIAlertAction(title: "갤러리에서 선택", style: UIAlertAction.Style.default){_ in
+        let galleryAction =  UIAlertAction(title: "갤러리에서 선택", style: UIAlertAction.Style.default) { _ in
             self.openLibrary()
         }
-        let defaultImageAction =  UIAlertAction(title: "플레이리스트 이미지 사용", style: UIAlertAction.Style.default){_ in
+        let defaultImageAction =  UIAlertAction(title: "플레이리스트 이미지 사용", style: UIAlertAction.Style.default) { _ in
             DispatchQueue.main.async {
                 guard let image = self.selectedMusicList.playListImage else { return }
                 let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
@@ -91,7 +91,6 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func setupImagePicker() {
 		imagePickerButton.layer.cornerRadius = 20
-        imagePicker.sourceType = .photoLibrary
 		imagePicker.allowsEditing = true
 		imagePicker.delegate = self
 	}
@@ -154,15 +153,15 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TemplatesCollectionViewCell {
-            guard let cellTemplate = cell.template else {return}
+            guard let cellTemplate = cell.template else { return }
 			selectedTemplates = TemplatesModel(imageName: cellTemplate, isCheck: cell.isSelected)
 		}
 	}
 }
 
 extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func openCamera(){
-        if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
             present(imagePicker, animated: true, completion: nil)
         } else {
@@ -170,7 +169,7 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func openLibrary(){
+    func openLibrary() {
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
@@ -178,9 +177,9 @@ extension ChooseTemplateViewController: UIImagePickerControllerDelegate, UINavig
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		var newImage: UIImage? = nil
 		
-		if let possibleImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+		if let possibleImage = info[.editedImage] as? UIImage {
 			newImage = possibleImage
-		} else if let possibleImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+		} else if let possibleImage = info[.originalImage] as? UIImage {
 			newImage = possibleImage
 		}
 		
@@ -235,5 +234,76 @@ extension ChooseTemplateViewController: UITextFieldDelegate {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		return true
+	}
+}
+
+// 출처: https://jwonylee.github.io/ios/take-a-photo
+extension UIImagePickerController {
+	open override var childForStatusBarHidden: UIViewController? {
+		return nil
+	}
+
+	open override var prefersStatusBarHidden: Bool {
+		return true
+	}
+
+	open override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		fixCannotMoveEditingBox()
+	}
+
+	func fixCannotMoveEditingBox() {
+		if let cropView = cropView,
+		   let scrollView = scrollView,
+		   scrollView.contentOffset.y == 0 {
+
+			let top: CGFloat = cropView.frame.minY
+			let bottom = scrollView.frame.height - cropView.frame.height - top
+			scrollView.contentInset = UIEdgeInsets(top: top, left: 0, bottom: bottom, right: 0)
+
+			var offset: CGFloat = 0
+			if scrollView.contentSize.height > scrollView.contentSize.width {
+				offset = 0.5 * (scrollView.contentSize.height - scrollView.contentSize.width)
+			}
+			scrollView.contentOffset = CGPoint(x: 0, y: -top + offset)
+		}
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+			self?.fixCannotMoveEditingBox()
+		}
+	}
+
+	var cropView: UIView? {
+		return findCropView(from: self.view)
+	}
+
+	var scrollView: UIScrollView? {
+		return findScrollView(from: self.view)
+	}
+
+	func findCropView(from view: UIView) -> UIView? {
+		let width = UIScreen.main.bounds.width
+		let size = view.bounds.size
+		if width == size.height, width == size.height {
+			return view
+		}
+		for view in view.subviews {
+			if let cropView = findCropView(from: view) {
+				return cropView
+			}
+		}
+		return nil
+	}
+
+	func findScrollView(from view: UIView) -> UIScrollView? {
+		if let scrollView = view as? UIScrollView {
+			return scrollView
+		}
+		for view in view.subviews {
+			if let scrollView = findScrollView(from: view) {
+				return scrollView
+			}
+		}
+		return nil
 	}
 }
