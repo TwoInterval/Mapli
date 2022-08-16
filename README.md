@@ -1,5 +1,5 @@
 # Mapli
-__나마의 플레이리스트 생성 앱__
+__나만의 플레이리스트를 만들고 꾸미고 공유할 수 있는 앱__
 
 ## Members
 |Drogba|Hatchling|Lau|
