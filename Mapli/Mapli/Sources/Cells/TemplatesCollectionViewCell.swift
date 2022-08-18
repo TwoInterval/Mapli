@@ -15,6 +15,10 @@ class TemplatesCollectionViewCell: UICollectionViewCell {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		
+		templatesCheckImageView.translatesAutoresizingMaskIntoConstraints = false
+		templatesCheckImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+		templatesCheckImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 	}
 	
     override func prepareForReuse() {

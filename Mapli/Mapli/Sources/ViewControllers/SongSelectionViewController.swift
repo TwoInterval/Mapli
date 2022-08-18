@@ -41,6 +41,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		DispatchQueue.main.async {
 			searchController.searchBar.searchTextField.becomeFirstResponder()
 		}
+		isSearchBar = true
 		searchButton.isHidden = true
 	}
 	
@@ -51,7 +52,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 				tableView.reloadData()
 			}
 		} else {
-			for row in 0..<(tableView.numberOfRows(inSection: 0) < 9 ? tableView.numberOfRows(inSection: 0) : 9) {
+			for row in 0..<(tableView.numberOfRows(inSection: 0) < 10 ? tableView.numberOfRows(inSection: 0) : 10) {
 				let indexPath = IndexPath(row: row, section: 0)
 				if let cell = tableView.cellForRow(at: indexPath) as? SongSelectionTableViewCell {
 					cell.selectionStyle = .none
@@ -65,6 +66,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		navigationItem.searchController = nil
 		searchButton.isHidden = false
+		isSearchBar = false
 	}
 	
 	private func setupConstraint() {
@@ -119,7 +121,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 			chooseTemplateVC.selectedMusicList = appleMusicPlayList
 			self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
 		} else {
-			showToastMessage("최소 1곡 이상 선택해주세요.")
+			showToastMessage("최소 1곡 이상 선택해주세요.", y: view.frame.height - 120)
 		}
 	}
 }
@@ -151,18 +153,36 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let cell = tableView.cellForRow(at: indexPath) as? SongSelectionTableViewCell {
 			cell.selectionStyle = .none
+			let songs = appleMusicPlayList.songs.filter { $0.isCheck == true }
 			
 			if isFiltering {
-                if let row = self.appleMusicPlayList.songs.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
-                    appleMusicPlayList.songs[row].isCheck.toggle()
+				if let row = self.appleMusicPlayList.songs.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
+					if appleMusicPlayList.songs[row].isCheck == false && songs.count >= 10 {
+						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
+					} else {
+						appleMusicPlayList.songs[row].isCheck.toggle()
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+					}
 				}
 				if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
-					searchMusicList[row].isCheck.toggle()
+					if searchMusicList[row].isCheck == false && songs.count >= 10 {
+						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
+					} else {
+						searchMusicList[row].isCheck.toggle()
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+					}
 				}
-				cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
 			} else {
-                appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
-                cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				if appleMusicPlayList.songs[indexPath.row].isCheck == false && songs.count >= 10 {
+					if isSearchBar {
+						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
+					} else {
+						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 120)
+					}
+				} else {
+					appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
+					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				}
 			}
 		}
 	}
@@ -178,8 +198,8 @@ extension SongSelectionViewController: UISearchResultsUpdating {
 }
 
 extension SongSelectionViewController {
-	func showToastMessage(_ message: String, font: UIFont = UIFont.systemFont(ofSize: 12, weight: .light)) {
-		let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 150, y: view.frame.height - 120, width: 300, height: 50))
+	func showToastMessage(_ message: String, font: UIFont = UIFont.systemFont(ofSize: 12, weight: .light), y: CGFloat) {
+		let toastLabel = UILabel(frame: CGRect(x: view.frame.width / 2 - 150, y: y, width: 300, height: 50))
 		
 		toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
 		toastLabel.textColor = UIColor.white
