@@ -14,6 +14,8 @@ class MainCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         imageView.layer.cornerRadius = 20
+        pliName.translatesAutoresizingMaskIntoConstraints = false
+        pliName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
     }
     
     override func prepareForReuse() {

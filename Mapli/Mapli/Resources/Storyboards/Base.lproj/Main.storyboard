@@ -43,43 +43,33 @@
                                 <rect key="frame" x="20" y="142" width="350" height="668"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vqR-Eg-39b">
-                                    <size key="itemSize" width="181" height="168"/>
+                                    <size key="itemSize" width="161" height="195"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="37" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainCollectionViewCell" id="pXy-PD-V5J" customClass="MainCollectionViewCell" customModule="Mapli" customModuleProvider="target">
-                                        <rect key="frame" x="84.666666666666671" y="37" width="181" height="168"/>
+                                        <rect key="frame" x="0.0" y="37" width="161" height="195"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pVg-kE-6Ma">
-                                            <rect key="frame" x="0.0" y="0.0" width="181" height="168"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="161" height="195"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W36-NP-zNA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="181" height="135"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W36-NP-zNA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="161" height="143"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euw-2y-Rmt">
-                                                    <rect key="frame" x="8" y="140" width="0.0" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="ApF-VR-upi"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euw-2y-Rmt">
+                                                    <rect key="frame" x="2" y="145" width="157" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="euw-2y-Rmt" secondAttribute="trailing" constant="20" symbolic="YES" id="5ia-ue-Rwp"/>
-                                                <constraint firstItem="W36-NP-zNA" firstAttribute="centerX" secondItem="pVg-kE-6Ma" secondAttribute="centerX" id="CsK-As-a79"/>
-                                                <constraint firstItem="euw-2y-Rmt" firstAttribute="bottom" secondItem="pVg-kE-6Ma" secondAttribute="bottomMargin" id="DRu-uF-8Zq"/>
-                                                <constraint firstItem="W36-NP-zNA" firstAttribute="top" secondItem="pVg-kE-6Ma" secondAttribute="top" id="GMr-pz-Kco"/>
-                                                <constraint firstItem="euw-2y-Rmt" firstAttribute="leading" secondItem="pVg-kE-6Ma" secondAttribute="leadingMargin" id="cKh-5O-FYV"/>
-                                                <constraint firstItem="W36-NP-zNA" firstAttribute="leading" secondItem="pVg-kE-6Ma" secondAttribute="leading" id="mp2-Fi-YLK"/>
-                                                <constraint firstItem="euw-2y-Rmt" firstAttribute="top" secondItem="W36-NP-zNA" secondAttribute="bottom" constant="5" id="rRd-fm-JC6"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="181" height="168"/>
+                                        <size key="customSize" width="161" height="195"/>
                                         <connections>
                                             <outlet property="imageView" destination="W36-NP-zNA" id="dgI-R3-lw3"/>
                                             <outlet property="pliName" destination="euw-2y-Rmt" id="Fzj-nV-gND"/>
