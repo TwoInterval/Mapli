@@ -30,15 +30,12 @@ class PreviewMyPlayListCollectionViewCell: UICollectionViewCell {
         case .templates3:
             self.titleLabel.font = .font(size: 20, font: .UhBeemysen)
             self.titleLabel.textColor = .white
-
         case .templates4:
-            self.titleLabel.font = .font(size: 20, font: .Chalkduster)
+            self.titleLabel.font = .font(size: 20, font: .BMEuljiro10yearslaterOTF)
             self.titleLabel.textColor = .white
-
         case .templates5:
             self.titleLabel.font = .font(size: 20, font: .GowunBatangRegular)
             self.titleLabel.textColor = .black
-
         }
         DispatchQueue.main.async {
             self.titleLabel.text = titleText
