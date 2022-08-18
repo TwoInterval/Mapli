@@ -91,7 +91,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     // Cell 모양 어떻게 할래?
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let collectionViewWidth = collectionView.frame.width
-        let cellHorizontalSpace = DeviceSize.playlistSpacing
+        let cellHorizontalSpace = DeviceSize.playlistHorizontalSpacing
         let cellWidth = ((collectionViewWidth - CGFloat(cellHorizontalSpace)) / 2)
         let cellHeight = cellWidth + 25
         return CGSize(width: cellWidth, height: cellHeight)

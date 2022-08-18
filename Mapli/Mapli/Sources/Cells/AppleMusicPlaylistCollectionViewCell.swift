@@ -13,5 +13,8 @@ class AppleMusicPlaylistCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        playlistLabel.translatesAutoresizingMaskIntoConstraints = false
+        playlistLabel.topAnchor.constraint(equalTo: playlistImage.bottomAnchor, constant: 5).isActive = true
     }
 }
