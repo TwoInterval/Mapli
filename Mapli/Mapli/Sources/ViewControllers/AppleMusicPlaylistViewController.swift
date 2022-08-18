@@ -21,6 +21,7 @@ class AppleMusicPlaylistViewController: UIViewController {
         super.viewDidLoad()
 		setupNavigatoinBar()
         setupCollectionView()
+        setupConstraint()
 		setupViewModel()
 		initRefresh()
     }
@@ -37,6 +38,12 @@ class AppleMusicPlaylistViewController: UIViewController {
 			
 		}
 	}
+    
+    private func setupConstraint() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+    }
 	
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
@@ -103,6 +110,7 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
+            cell.playlistImage.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
 			cell.playlistImage.image = appleMusicPlaylist[indexPath.item].playListImage
 			cell.playlistImage.layer.cornerRadius = 20
 			for playlist in viewModel.playlists {
@@ -117,12 +125,16 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
     }
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize+27)
+		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return CGFloat(DeviceSize.playlistSpacing)
+		return CGFloat(DeviceSize.playlistHorizontalSpacing)
 	}
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(DeviceSize.playlistVerticalSpacing)
+    }
 }
 
 private extension AppleMusicPlaylistViewController {
