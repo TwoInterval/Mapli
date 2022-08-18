@@ -41,8 +41,8 @@ class AppleMusicPlaylistViewController: UIViewController {
     
     private func setupConstraint() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(DeviceSize.playlistPadding))).isActive = true
     }
 	
 	private func setupNavigatoinBar() {
