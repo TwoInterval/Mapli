@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
 		super.viewDidLoad()
 		setupNavigatoinBar()
         setupCollectionView()
+        setupConstraint()
 	}
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +34,9 @@ class MainViewController: UIViewController {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
     }
 
 	private func setupNavigatoinBar() {
@@ -43,7 +47,12 @@ class MainViewController: UIViewController {
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
 		navigationController?.navigationBar.tintColor = .red
 	}
-
+    
+    private func setupConstraint() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(DeviceSize.playlistPadding))).isActive = true
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -70,6 +79,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             DispatchQueue.main.async {
                 let myPlayList = self.myPlayListModelManager.myPlayListModelArray[indexPath.item]
                 let imageName = myPlayList.titleImageName
+                cell.imageView.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
                 cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
                 cell.pliName.text = myPlayList.title
             }
@@ -90,11 +100,15 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     // Cell 모양 어떻게 할래?
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewWidth = collectionView.frame.width
-        let cellHorizontalSpace = DeviceSize.playlistHorizontalSpacing
-        let cellWidth = ((collectionViewWidth - CGFloat(cellHorizontalSpace)) / 2)
-        let cellHeight = cellWidth + 25
-        return CGSize(width: cellWidth, height: cellHeight)
+        return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(DeviceSize.playlistHorizontalSpacing)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(DeviceSize.playlistVerticalSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
