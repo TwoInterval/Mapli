@@ -141,7 +141,7 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight))
 			cell.templatesImageView.image = newImage
 			cell.templatesImageView.contentMode = .scaleAspectFit
-			cell.templatesCheckImageView.image = UIImage(named: "Selected")
+			cell.templatesCheckImageView.image = resize(image: UIImage(named: "Selected")!, width: 50, height: 50)
             cell.template = templateImage
 			cell.isSelected = templatesList[indexPath.item].isCheck
 			
