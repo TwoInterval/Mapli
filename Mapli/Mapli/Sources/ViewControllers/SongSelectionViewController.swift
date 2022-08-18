@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SongSelectionViewController: UIViewController {
+class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var searchButton: UIButton!
 	@IBOutlet weak var selectAllButton: UIButton!
@@ -32,17 +32,16 @@ class SongSelectionViewController: UIViewController {
 	}
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
-		isSearchBar.toggle()
 		let searchController = UISearchController(searchResultsController: nil)
 		searchController.searchBar.placeholder = "노래 제목을 입력하세요."
 		searchController.searchResultsUpdater = self
+		searchController.searchBar.delegate = self
 		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
-		
-		if isSearchBar {
-			navigationItem.searchController = searchController
-		} else {
-			navigationItem.searchController = nil
+		navigationItem.searchController = searchController
+		DispatchQueue.main.async {
+			searchController.searchBar.searchTextField.becomeFirstResponder()
 		}
+		searchButton.isHidden = true
 	}
 	
 	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
@@ -63,6 +62,11 @@ class SongSelectionViewController: UIViewController {
 		}
 	}
 	
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		navigationItem.searchController = nil
+		searchButton.isHidden = false
+	}
+	
 	private func setupConstraint() {
 		self.searchButton.translatesAutoresizingMaskIntoConstraints = false
 		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
@@ -71,14 +75,6 @@ class SongSelectionViewController: UIViewController {
 	private func setupTableView() {
 		tableView.dataSource = self
 		tableView.delegate = self
-	}
-	
-	private func setupSearchController() {
-		let searchController = UISearchController(searchResultsController: nil)
-		searchController.searchBar.placeholder = "노래 제목을 입력하세요."
-		navigationItem.searchController = searchController
-		searchController.searchResultsUpdater = self
-		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
 	}
 	
 	private func setupNavigatoinBar() {
