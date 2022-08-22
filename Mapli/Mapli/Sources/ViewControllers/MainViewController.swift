@@ -56,7 +56,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    // Cell의 개수가 몇개?
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if myPlayListModelManager.myPlayListModelArray.count == 0 {
             let label = UILabel()
@@ -72,7 +71,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    // Cell이 무엇인가?
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as? MainCollectionViewCell {
             
@@ -82,8 +80,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 cell.imageView.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
                 cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
                 cell.pliName.text = myPlayList.title
+				cell.imageView.layer.borderWidth = 0.1
+				cell.imageView.layer.borderColor = UIColor.gray.cgColor
             }
-            
+			
             return cell
         } else {
             return UICollectionViewCell()
@@ -98,7 +98,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         self.navigationController?.show(viewController, sender: self)
     }
     
-    // Cell 모양 어떻게 할래?
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
     }

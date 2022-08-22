@@ -113,6 +113,8 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
             cell.playlistImage.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
 			cell.playlistImage.image = appleMusicPlaylist[indexPath.item].playListImage
 			cell.playlistImage.layer.cornerRadius = 20
+			cell.playlistImage.layer.borderWidth = 0.1
+			cell.playlistImage.layer.borderColor = UIColor.gray.cgColor
 			for playlist in viewModel.playlists {
 				if playlist.id == appleMusicPlaylist[indexPath.item].songs[0].id {
 					cell.playlistLabel.text = playlist.attributes.name
