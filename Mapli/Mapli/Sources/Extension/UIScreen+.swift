@@ -96,10 +96,10 @@ extension UIScreen {
 			switch self {
 			case .iPhone13: return 20
 			case .iPhone13ProMax: return 22
-			case .iPhoneMini: return 19
-			case .iPhone11ProMax: return 21
+			case .iPhoneMini: return 18
+			case .iPhone11ProMax: return 20
 			case .iPhone11: return 19
-			case .iPhone8Plus: return 22
+			case .iPhone8Plus: return 21
 			case .iPhone8: return 25
 			case .iPhoneSE: return 22
 			}
