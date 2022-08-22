@@ -105,19 +105,6 @@ extension UIScreen {
 			}
 		}
 		
-		var playlistHorizontalSpacing: Int {
-			switch self {
-			case .iPhone13: return 20
-			case .iPhone13ProMax: return 22
-			case .iPhoneMini: return 19
-			case .iPhone11ProMax: return 21
-			case .iPhone11: return 19
-			case .iPhone8Plus: return 28
-			case .iPhone8: return 15
-			case .iPhoneSE: return 22
-			}
-		}
-		
 		var playlistVerticalSpacing: Int {
 			switch self {
 			case .iPhone13: return 28
