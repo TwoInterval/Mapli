@@ -1,10 +1,37 @@
-# Mapli
-__나만의 플레이리스트를 만들고 꾸미고 공유할 수 있는 앱__
 
-## Members
+# :iphone: Mapli
+__나의 트랙리스트를 앱에 준비된 바탕 템플릿들에 담아 보이는 앱입니다.__
+
+__Apple Music과의 연동을 통해 별도 로그인 없이 나의 트랙리스트를 불러올 수 있습니다.__
+
+__앱에 기본적으로 준비된 템플릿들은 별도 결제없이 모두 사용 가능합니다.__
+
+# App Store
+## 링크
+https://apps.apple.com/kr/app/mapli/id1640465875
+## 버전
+1.0
+
+## :people_hugging: Authors
 |Drogba|Hatchling|Lau|
 |:---|:---|:---|
 |[Drogba](https://github.com/iDrogba)|[Hatchling](https://github.com/woo0dev)|[Lau](https://github.com/lau0505)|
+
+## :pushpin: Features
+- 나만의 트랙 생성
+- 나만의 트랙 보기
+- 공유
+
+## :fireworks: Screenshots
+
+## :sparkles: Skills & Tech Stack
+- UIKit
+- Combine
+- API Handling
+- Local DB
+- Image Rendering
+
+# Git
 
 ## Git Commit Message
 |*Type*|*Subject*|
