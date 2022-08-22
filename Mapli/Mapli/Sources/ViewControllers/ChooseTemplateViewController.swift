@@ -23,11 +23,14 @@ class ChooseTemplateViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupConstraint()
-		setupTitleLabelStyle()
 		setupTitleTextFieldStyle()
 		setupImagePicker()
 		setupNavigationBar()
 		setupCollectionView()
+		
+		titleLabel.attributedText = convertToAttributedString(text: titleLabel.text ?? "")
+		imageTitleLabel.attributedText = convertToAttributedString(text: imageTitleLabel.text ?? "")
+		templateTitleLabel.attributedText = convertToAttributedString(text: templateTitleLabel.text ?? "")
 	}
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
@@ -72,11 +75,11 @@ class ChooseTemplateViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "미리보기", style: .plain, target: self, action: #selector(nextButtonTapped))
 	}
 	
-	private func setupTitleLabelStyle() {
-		let attributedString = NSMutableAttributedString(string: titleLabel.text ?? "")
-		attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: ((titleLabel.text ?? "") as NSString).range(of: "*"))
-		attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: ((titleLabel.text ?? "") as NSString).range(of: "제목"))
-		titleLabel.attributedText = attributedString
+	private func convertToAttributedString(text: String) -> NSMutableAttributedString {
+		let attributedString = NSMutableAttributedString(string: text)
+		attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: (text as NSString).range(of: text))
+		attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: (text as NSString).range(of: "*"))
+		return attributedString
 	}
 	
 	private func setupTitleTextFieldStyle() {
