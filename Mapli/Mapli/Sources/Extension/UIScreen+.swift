@@ -9,21 +9,21 @@ import UIKit
 
 extension UIScreen {
 	func getDevice() -> DeviceSize {
-		if self.bounds.size.width == 428 {
+		if UIScreen.main.bounds.size.width == 428 {
 			return DeviceSize.iPhone13ProMax
-		} else if self.bounds.size.width == 390 {
+		} else if UIScreen.main.bounds.size.width == 390 {
 			return DeviceSize.iPhone13
-		} else if self.bounds.size.width == 375 {
+		} else if UIScreen.main.bounds.size.width == 375 {
 			return DeviceSize.iPhoneMini
-		} else if self.bounds.size.width == 414 {
+		} else if UIScreen.main.bounds.size.width == 414 {
 			return DeviceSize.iPhone11ProMax
-		} else if self.bounds.size.width == 375 {
+		} else if UIScreen.main.bounds.size.width == 375 {
 			return DeviceSize.iPhone11
-		} else if self.bounds.size.width == 320 {
+		} else if UIScreen.main.bounds.size.width == 320 {
 			return DeviceSize.iPhoneSE
-		} else if self.bounds.size.width == 414 {
+		} else if UIScreen.main.bounds.size.width == 414 {
 			return DeviceSize.iPhone8Plus
-		} else if self.bounds.size.width == 375 {
+		} else if UIScreen.main.bounds.size.width == 375 {
 			return DeviceSize.iPhone8
 		} else {
 			return DeviceSize.iPhone13

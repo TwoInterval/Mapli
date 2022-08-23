@@ -100,6 +100,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		print(UIScreen().getDevice().playlistImageSize)
         return CGSize(width: UIScreen().getDevice().playlistImageSize, height: UIScreen().getDevice().playlistImageSize + 27)
     }
 	
