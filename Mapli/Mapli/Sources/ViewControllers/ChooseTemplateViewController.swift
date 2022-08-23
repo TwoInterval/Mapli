@@ -60,14 +60,14 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func setupConstraint() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		titleLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(UIScreen().getDevice().topPaddong)).isActive = true
-		titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen().getDevice().leadingPadding)).isActive = true
+		titleLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(UIScreen.getDevice().topPaddong)).isActive = true
+		titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 		imageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		imageTitleLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: CGFloat(UIScreen().getDevice().topPaddong)).isActive = true
-		imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen().getDevice().leadingPadding)).isActive = true
+		imageTitleLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: CGFloat(UIScreen.getDevice().topPaddong)).isActive = true
+		imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 		templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(UIScreen().getDevice().topPaddong)).isActive = true
-		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen().getDevice().leadingPadding)).isActive = true
+		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(UIScreen.getDevice().topPaddong)).isActive = true
+		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 	}
 	
 	private func setupNavigationBar() {
@@ -141,7 +141,7 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
             let templateImage = templatesList[indexPath.item].imageName
             var newImage = UIImage(named: templateImage.rawValue)
 
-			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(UIScreen().getDevice().templatesWidth), height: CGFloat(UIScreen().getDevice().templatesHeight))
+			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(UIScreen.getDevice().templatesWidth), height: CGFloat(UIScreen.getDevice().templatesHeight))
 			cell.templatesImageView.image = newImage
 			cell.templatesImageView.contentMode = .scaleAspectFit
 			cell.templatesCheckImageView.image = resize(image: UIImage(named: "Selected")!, width: 50, height: 50)

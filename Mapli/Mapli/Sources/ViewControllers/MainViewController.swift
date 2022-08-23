@@ -16,7 +16,6 @@ class MainViewController: UIViewController {
 		setupNavigatoinBar()
         setupCollectionView()
         setupConstraint()
-		print(UIScreen().getDevice())
 	}
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +35,8 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen().getDevice().playlistPadding)).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(UIScreen().getDevice().playlistPadding)).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
     }
 
 	private func setupNavigatoinBar() {
@@ -51,8 +50,8 @@ class MainViewController: UIViewController {
     
     private func setupConstraint() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen().getDevice().playlistPadding)).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(UIScreen().getDevice().playlistPadding))).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(UIScreen.getDevice().playlistPadding))).isActive = true
     }
 }
 
@@ -78,7 +77,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             DispatchQueue.main.async {
                 let myPlayList = self.myPlayListModelManager.myPlayListModelArray[indexPath.item]
                 let imageName = myPlayList.titleImageName
-                cell.imageView.frame = CGRect(x: 0, y: 0, width: UIScreen().getDevice().playlistImageSize, height: UIScreen().getDevice().playlistImageSize)
+                cell.imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize)
                 cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
                 cell.pliName.text = myPlayList.title
 				cell.imageView.layer.borderWidth = 0.1
@@ -100,8 +99,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		print(UIScreen().getDevice().playlistImageSize)
-        return CGSize(width: UIScreen().getDevice().playlistImageSize, height: UIScreen().getDevice().playlistImageSize + 27)
+        return CGSize(width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize + 27)
     }
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -109,7 +107,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 	}
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(UIScreen().getDevice().playlistVerticalSpacing)
+        return CGFloat(UIScreen.getDevice().playlistVerticalSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

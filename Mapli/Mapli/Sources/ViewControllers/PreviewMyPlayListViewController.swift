@@ -25,8 +25,8 @@ class PreviewMyPlayListViewController: UIViewController {
     }
     
     private func setConstraint() {
-        templateCollectionViewTopConstraint.constant = CGFloat(UIScreen().getDevice().previewTopPadding)
-        templateCollectionViewBottomConstraint.constant = CGFloat(UIScreen().getDevice().previewBottomPadding)
+        templateCollectionViewTopConstraint.constant = CGFloat(UIScreen.getDevice().previewTopPadding)
+        templateCollectionViewBottomConstraint.constant = CGFloat(UIScreen.getDevice().previewBottomPadding)
         
         guard let myPlayListModel = myPlayListModel else { return }
         var insetMultiplier = CGFloat(1)

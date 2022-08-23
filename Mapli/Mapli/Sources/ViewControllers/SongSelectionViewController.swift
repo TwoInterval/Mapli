@@ -71,7 +71,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	
 	private func setupConstraint() {
 		self.searchButton.translatesAutoresizingMaskIntoConstraints = false
-		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen().getDevice().leadingPadding)).isActive = true
+		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 	}
 	
 	private func setupTableView() {
