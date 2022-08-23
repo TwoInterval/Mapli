@@ -19,6 +19,8 @@ class ChooseTemplateViewController: UIViewController {
     private var templatesList = [TemplatesModel(imageName: .templates1, isCheck: false), TemplatesModel(imageName: .templates2, isCheck: false), TemplatesModel(imageName: .templates3, isCheck: false), TemplatesModel(imageName: .templates4, isCheck: false), TemplatesModel(imageName: .templates5, isCheck: false)]
 	private var selectedTemplates: TemplatesModel?
     var selectedMusicList: AppleMusicPlayList!
+    
+    let border = CALayer()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,6 +34,10 @@ class ChooseTemplateViewController: UIViewController {
 		imageTitleLabel.attributedText = convertToAttributedString(text: imageTitleLabel.text ?? "")
 		templateTitleLabel.attributedText = convertToAttributedString(text: templateTitleLabel.text ?? "")
 	}
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        border.backgroundColor = UIColor(named: "TextColor")?.cgColor
+    }
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
         let actionSheet = UIAlertController(title: "대표 이미지 선택", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
@@ -77,7 +83,7 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func convertToAttributedString(text: String) -> NSMutableAttributedString {
 		let attributedString = NSMutableAttributedString(string: text)
-		attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: (text as NSString).range(of: text))
+        attributedString.addAttribute(.foregroundColor, value: UIColor(named: "TextColor") ?? UIColor.black, range: (text as NSString).range(of: text))
 		attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: (text as NSString).range(of: "*"))
 		return attributedString
 	}
@@ -86,9 +92,8 @@ class ChooseTemplateViewController: UIViewController {
 		titleTextField.delegate = self
 		titleTextField.borderStyle = .none
 		titleTextField.font = UIFont(name: titleTextField.font != nil ? titleTextField.font!.fontName : "AppleSDGothicNeo-Regular", size: 17)
-		let border = CALayer()
 		border.frame = CGRect(x: 0, y: titleTextField.frame.size.height-10, width: titleTextField.frame.width-40, height: 1)
-		border.backgroundColor = UIColor.black.cgColor
+        border.backgroundColor = UIColor(named: "TextColor")?.cgColor
 		titleTextField.layer.addSublayer(border)
 	}
 	

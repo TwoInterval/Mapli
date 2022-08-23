@@ -20,7 +20,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         }
     }
     private func setNavigationBar() {
-        let image = UIImage(systemName: "ellipsis.circle")
+        let image = UIImage(systemName: "ellipsis.circle")?.withTintColor(UIColor(named: "TextColor") ?? UIColor.black, renderingMode: .alwaysOriginal)
         let rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(onTapRightBarButtonItem))
         self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
         self.navigationItem.rightBarButtonItem?.tintColor = .black
