@@ -142,11 +142,11 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 			if isFiltering {
 				let song = searchMusicList[indexPath.row]
 				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			} else {
                 let song = appleMusicPlayList.songs[indexPath.row]
 				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			}
 			
 			return cell
@@ -166,7 +166,7 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
 					} else {
 						appleMusicPlayList.songs[row].isCheck.toggle()
-						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 					}
 				}
 				if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
@@ -174,7 +174,7 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
 					} else {
 						searchMusicList[row].isCheck.toggle()
-						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 					}
 				}
 			} else {
@@ -186,7 +186,7 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 					}
 				} else {
 					appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
-					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 				}
 			}
 		}
