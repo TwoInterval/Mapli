@@ -18,3 +18,11 @@ class AppleMusicPlaylistCollectionViewCell: UICollectionViewCell {
         playlistLabel.topAnchor.constraint(equalTo: playlistImage.bottomAnchor, constant: 5).isActive = true
     }
 }
+
+class AppleMusicPlayListCollectionViewFooter: UICollectionReusableView {
+    @IBOutlet weak var label: UILabel!
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+}

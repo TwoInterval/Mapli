@@ -10,10 +10,8 @@ import UIKit
 
 class AppleMusicPlaylistViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
-	
+    
 	private var cancelBag = Set<AnyCancellable>()
-	private var songs = [[MySong]]()
-	private var songsImage = [MySong]()
 	private var appleMusicPlaylist = [AppleMusicPlayList]()
 	private var viewModel = AppleMusicViewModel()
     
@@ -35,7 +33,6 @@ class AppleMusicPlaylistViewController: UIViewController {
 					SongSelectionViewController.appleMusicPlayList = appleMusicPlaylist[indexPath.item]
 				}
 			}
-			
 		}
 	}
     
@@ -102,12 +99,24 @@ class AppleMusicPlaylistViewController: UIViewController {
 
 extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if appleMusicPlaylist.count == 0 {
-			collectionView.backgroundView = self.setEmptyView()
-        }
         return appleMusicPlaylist.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionFooter :
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reusableView", for: indexPath) as? AppleMusicPlayListCollectionViewFooter else {
+                return UICollectionReusableView()
+            }
+            if viewModel.playlists.count == appleMusicPlaylist.count && viewModel.playlists.count != 0 {
+                footer.label.text = ""
+            }
+            return footer
+            default:
+            return UICollectionReusableView()
+        }
+    }
+        
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
             cell.playlistImage.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
@@ -123,7 +132,6 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
             return UICollectionViewCell()
         }
     }
-	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
 	}
@@ -142,13 +150,19 @@ private extension AppleMusicPlaylistViewController {
 		viewModel.$playlists
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] playlist in
+                if !playlist.isEmpty {
+                    self?.collectionView.backgroundView = nil
+                } else if self?.viewModel.isFetchingAPI == false {
+                    self?.collectionView.backgroundView = self?.setEmptyView()
+                    self?.collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).forEach{
+                        guard let footer = $0 as? AppleMusicPlayListCollectionViewFooter else { return }
+                        footer.label.text = ""
+                    }
+                }
 				for list in playlist {
 					self?.viewModel.fetchMySong(playlistId: list.id)
 				}
-				if !playlist.isEmpty {
-					self?.collectionView.backgroundView = nil
-				}
-			}
+            }
 			.store(in: &cancelBag)
 		
 		viewModel.$mySongs
@@ -167,7 +181,7 @@ private extension AppleMusicPlaylistViewController {
 							self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: image, songs: song, songsString: songsString))
 						}
 					}
-				}
+                }
 				self?.collectionView.reloadData()
 			}
 			.store(in: &cancelBag)
