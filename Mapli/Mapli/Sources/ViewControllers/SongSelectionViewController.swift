@@ -38,11 +38,10 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		searchController.searchBar.delegate = self
 		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
 		navigationItem.searchController = searchController
-		DispatchQueue.main.async {
+		searchButton.isHidden = true
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
 			searchController.searchBar.searchTextField.becomeFirstResponder()
 		}
-		isSearchBar = true
-		searchButton.isHidden = true
 	}
 	
 	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
@@ -63,10 +62,16 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		}
 	}
 	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		navigationItem.searchController = nil
+		isSearchBar = false
+		searchButton.isHidden = false
+	}
+	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		navigationItem.searchController = nil
-		searchButton.isHidden = false
 		isSearchBar = false
+		searchButton.isHidden = false
 	}
 	
 	private func setupConstraint() {
