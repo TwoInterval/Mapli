@@ -41,8 +41,8 @@ class AppleMusicPlaylistViewController: UIViewController {
     
     private func setupConstraint() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(DeviceSize.playlistPadding))).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(UIScreen.getDevice().playlistPadding))).isActive = true
     }
 	
 	private func setupNavigatoinBar() {
@@ -59,8 +59,8 @@ class AppleMusicPlaylistViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
-		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
-		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
     }
 	
 	private func initRefresh() {
@@ -110,9 +110,11 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
-            cell.playlistImage.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
+            cell.playlistImage.frame = CGRect(x: 0, y: 0, width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize)
 			cell.playlistImage.image = appleMusicPlaylist[indexPath.item].playListImage
 			cell.playlistImage.layer.cornerRadius = 20
+			cell.playlistImage.layer.borderWidth = 0.1
+			cell.playlistImage.layer.borderColor = UIColor.gray.cgColor
 			for playlist in viewModel.playlists {
 				if playlist.id == appleMusicPlaylist[indexPath.item].songs[0].id {
 					cell.playlistLabel.text = playlist.attributes.name
@@ -125,15 +127,15 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
     }
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
+		return CGSize(width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize + 27)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return CGFloat(DeviceSize.playlistHorizontalSpacing)
+		return 0
 	}
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(DeviceSize.playlistVerticalSpacing)
+        return CGFloat(UIScreen.getDevice().playlistVerticalSpacing)
     }
 }
 
