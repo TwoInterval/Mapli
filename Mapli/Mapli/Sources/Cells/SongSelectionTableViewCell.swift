@@ -13,6 +13,12 @@ class SongSelectionTableViewCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
+		
+		if checkmark != nil {
+			checkmark!.translatesAutoresizingMaskIntoConstraints = false
+			checkmark!.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+			checkmark!.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+		}
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

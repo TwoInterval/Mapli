@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hN3-6h-ApX">
-                                <rect key="frame" x="20" y="64" width="24" height="24"/>
+                                <rect key="frame" x="20" y="49" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="Eiq-Hd-N4n"/>
                                     <constraint firstAttribute="height" constant="24" id="cjx-en-yJQ"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyO-kP-xTR">
-                                <rect key="frame" x="312" y="64" width="68" height="24"/>
+                                <rect key="frame" x="312" y="49" width="68" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="68" id="6pP-QO-np2"/>
                                     <constraint firstAttribute="height" constant="24" id="nzu-JS-pLR"/>
@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jYQ-pe-Rfv">
-                                <rect key="frame" x="0.0" y="98" width="390" height="712"/>
+                                <rect key="frame" x="0.0" y="78" width="390" height="732"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongSelectionTableCell" id="rXU-ps-pap" customClass="SongSelectionTableViewCell" customModule="Mapli" customModuleProvider="target">
@@ -86,12 +86,12 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FyO-kP-xTR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="0ZI-31-5kg"/>
+                            <constraint firstItem="FyO-kP-xTR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="0ZI-31-5kg"/>
                             <constraint firstItem="FyO-kP-xTR" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-10" id="9TD-8a-17i"/>
-                            <constraint firstItem="jYQ-pe-Rfv" firstAttribute="top" secondItem="hN3-6h-ApX" secondAttribute="bottom" constant="10" id="9iM-kX-XrK"/>
+                            <constraint firstItem="jYQ-pe-Rfv" firstAttribute="top" secondItem="hN3-6h-ApX" secondAttribute="bottom" constant="5" id="9iM-kX-XrK"/>
                             <constraint firstItem="jYQ-pe-Rfv" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="TZF-Lt-4Hc"/>
                             <constraint firstItem="hN3-6h-ApX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Zjj-PX-A4A"/>
-                            <constraint firstItem="hN3-6h-ApX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="dHI-qj-780"/>
+                            <constraint firstItem="hN3-6h-ApX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="dHI-qj-780"/>
                             <constraint firstItem="jYQ-pe-Rfv" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="f07-SU-Uq5"/>
                             <constraint firstItem="jYQ-pe-Rfv" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="f8l-vb-ZH6"/>
                         </constraints>

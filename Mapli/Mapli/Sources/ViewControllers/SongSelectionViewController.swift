@@ -38,11 +38,10 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		searchController.searchBar.delegate = self
 		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
 		navigationItem.searchController = searchController
-		DispatchQueue.main.async {
+		searchButton.isHidden = true
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
 			searchController.searchBar.searchTextField.becomeFirstResponder()
 		}
-		isSearchBar = true
-		searchButton.isHidden = true
 	}
 	
 	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
@@ -63,10 +62,16 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		}
 	}
 	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		navigationItem.searchController = nil
+		isSearchBar = false
+		searchButton.isHidden = false
+	}
+	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		navigationItem.searchController = nil
-		searchButton.isHidden = false
 		isSearchBar = false
+		searchButton.isHidden = false
 	}
 	
 	private func setupConstraint() {
@@ -137,11 +142,11 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 			if isFiltering {
 				let song = searchMusicList[indexPath.row]
 				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			} else {
                 let song = appleMusicPlayList.songs[indexPath.row]
 				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			}
 			
 			return cell
@@ -161,7 +166,7 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
 					} else {
 						appleMusicPlayList.songs[row].isCheck.toggle()
-						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 					}
 				}
 				if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
@@ -169,7 +174,7 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
 					} else {
 						searchMusicList[row].isCheck.toggle()
-						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 					}
 				}
 			} else {
@@ -181,7 +186,7 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 					}
 				} else {
 					appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
-					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 				}
 			}
 		}
