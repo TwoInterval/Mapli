@@ -56,6 +56,19 @@ class ChooseTemplateViewController: UIViewController {
         }
 	}
     
+    override func viewWillAppear(_ animated: Bool) {
+        switch chooseTemplateViewControllerType {
+        case .add:
+            return
+        case .edit:
+            DispatchQueue.main.async {
+                self.collectionView.visibleCells.forEach{ $0.isSelected = true }
+            }
+        case .none:
+            return
+        }
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         border.backgroundColor = UIColor(named: "TextColor")?.cgColor
     }
@@ -112,7 +125,7 @@ class ChooseTemplateViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "미리보기", style: .plain, target: self, action: #selector(nextButtonTapped))
 	}
     
-    private func setupEditNavigationBar(){
+    private func setupEditNavigationBar() {
         navigationItem.title = "수정"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(editButtonTapped))
     }
@@ -158,7 +171,11 @@ class ChooseTemplateViewController: UIViewController {
     private func setupEditCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.isUserInteractionEnabled = false
+        self.templatesList.forEach {
+            if $0.imageName == self.myPlayListModel.template {
+                self.templatesList = [TemplatesModel(imageName: $0.imageName, isCheck: true)]
+            }
+        }
     }
     
     @objc private func nextButtonTapped() {
@@ -216,7 +233,7 @@ class ChooseTemplateViewController: UIViewController {
 
 extension ChooseTemplateViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Template.allCases.count
+        return templatesList.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -231,7 +248,6 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 			cell.templatesCheckImageView.image = resize(image: UIImage(named: "Selected")!, width: 50, height: 50)
             cell.template = templateImage
 			cell.isSelected = templatesList[indexPath.item].isCheck
-			
 			return cell
 		} else {
 			return UICollectionViewCell()
@@ -241,7 +257,7 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TemplatesCollectionViewCell {
             guard let cellTemplate = cell.template else { return }
-			selectedTemplates = TemplatesModel(imageName: cellTemplate, isCheck: cell.isSelected)
+            self.selectedTemplates = TemplatesModel(imageName: cellTemplate, isCheck: cell.isSelected)
 		}
 	}
 }
