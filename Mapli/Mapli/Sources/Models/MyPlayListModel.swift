@@ -43,6 +43,12 @@ class MyPlayListModelManager {
         saveModelArrayToUserDefaults()
     }
     
+    func replaceMyPlayListModel(originalModel: MyPlayListModel, newModel: MyPlayListModel) {
+        guard let index = myPlayListModelArray.firstIndex(of: originalModel) else { return }
+        myPlayListModelArray[index] = newModel
+        saveModelArrayToUserDefaults()
+    }
+    
     private func saveModelArrayToUserDefaults() {
         let encoder = JSONEncoder()
         guard let encodedModel = try? encoder.encode(myPlayListModelArray) else { return }

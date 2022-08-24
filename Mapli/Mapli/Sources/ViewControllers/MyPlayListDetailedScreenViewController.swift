@@ -34,6 +34,13 @@ class MyPlayListDetailedScreenViewController: UIViewController {
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
         }
+        let editAction =  UIAlertAction(title: "편집하기", style: UIAlertAction.Style.default){_ in
+            let storyBoard = UIStoryboard(name: "ChooseTemplateStoryboard", bundle: nil)
+            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "ChooseTemplateVC") as? ChooseTemplateViewController else { return }
+            viewController.chooseTemplateViewControllerType = .edit
+            viewController.myPlayListModel = self.myPlayListModel
+            self.navigationController?.pushViewController(viewController, animated: false)
+        }
         let destructiveAction = UIAlertAction(title: "삭제하기", style: UIAlertAction.Style.destructive){(_) in
             self.popRemoveAlert()
         }
@@ -41,6 +48,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
             self.dismiss(animated: true)
         }
         actionSheet.addAction(shareAction)
+        actionSheet.addAction(editAction)
         actionSheet.addAction(destructiveAction)
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true)
