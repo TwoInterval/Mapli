@@ -28,7 +28,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
     @objc private func onTapRightBarButtonItem() {
         let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let shareAction =  UIAlertAction(title: "공유하기", style: UIAlertAction.Style.default){_ in
-            guard let imageName = self.myPlayListModel?.playListImageName else { return }
+            guard let imageName = self.myPlayListModel?.myPlayListImageString else { return }
             guard let image = ImageDataManager.shared.fetchImage(named: imageName) else { return }
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
@@ -57,7 +57,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
     private func setImageView() {
         myPlayListImageView.layer.cornerRadius = 20
         guard let myPlayListModel = myPlayListModel else { return }
-        guard let imageName = myPlayListModel.playListImageName else { return }
+        guard let imageName = myPlayListModel.myPlayListImageString else { return }
         myPlayListImageView.image = ImageDataManager.shared.fetchImage(named: imageName)
     }
     

@@ -77,8 +77,7 @@ class ChooseTemplateViewController: UIViewController {
                     self.imagePickerButton.setImage(resizedImage, for: .normal)
                 case .edit:
                     guard let myPlayListModel = self.myPlayListModel else { return }
-                    let imageString = myPlayListModel.titleImageName
-                    guard let image = ImageDataManager.shared.fetchImage(named: imageString) else { return }
+                    guard let image = ImageDataManager.shared.fetchImage(named: myPlayListModel.appleMusicPlayListImageString) else { return }
                     let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
                     self.imagePickerButton.setImage(resizedImage, for: .normal)
                 case .none:
@@ -121,7 +120,7 @@ class ChooseTemplateViewController: UIViewController {
     private func setupOriginalMyPlayListModelData() {
         guard let myPlayListModel = myPlayListModel else { return }
         self.titleTextField.text = myPlayListModel.title
-        let imageString = myPlayListModel.titleImageName
+        let imageString = myPlayListModel.titleImageString
         guard let image = ImageDataManager.shared.fetchImage(named: imageString) else { return }
         let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
         self.imagePickerButton.setImage(resizedImage, for: .normal)
@@ -177,9 +176,12 @@ class ChooseTemplateViewController: UIViewController {
 			return
 		}
         let imageDataManager = ImageDataManager.shared
-        guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
+        guard let savedImageFileString = imageDataManager.saveImage(image: image) else { return }
         
-        let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, template: templateName, playListImageName: nil)
+        guard let appleMusicPlayListImage = selectedMusicList.playListImage else { return }
+        guard let appleMusicPlayListImageString = imageDataManager.saveImage(image: appleMusicPlayListImage) else { return }
+        
+        let myPlayListModel = MyPlayListModel(title: title, titleImageString: savedImageFileString, appleMusicPlayListImageString: appleMusicPlayListImageString, template: templateName, myPlayListImageString: nil)
 
         let storyBoard = UIStoryboard(name: "playListPreview", bundle: nil)
         guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PreviewMyPlayListViewController else { return }
@@ -205,7 +207,7 @@ class ChooseTemplateViewController: UIViewController {
         let imageDataManager = ImageDataManager.shared
         guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
         
-        let newMyPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, template: templateName, playListImageName: myPlayListModel.playListImageName)
+        let newMyPlayListModel = MyPlayListModel(title: title, titleImageString: savedImageFileName, appleMusicPlayListImageString: myPlayListModel.appleMusicPlayListImageString, template: templateName, myPlayListImageString: myPlayListModel.myPlayListImageString)
         MyPlayListModelManager.shared.replaceMyPlayListModel(originalModel: myPlayListModel, newModel: newMyPlayListModel)
         
         self.navigationController?.popViewController(animated: false)

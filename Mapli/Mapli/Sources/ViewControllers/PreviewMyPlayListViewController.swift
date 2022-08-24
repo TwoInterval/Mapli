@@ -63,7 +63,7 @@ class PreviewMyPlayListViewController: UIViewController {
         guard let image = templateCollectionView.transformToImage() else { return }
         guard let imageFileName = ImageDataManager.shared.saveImage(image: image) else { return }
         guard var myPlayListModel = myPlayListModel else { return }
-        myPlayListModel.playListImageName = imageFileName
+        myPlayListModel.myPlayListImageString = imageFileName
         MyPlayListModelManager.shared.appendMyPlayListModelArray(myPlayListModel)
         self.navigationController?.popToRootViewController(animated: false)
     }

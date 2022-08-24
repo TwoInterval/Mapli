@@ -9,15 +9,16 @@ import Foundation
 
 struct MyPlayListModel: Codable, Equatable {
     var title: String
-    var titleImageName: String
+    var titleImageString: String
+    var appleMusicPlayListImageString: String
     var template: Template
-    var playListImageName: String?
+    var myPlayListImageString: String?
     
     public static func == (lhs: MyPlayListModel, rhs: MyPlayListModel) -> Bool {
         guard lhs.title == rhs.title else {return false}
-        guard lhs.titleImageName == rhs.titleImageName else {return false}
+        guard lhs.titleImageString == rhs.titleImageString else {return false}
         guard lhs.template == rhs.template else {return false}
-        guard lhs.playListImageName == rhs.playListImageName else {return false}
+        guard lhs.myPlayListImageString == rhs.myPlayListImageString else {return false}
         return true
     }
 }
