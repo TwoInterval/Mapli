@@ -1,4 +1,4 @@
-
+<img src="https://user-images.githubusercontent.com/103024956/186373973-6ba74e94-8260-4c0d-b3bd-cc7eedf7c621.png" width="1000" height="300"/> 
 # :iphone: Mapli
 __나의 트랙리스트를 앱에 준비된 바탕 템플릿들에 담아 보이는 앱입니다.__
 
