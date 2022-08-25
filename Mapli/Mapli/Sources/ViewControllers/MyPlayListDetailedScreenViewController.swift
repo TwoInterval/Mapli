@@ -17,8 +17,16 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         DispatchQueue.main.async {
             self.setNavigationBar()
             self.setImageView()
+			self.setConstraint()
         }
     }
+	private func setConstraint() {
+		myPlayListImageView.translatesAutoresizingMaskIntoConstraints = false
+		myPlayListImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+		myPlayListImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+		myPlayListImageView.widthAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().templatesWidth)).isActive = true
+		myPlayListImageView.heightAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().templatesHeight)).isActive = true
+	}
     private func setNavigationBar() {
         let image = UIImage(systemName: "ellipsis.circle")?.withTintColor(UIColor(named: "TextColor") ?? UIColor.black, renderingMode: .alwaysOriginal)
         let rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(onTapRightBarButtonItem))
@@ -59,6 +67,8 @@ class MyPlayListDetailedScreenViewController: UIViewController {
         guard let myPlayListModel = myPlayListModel else { return }
         guard let imageName = myPlayListModel.myPlayListImageString else { return }
         myPlayListImageView.image = ImageDataManager.shared.fetchImage(named: imageName)
+		myPlayListImageView.layer.borderWidth = 0.5
+		myPlayListImageView.layer.borderColor = UIColor.gray.cgColor
     }
     
     private func popRemoveAlert() {
