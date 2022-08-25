@@ -50,7 +50,7 @@ class PreviewMyPlayListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onTapCompleteButton))
+        let rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("완료", comment: "")), style: .done, target: self, action: #selector(onTapCompleteButton))
 
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }

@@ -44,7 +44,7 @@ class AppleMusicPlaylistViewController: UIViewController {
 	
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
-		backButton.title = "이전"
+		backButton.title = String(format: NSLocalizedString("이전", comment: ""))
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -193,13 +193,30 @@ private extension AppleMusicPlaylistViewController {
 private extension AppleMusicPlaylistViewController {
 	func setEmptyView() -> UIView {
 		let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-		let buttonTitle = "Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"
-		let attributedString = NSMutableAttributedString(string: buttonTitle)
-		attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music 앱"))
-		attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"))
 		let backgroundButton = UIButton()
-		backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
-		backgroundButton.setAttributedTitle(attributedString, for: .normal)
+
+		
+		guard let language = NSLocale.preferredLanguages.first else {return UIView()}
+		switch language.prefix(2) {
+		case "ko":
+			let buttonTitle = String(format: NSLocalizedString("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", comment: ""))
+			let attributedString = NSMutableAttributedString(string: buttonTitle)
+			attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music 앱"))
+			attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"))
+			
+			backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
+			backgroundButton.setAttributedTitle(attributedString, for: .normal)
+			break
+		default:
+			// English
+			let buttonTitle = String(format: NSLocalizedString("Please add\na playlist in Apple Music app.\n\n\n\n\n\n\n", comment: ""))
+			let attributedString = NSMutableAttributedString(string: buttonTitle)
+			attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music app."))
+			attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "Please add\na playlist in "))
+			backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
+			backgroundButton.setAttributedTitle(attributedString, for: .normal)
+		}
+		
 		backgroundButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
 		backgroundButton.titleLabel?.lineBreakMode = .byWordWrapping
 		backgroundButton.titleLabel?.textAlignment = .center

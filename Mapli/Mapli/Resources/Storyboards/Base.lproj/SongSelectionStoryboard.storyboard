@@ -36,10 +36,10 @@
                                     <action selector="searchButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xmf-sP-9dc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyO-kP-xTR">
-                                <rect key="frame" x="306" y="49" width="74" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyO-kP-xTR">
+                                <rect key="frame" x="230" y="49" width="150" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="74" id="6pP-QO-np2"/>
+                                    <constraint firstAttribute="width" constant="150" id="6pP-QO-np2"/>
                                     <constraint firstAttribute="height" constant="24" id="nzu-JS-pLR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

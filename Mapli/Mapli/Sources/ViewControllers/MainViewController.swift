@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
 
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
-		backButton.title = "이전"
+		backButton.title = String(format: NSLocalizedString("이전", comment: ""))
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -59,7 +59,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if myPlayListModelManager.myPlayListModelArray.count == 0 {
             let label = UILabel()
-            label.text = "나만의 플레이리스트를\n추가해주세요.\n\n\n\n\n"
+            label.text = String(format: NSLocalizedString("나만의 플레이리스트를\n추가해주세요.\n\n\n\n\n", comment: ""))
             label.numberOfLines = 7
             label.textAlignment = .center
             label.textColor = .gray

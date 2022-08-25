@@ -74,14 +74,14 @@ class ChooseTemplateViewController: UIViewController {
     }
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
-        let actionSheet = UIAlertController(title: "대표 이미지 선택", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let cameraAction =  UIAlertAction(title: "사진 촬영", style: UIAlertAction.Style.default) { _ in
+        let actionSheet = UIAlertController(title: String(format: NSLocalizedString("대표 이미지 선택", comment: "")), message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cameraAction =  UIAlertAction(title: String(format: NSLocalizedString("사진 촬영", comment: "")), style: UIAlertAction.Style.default) { _ in
             self.openCamera()
         }
-        let galleryAction =  UIAlertAction(title: "갤러리에서 선택", style: UIAlertAction.Style.default) { _ in
+        let galleryAction =  UIAlertAction(title: String(format: NSLocalizedString("갤러리에서 선택", comment: "")), style: UIAlertAction.Style.default) { _ in
             self.openLibrary()
         }
-        let defaultImageAction =  UIAlertAction(title: "플레이리스트 이미지 사용", style: UIAlertAction.Style.default) { _ in
+        let defaultImageAction =  UIAlertAction(title: String(format: NSLocalizedString("플레이리스트 이미지 사용", comment: "")), style: UIAlertAction.Style.default) { _ in
             DispatchQueue.main.async {
                 switch self.chooseTemplateViewControllerType {
                 case .add:
@@ -98,7 +98,7 @@ class ChooseTemplateViewController: UIViewController {
                 }
             }
         }
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel) {_ in
+        let cancelAction = UIAlertAction(title: String(format: NSLocalizedString("취소", comment: "")), style: UIAlertAction.Style.cancel) {_ in
             self.dismiss(animated: true)
         }
         actionSheet.addAction(cameraAction)
@@ -121,13 +121,13 @@ class ChooseTemplateViewController: UIViewController {
 	}
 	
 	private func setupNavigationBar() {
-		navigationItem.title = "템플릿 선택"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "미리보기", style: .plain, target: self, action: #selector(nextButtonTapped))
+		navigationItem.title = String(format: NSLocalizedString("템플릿 선택", comment: ""))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("미리보기", comment: "")), style: .plain, target: self, action: #selector(nextButtonTapped))
 	}
     
     private func setupEditNavigationBar() {
-        navigationItem.title = "수정"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(editButtonTapped))
+        navigationItem.title = String(format: NSLocalizedString("수정", comment: ""))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("완료", comment: "")), style: .plain, target: self, action: #selector(editButtonTapped))
     }
 	
     private func setupOriginalMyPlayListModelData() {
@@ -181,15 +181,15 @@ class ChooseTemplateViewController: UIViewController {
     @objc private func nextButtonTapped() {
         guard let title = titleTextField.text else { return }
         if title == "" {
-            showToastMessage("제목을 입력해주세요.")
+            showToastMessage(String(format: NSLocalizedString("제목을 입력해주세요.", comment: "")))
             return
         }
         guard let image = imagePickerButton.image(for: .normal) else {
-            showToastMessage("대표 이미지를 선택해주세요.")
+            showToastMessage(String(format: NSLocalizedString("대표 이미지를 선택해주세요.", comment: "")))
             return
         }
 		guard let templateName = selectedTemplates?.imageName else {
-			showToastMessage("템플릿을 선택해주세요.")
+			showToastMessage(String(format: NSLocalizedString("템플릿을 선택해주세요.", comment: "")))
 			return
 		}
         let imageDataManager = ImageDataManager.shared
@@ -210,15 +210,15 @@ class ChooseTemplateViewController: UIViewController {
     @objc private func editButtonTapped() {
         guard let title = titleTextField.text else { return }
         if title == "" {
-            showToastMessage("제목을 입력해주세요.")
+            showToastMessage(String(format: NSLocalizedString("제목을 입력해주세요.", comment: "")))
             return
         }
         guard let image = imagePickerButton.image(for: .normal) else {
-            showToastMessage("대표 이미지를 선택해주세요.")
+            showToastMessage(String(format: NSLocalizedString("대표 이미지를 선택해주세요.", comment: "")))
             return
         }
         guard let templateName = selectedTemplates?.imageName else {
-            showToastMessage("템플릿을 선택해주세요.")
+            showToastMessage(String(format: NSLocalizedString("템플릿을 선택해주세요.", comment: "")))
             return
         }
         let imageDataManager = ImageDataManager.shared
