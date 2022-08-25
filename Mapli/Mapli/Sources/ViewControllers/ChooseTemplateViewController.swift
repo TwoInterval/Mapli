@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum ChooseTemplateViewControllerType {
+    case add, edit
+}
+
 class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var titleTextField: UITextField!
@@ -19,33 +23,82 @@ class ChooseTemplateViewController: UIViewController {
     private var templatesList = [TemplatesModel(imageName: .templates1, isCheck: false), TemplatesModel(imageName: .templates2, isCheck: false), TemplatesModel(imageName: .templates3, isCheck: false), TemplatesModel(imageName: .templates4, isCheck: false), TemplatesModel(imageName: .templates5, isCheck: false)]
 	private var selectedTemplates: TemplatesModel?
     var selectedMusicList: AppleMusicPlayList!
+    var myPlayListModel: MyPlayListModel!
+    var chooseTemplateViewControllerType: ChooseTemplateViewControllerType!
+    let border = CALayer()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupConstraint()
-		setupTitleLabelStyle()
-		setupTitleTextFieldStyle()
-		setupImagePicker()
-		setupNavigationBar()
-		setupCollectionView()
+        switch chooseTemplateViewControllerType {
+        case .add:
+            setupConstraint()
+            setupTitleTextFieldStyle()
+            setupImagePicker()
+            setupNavigationBar()
+            setupCollectionView()
+            
+            titleLabel.attributedText = convertToAttributedString(text: titleLabel.text ?? "")
+            imageTitleLabel.attributedText = convertToAttributedString(text: imageTitleLabel.text ?? "")
+            templateTitleLabel.attributedText = convertToAttributedString(text: templateTitleLabel.text ?? "")
+        case .edit:
+            setupConstraint()
+            setupTitleTextFieldStyle()
+            setupImagePicker()
+            setupEditNavigationBar()
+            setupOriginalMyPlayListModelData()
+            setupEditCollectionView()
+            
+            titleLabel.attributedText = convertToAttributedString(text: titleLabel.text ?? "")
+            imageTitleLabel.attributedText = convertToAttributedString(text: imageTitleLabel.text ?? "")
+            templateTitleLabel.attributedText = convertToAttributedString(text: templateTitleLabel.text ?? "")
+        case .none:
+            return
+        }
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        switch chooseTemplateViewControllerType {
+        case .add:
+            return
+        case .edit:
+            DispatchQueue.main.async {
+                self.collectionView.visibleCells.forEach{ $0.isSelected = true }
+            }
+        case .none:
+            return
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        border.backgroundColor = UIColor(named: "TextColor")?.cgColor
+    }
 	
 	@IBAction func imagePickerButtonTapped(_ sender: UIButton) {
-        let actionSheet = UIAlertController(title: "대표 이미지 선택", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let cameraAction =  UIAlertAction(title: "사진 촬영", style: UIAlertAction.Style.default) { _ in
+        let actionSheet = UIAlertController(title: String(format: NSLocalizedString("대표 이미지 선택", comment: "")), message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cameraAction =  UIAlertAction(title: String(format: NSLocalizedString("사진 촬영", comment: "")), style: UIAlertAction.Style.default) { _ in
             self.openCamera()
         }
-        let galleryAction =  UIAlertAction(title: "갤러리에서 선택", style: UIAlertAction.Style.default) { _ in
+        let galleryAction =  UIAlertAction(title: String(format: NSLocalizedString("갤러리에서 선택", comment: "")), style: UIAlertAction.Style.default) { _ in
             self.openLibrary()
         }
-        let defaultImageAction =  UIAlertAction(title: "플레이리스트 이미지 사용", style: UIAlertAction.Style.default) { _ in
+        let defaultImageAction =  UIAlertAction(title: String(format: NSLocalizedString("플레이리스트 이미지 사용", comment: "")), style: UIAlertAction.Style.default) { _ in
             DispatchQueue.main.async {
-                guard let image = self.selectedMusicList.playListImage else { return }
-                let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
-                self.imagePickerButton.setImage(resizedImage, for: .normal)
+                switch self.chooseTemplateViewControllerType {
+                case .add:
+                    guard let image = self.selectedMusicList.playListImage else { return }
+                    let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
+                    self.imagePickerButton.setImage(resizedImage, for: .normal)
+                case .edit:
+                    guard let myPlayListModel = self.myPlayListModel else { return }
+                    guard let image = ImageDataManager.shared.fetchImage(named: myPlayListModel.appleMusicPlayListImageString) else { return }
+                    let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
+                    self.imagePickerButton.setImage(resizedImage, for: .normal)
+                case .none:
+                    break
+                }
             }
         }
-        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel) {_ in
+        let cancelAction = UIAlertAction(title: String(format: NSLocalizedString("취소", comment: "")), style: UIAlertAction.Style.cancel) {_ in
             self.dismiss(animated: true)
         }
         actionSheet.addAction(cameraAction)
@@ -57,35 +110,50 @@ class ChooseTemplateViewController: UIViewController {
 	
 	private func setupConstraint() {
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
-		titleLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
-		titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		titleLabel.topAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(UIScreen.getDevice().topPaddong)).isActive = true
+		titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 		imageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		imageTitleLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
-		imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		imageTitleLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: CGFloat(UIScreen.getDevice().topPaddong)).isActive = true
+		imageTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 		templateTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(DeviceSize.topPaddong)).isActive = true
-		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		templateTitleLabel.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: CGFloat(UIScreen.getDevice().topPaddong)).isActive = true
+		templateTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 	}
 	
 	private func setupNavigationBar() {
-		navigationItem.title = "템플릿 선택"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "미리보기", style: .plain, target: self, action: #selector(nextButtonTapped))
+		navigationItem.title = String(format: NSLocalizedString("템플릿 선택", comment: ""))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("미리보기", comment: "")), style: .plain, target: self, action: #selector(nextButtonTapped))
 	}
+    
+    private func setupEditNavigationBar() {
+        navigationItem.title = String(format: NSLocalizedString("수정", comment: ""))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("완료", comment: "")), style: .plain, target: self, action: #selector(editButtonTapped))
+    }
 	
-	private func setupTitleLabelStyle() {
-		let attributedString = NSMutableAttributedString(string: titleLabel.text ?? "")
-		attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: ((titleLabel.text ?? "") as NSString).range(of: "*"))
-		attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: ((titleLabel.text ?? "") as NSString).range(of: "제목"))
-		titleLabel.attributedText = attributedString
+    private func setupOriginalMyPlayListModelData() {
+        guard let myPlayListModel = myPlayListModel else { return }
+        self.titleTextField.text = myPlayListModel.title
+        let imageString = myPlayListModel.titleImageString
+        guard let image = ImageDataManager.shared.fetchImage(named: imageString) else { return }
+        let resizedImage = self.resize(image: image, width: self.imagePickerButton.frame.size.width, height: self.imagePickerButton.frame.size.height)
+        self.imagePickerButton.setImage(resizedImage, for: .normal)
+    
+        self.selectedTemplates = TemplatesModel(imageName: myPlayListModel.template, isCheck: true)
+    }
+    
+	private func convertToAttributedString(text: String) -> NSMutableAttributedString {
+		let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(.foregroundColor, value: UIColor(named: "TextColor") ?? UIColor.black, range: (text as NSString).range(of: text))
+		attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: (text as NSString).range(of: "*"))
+		return attributedString
 	}
 	
 	private func setupTitleTextFieldStyle() {
 		titleTextField.delegate = self
 		titleTextField.borderStyle = .none
 		titleTextField.font = UIFont(name: titleTextField.font != nil ? titleTextField.font!.fontName : "AppleSDGothicNeo-Regular", size: 17)
-		let border = CALayer()
 		border.frame = CGRect(x: 0, y: titleTextField.frame.size.height-10, width: titleTextField.frame.width-40, height: 1)
-		border.backgroundColor = UIColor.black.cgColor
+        border.backgroundColor = UIColor(named: "TextColor")?.cgColor
 		titleTextField.layer.addSublayer(border)
 	}
 	
@@ -100,24 +168,37 @@ class ChooseTemplateViewController: UIViewController {
 		collectionView.delegate = self
 	}
     
+    private func setupEditCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        self.templatesList.forEach {
+            if $0.imageName == self.myPlayListModel.template {
+                self.templatesList = [TemplatesModel(imageName: $0.imageName, isCheck: true)]
+            }
+        }
+    }
+    
     @objc private func nextButtonTapped() {
         guard let title = titleTextField.text else { return }
         if title == "" {
-            showToastMessage("제목을 입력해주세요.")
+            showToastMessage(String(format: NSLocalizedString("제목을 입력해주세요.", comment: "")))
             return
         }
         guard let image = imagePickerButton.image(for: .normal) else {
-            showToastMessage("대표 이미지를 선택해주세요.")
+            showToastMessage(String(format: NSLocalizedString("대표 이미지를 선택해주세요.", comment: "")))
             return
         }
 		guard let templateName = selectedTemplates?.imageName else {
-			showToastMessage("템플릿을 선택해주세요.")
+			showToastMessage(String(format: NSLocalizedString("템플릿을 선택해주세요.", comment: "")))
 			return
 		}
         let imageDataManager = ImageDataManager.shared
-        guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
+        guard let savedImageFileString = imageDataManager.saveImage(image: image) else { return }
         
-        let myPlayListModel = MyPlayListModel(title: title, titleImageName: savedImageFileName, template: templateName, playListImageName: nil)
+        guard let appleMusicPlayListImage = selectedMusicList.playListImage else { return }
+        guard let appleMusicPlayListImageString = imageDataManager.saveImage(image: appleMusicPlayListImage) else { return }
+        
+        let myPlayListModel = MyPlayListModel(title: title, titleImageString: savedImageFileString, appleMusicPlayListImageString: appleMusicPlayListImageString, template: templateName, myPlayListImageString: nil)
 
         let storyBoard = UIStoryboard(name: "playListPreview", bundle: nil)
         guard let playListPreviewVC = storyBoard.instantiateViewController(withIdentifier: "playListPreview") as? PreviewMyPlayListViewController else { return }
@@ -125,11 +206,34 @@ class ChooseTemplateViewController: UIViewController {
         playListPreviewVC.selectedMusicList = self.selectedMusicList
         self.navigationController?.pushViewController(playListPreviewVC, animated: true)
     }
+    
+    @objc private func editButtonTapped() {
+        guard let title = titleTextField.text else { return }
+        if title == "" {
+            showToastMessage(String(format: NSLocalizedString("제목을 입력해주세요.", comment: "")))
+            return
+        }
+        guard let image = imagePickerButton.image(for: .normal) else {
+            showToastMessage(String(format: NSLocalizedString("대표 이미지를 선택해주세요.", comment: "")))
+            return
+        }
+        guard let templateName = selectedTemplates?.imageName else {
+            showToastMessage(String(format: NSLocalizedString("템플릿을 선택해주세요.", comment: "")))
+            return
+        }
+        let imageDataManager = ImageDataManager.shared
+        guard let savedImageFileName = imageDataManager.saveImage(image: image) else { return }
+        
+        let newMyPlayListModel = MyPlayListModel(title: title, titleImageString: savedImageFileName, appleMusicPlayListImageString: myPlayListModel.appleMusicPlayListImageString, template: templateName, myPlayListImageString: myPlayListModel.myPlayListImageString)
+        MyPlayListModelManager.shared.replaceMyPlayListModel(originalModel: myPlayListModel, newModel: newMyPlayListModel)
+        
+        self.navigationController?.popViewController(animated: false)
+    }
 }
 
 extension ChooseTemplateViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Template.allCases.count
+        return templatesList.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,13 +242,14 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
             let templateImage = templatesList[indexPath.item].imageName
             var newImage = UIImage(named: templateImage.rawValue)
 
-			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(DeviceSize.templatesWidth), height: CGFloat(DeviceSize.templatesHeight))
+			newImage = resize(image: newImage ?? UIImage(), width: CGFloat(UIScreen.getDevice().templatesWidth), height: CGFloat(UIScreen.getDevice().templatesHeight))
 			cell.templatesImageView.image = newImage
 			cell.templatesImageView.contentMode = .scaleAspectFit
 			cell.templatesCheckImageView.image = resize(image: UIImage(named: "Selected")!, width: 50, height: 50)
             cell.template = templateImage
 			cell.isSelected = templatesList[indexPath.item].isCheck
-			
+			cell.layer.borderWidth = 0.5
+			cell.layer.borderColor = UIColor.gray.cgColor
 			return cell
 		} else {
 			return UICollectionViewCell()
@@ -154,7 +259,7 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TemplatesCollectionViewCell {
             guard let cellTemplate = cell.template else { return }
-			selectedTemplates = TemplatesModel(imageName: cellTemplate, isCheck: cell.isSelected)
+            self.selectedTemplates = TemplatesModel(imageName: cellTemplate, isCheck: cell.isSelected)
 		}
 	}
 }

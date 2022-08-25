@@ -35,13 +35,13 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
     }
 
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
-		backButton.title = "이전"
+		backButton.title = String(format: NSLocalizedString("이전", comment: ""))
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -50,17 +50,16 @@ class MainViewController: UIViewController {
     
     private func setupConstraint() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(DeviceSize.playlistPadding))).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(UIScreen.getDevice().playlistPadding))).isActive = true
     }
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    // Cell의 개수가 몇개?
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if myPlayListModelManager.myPlayListModelArray.count == 0 {
             let label = UILabel()
-            label.text = "나만의 플레이리스트를\n추가해주세요.\n\n\n\n\n"
+            label.text = String(format: NSLocalizedString("나만의 플레이리스트를\n추가해주세요.\n\n\n\n\n", comment: ""))
             label.numberOfLines = 7
             label.textAlignment = .center
             label.textColor = .gray
@@ -72,18 +71,19 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    // Cell이 무엇인가?
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as? MainCollectionViewCell {
             
             DispatchQueue.main.async {
                 let myPlayList = self.myPlayListModelManager.myPlayListModelArray[indexPath.item]
-                let imageName = myPlayList.titleImageName
-                cell.imageView.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
+                let imageName = myPlayList.titleImageString
+                cell.imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize)
                 cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
                 cell.pliName.text = myPlayList.title
+				cell.imageView.layer.borderWidth = 0.5
+				cell.imageView.layer.borderColor = UIColor.gray.cgColor
             }
-            
+			
             return cell
         } else {
             return UICollectionViewCell()
@@ -98,17 +98,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         self.navigationController?.show(viewController, sender: self)
     }
     
-    // Cell 모양 어떻게 할래?
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
+        return CGSize(width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize + 27)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(DeviceSize.playlistHorizontalSpacing)
-    }
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+		return 0
+	}
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(DeviceSize.playlistVerticalSpacing)
+        return CGFloat(UIScreen.getDevice().playlistVerticalSpacing)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

@@ -10,10 +10,8 @@ import UIKit
 
 class AppleMusicPlaylistViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
-	
+    
 	private var cancelBag = Set<AnyCancellable>()
-	private var songs = [[MySong]]()
-	private var songsImage = [MySong]()
 	private var appleMusicPlaylist = [AppleMusicPlayList]()
 	private var viewModel = AppleMusicViewModel()
     
@@ -35,19 +33,18 @@ class AppleMusicPlaylistViewController: UIViewController {
 					SongSelectionViewController.appleMusicPlayList = appleMusicPlaylist[indexPath.item]
 				}
 			}
-			
 		}
 	}
     
     private func setupConstraint() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(DeviceSize.playlistPadding))).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(-(UIScreen.getDevice().playlistPadding))).isActive = true
     }
 	
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
-		backButton.title = "이전"
+		backButton.title = String(format: NSLocalizedString("이전", comment: ""))
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -59,8 +56,8 @@ class AppleMusicPlaylistViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
-		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
-		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(DeviceSize.playlistPadding)).isActive = true
+		collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
+		collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(UIScreen.getDevice().playlistPadding)).isActive = true
     }
 	
 	private func initRefresh() {
@@ -102,17 +99,31 @@ class AppleMusicPlaylistViewController: UIViewController {
 
 extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if appleMusicPlaylist.count == 0 {
-			collectionView.backgroundView = self.setEmptyView()
-        }
         return appleMusicPlaylist.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionFooter :
+            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reusableView", for: indexPath) as? AppleMusicPlayListCollectionViewFooter else {
+                return UICollectionReusableView()
+            }
+            if viewModel.playlists.count == appleMusicPlaylist.count && viewModel.playlists.count != 0 {
+                footer.label.text = ""
+            }
+            return footer
+            default:
+            return UICollectionReusableView()
+        }
+    }
+        
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
-            cell.playlistImage.frame = CGRect(x: 0, y: 0, width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize)
+            cell.playlistImage.frame = CGRect(x: 0, y: 0, width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize)
 			cell.playlistImage.image = appleMusicPlaylist[indexPath.item].playListImage
 			cell.playlistImage.layer.cornerRadius = 20
+			cell.playlistImage.layer.borderWidth = 0.5
+			cell.playlistImage.layer.borderColor = UIColor.gray.cgColor
 			for playlist in viewModel.playlists {
 				if playlist.id == appleMusicPlaylist[indexPath.item].songs[0].id {
 					cell.playlistLabel.text = playlist.attributes.name
@@ -123,17 +134,16 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
             return UICollectionViewCell()
         }
     }
-	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: DeviceSize.playlistImageSize, height: DeviceSize.playlistImageSize + 27)
+		return CGSize(width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize + 27)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return CGFloat(DeviceSize.playlistHorizontalSpacing)
+		return 0
 	}
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(DeviceSize.playlistVerticalSpacing)
+        return CGFloat(UIScreen.getDevice().playlistVerticalSpacing)
     }
 }
 
@@ -142,13 +152,19 @@ private extension AppleMusicPlaylistViewController {
 		viewModel.$playlists
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] playlist in
+                if !playlist.isEmpty {
+                    self?.collectionView.backgroundView = nil
+                } else if self?.viewModel.isFetchingAPI == false {
+                    self?.collectionView.backgroundView = self?.setEmptyView()
+                    self?.collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).forEach{
+                        guard let footer = $0 as? AppleMusicPlayListCollectionViewFooter else { return }
+                        footer.label.text = ""
+                    }
+                }
 				for list in playlist {
 					self?.viewModel.fetchMySong(playlistId: list.id)
 				}
-				if !playlist.isEmpty {
-					self?.collectionView.backgroundView = nil
-				}
-			}
+            }
 			.store(in: &cancelBag)
 		
 		viewModel.$mySongs
@@ -167,7 +183,7 @@ private extension AppleMusicPlaylistViewController {
 							self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: image, songs: song, songsString: songsString))
 						}
 					}
-				}
+                }
 				self?.collectionView.reloadData()
 			}
 			.store(in: &cancelBag)
@@ -177,13 +193,30 @@ private extension AppleMusicPlaylistViewController {
 private extension AppleMusicPlaylistViewController {
 	func setEmptyView() -> UIView {
 		let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-		let buttonTitle = "Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"
-		let attributedString = NSMutableAttributedString(string: buttonTitle)
-		attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music 앱"))
-		attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"))
 		let backgroundButton = UIButton()
-		backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
-		backgroundButton.setAttributedTitle(attributedString, for: .normal)
+
+		
+		guard let language = NSLocale.preferredLanguages.first else {return UIView()}
+		switch language.prefix(2) {
+		case "ko":
+			let buttonTitle = String(format: NSLocalizedString("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", comment: ""))
+			let attributedString = NSMutableAttributedString(string: buttonTitle)
+			attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music 앱"))
+			attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n"))
+			
+			backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
+			backgroundButton.setAttributedTitle(attributedString, for: .normal)
+			break
+		default:
+			// English
+			let buttonTitle = String(format: NSLocalizedString("Please add\na playlist in Apple Music app.\n\n\n\n\n\n\n", comment: ""))
+			let attributedString = NSMutableAttributedString(string: buttonTitle)
+			attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (buttonTitle as NSString).range(of: "Apple Music app."))
+			attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: (buttonTitle as NSString).range(of: "Please add\na playlist in "))
+			backgroundButton.setTitle("Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n", for: .normal)
+			backgroundButton.setAttributedTitle(attributedString, for: .normal)
+		}
+		
 		backgroundButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
 		backgroundButton.titleLabel?.lineBreakMode = .byWordWrapping
 		backgroundButton.titleLabel?.textAlignment = .center

@@ -12,7 +12,7 @@ import StoreKit
 class AppleMusicViewModel: ObservableObject {
 	@Published var mySongs = [MySong]()
 	@Published var playlists = [Playlist]()
-	@Published var songs = [Song]()
+    @Published var isFetchingAPI = true
 	var usetToken = String()
 
 	init() {
@@ -38,16 +38,7 @@ extension AppleMusicViewModel {
 			do {
 				self.usetToken = try await AppleMusicAPI().fetchUserToken()
 				self.playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
-			} catch NetworkError.invalidURL {
-				print("Invalid URL ERROR!")
-			}
-		}
-	}
-	
-	func fetchSongs(playlistId: String) {
-		Task {
-			do {
-				self.songs = try await AppleMusicAPI().fetchSongs(userToken: usetToken, id: playlistId)
+                self.isFetchingAPI = false
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}

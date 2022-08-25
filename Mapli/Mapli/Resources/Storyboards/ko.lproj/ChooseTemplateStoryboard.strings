@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "대표 이미지*"; ObjectID = "CnU-TR-MAI"; */
+"CnU-TR-MAI.text" = "대표 이미지*";
+
+/* Class = "UILabel"; text = "제목*"; ObjectID = "Vk5-XL-kWr"; */
+"Vk5-XL-kWr.text" = "제목*";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fu0-fc-mJ1"; */
+"fu0-fc-mJ1.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "템플릿*"; ObjectID = "sxQ-Tz-hlI"; */
+"sxQ-Tz-hlI.text" = "템플릿*";

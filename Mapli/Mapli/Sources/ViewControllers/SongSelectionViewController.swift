@@ -33,16 +33,15 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
 		let searchController = UISearchController(searchResultsController: nil)
-		searchController.searchBar.placeholder = "노래 제목을 입력하세요."
+		searchController.searchBar.placeholder = String(format: NSLocalizedString("노래 제목을 입력하세요.", comment: ""))
 		searchController.searchResultsUpdater = self
 		searchController.searchBar.delegate = self
-		searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+		searchController.searchBar.setValue(String(format: NSLocalizedString("취소", comment: "")), forKey: "cancelButtonText")
 		navigationItem.searchController = searchController
-		DispatchQueue.main.async {
+		searchButton.isHidden = true
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
 			searchController.searchBar.searchTextField.becomeFirstResponder()
 		}
-		isSearchBar = true
-		searchButton.isHidden = true
 	}
 	
 	@IBAction func selectAllButtonTapped(_ sender: UIButton) {
@@ -63,15 +62,21 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		}
 	}
 	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		navigationItem.searchController = nil
+		isSearchBar = false
+		searchButton.isHidden = false
+	}
+	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		navigationItem.searchController = nil
-		searchButton.isHidden = false
 		isSearchBar = false
+		searchButton.isHidden = false
 	}
 	
 	private func setupConstraint() {
 		self.searchButton.translatesAutoresizingMaskIntoConstraints = false
-		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(DeviceSize.leadingPadding)).isActive = true
+		self.searchButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(UIScreen.getDevice().leadingPadding)).isActive = true
 	}
 	
 	private func setupTableView() {
@@ -81,9 +86,9 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	
 	private func setupNavigatoinBar() {
 		let backButton = UIBarButtonItem()
-		backButton.title = "이전"
-		navigationItem.title = "음악 선택"
-		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonTapped))
+		backButton.title = String(format: NSLocalizedString("이전", comment: ""))
+		navigationItem.title = String(format: NSLocalizedString("음악 선택", comment: ""))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("다음", comment: "")), style: .plain, target: self, action: #selector(nextButtonTapped))
 		navigationItem.backBarButtonItem = backButton
 		navigationController?.navigationBar.backIndicatorImage = UIImage()
 		navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
@@ -119,9 +124,10 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 			let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") as! ChooseTemplateViewController
             appleMusicPlayList.songsString = selectedMusicList
 			chooseTemplateVC.selectedMusicList = appleMusicPlayList
+            chooseTemplateVC.chooseTemplateViewControllerType = .add
 			self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
 		} else {
-			showToastMessage("최소 1곡 이상 선택해주세요.", y: view.frame.height - 120)
+			showToastMessage(String(format: NSLocalizedString("최소 1곡 이상 선택해주세요.", comment: "")), y: view.frame.height - 120)
 		}
 	}
 }
@@ -137,11 +143,11 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 			if isFiltering {
 				let song = searchMusicList[indexPath.row]
 				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			} else {
                 let song = appleMusicPlayList.songs[indexPath.row]
 				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			}
 			
 			return cell
@@ -158,30 +164,30 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 			if isFiltering {
 				if let row = self.appleMusicPlayList.songs.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
 					if appleMusicPlayList.songs[row].isCheck == false && songs.count >= 10 {
-						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
+						showToastMessage(String(format: NSLocalizedString("최대 10개까지 선택 가능합니다.", comment: "")), y: view.frame.height - 350)
 					} else {
 						appleMusicPlayList.songs[row].isCheck.toggle()
-						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 					}
 				}
 				if let row = self.searchMusicList.firstIndex(where: { $0.title == searchMusicList[indexPath.row].title }) {
 					if searchMusicList[row].isCheck == false && songs.count >= 10 {
-						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
+						showToastMessage(String(format: NSLocalizedString("최대 10개까지 선택 가능합니다.", comment: "")), y: view.frame.height - 350)
 					} else {
 						searchMusicList[row].isCheck.toggle()
-						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+						cell.checkmark.image = searchMusicList[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 					}
 				}
 			} else {
 				if appleMusicPlayList.songs[indexPath.row].isCheck == false && songs.count >= 10 {
 					if isSearchBar {
-						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 350)
+						showToastMessage(String(format: NSLocalizedString("최대 10개까지 선택 가능합니다.", comment: "")), y: view.frame.height - 350)
 					} else {
-						showToastMessage("최대 10개까지 선택 가능합니다.", y: view.frame.height - 120)
+						showToastMessage(String(format: NSLocalizedString("최대 10개까지 선택 가능합니다.", comment: "")), y: view.frame.height - 120)
 					}
 				} else {
 					appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
-					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+					cell.checkmark.image = appleMusicPlayList.songs[indexPath.row].isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 				}
 			}
 		}

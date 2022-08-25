@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  Mapli
+
+  Created by woo0 on 2022/08/25.
+  
+*/
+
+"이전" = "Back";
+"나만의 플레이리스트를\n추가해주세요.\n\n\n\n\n" = "Please add\nyour own playlist\n\n\n\n\n";
+"노래 제목을 입력하세요." = "Please enter a song title.";
+"취소" = "Cancel";
+"음악 선택" = "Select Music";
+"다음" = "Next";
+"최소 1곡 이상 선택해주세요." = "Please select at least one song.";
+"최대 10개까지 선택 가능합니다." = "Up to 10 are available";
+"완료" = "Finish";
+"대표 이미지 선택" = "Select My Playlist Image";
+"사진 촬영" = "Camera";
+"갤러리에서 선택" = "Select from Photos";
+"플레이리스트 이미지 사용" = "Use a Playlist Image";
+"템플릿 선택" = "Select Templates";
+"수정" = "Modify";
+"제목을 입력해주세요." = "Please enter a title.";
+"대표 이미지를 선택해주세요." = "Please choose a My Playlist Image.";
+"템플릿을 선택해주세요." = "Please select a template.";
+"Apple Music 앱에서\n플레이리스트를 추가해주세요.\n\n\n\n\n\n\n" = "Please add\na playlist in Apple Music app.\n\n\n\n\n\n\n";
+"메뉴" = "Menu";
+"공유하기" = "Share";
+"편집하기" = "Edit";
+"삭제하기" = "Delete";
+"삭제" = "Delete";
+"플레이리스트 삭제" = "Delete Playlist";
+"플레이리스트를 삭제하시겠습니까?" = "Are you sure to delete Playlist?";
+"미리보기" = "Preview";

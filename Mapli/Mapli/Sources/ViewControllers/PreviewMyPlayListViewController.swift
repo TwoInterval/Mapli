@@ -25,8 +25,8 @@ class PreviewMyPlayListViewController: UIViewController {
     }
     
     private func setConstraint() {
-        templateCollectionViewTopConstraint.constant = CGFloat(DeviceSize.previewTopPadding)
-        templateCollectionViewBottomConstraint.constant = CGFloat(DeviceSize.previewBottomPadding)
+        templateCollectionViewTopConstraint.constant = CGFloat(UIScreen.getDevice().previewTopPadding)
+        templateCollectionViewBottomConstraint.constant = CGFloat(UIScreen.getDevice().previewBottomPadding)
         
         guard let myPlayListModel = myPlayListModel else { return }
         var insetMultiplier = CGFloat(1)
@@ -50,7 +50,7 @@ class PreviewMyPlayListViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        let rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(onTapCompleteButton))
+        let rightBarButtonItem = UIBarButtonItem(title: String(format: NSLocalizedString("완료", comment: "")), style: .done, target: self, action: #selector(onTapCompleteButton))
 
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
@@ -63,7 +63,7 @@ class PreviewMyPlayListViewController: UIViewController {
         guard let image = templateCollectionView.transformToImage() else { return }
         guard let imageFileName = ImageDataManager.shared.saveImage(image: image) else { return }
         guard var myPlayListModel = myPlayListModel else { return }
-        myPlayListModel.playListImageName = imageFileName
+        myPlayListModel.myPlayListImageString = imageFileName
         MyPlayListModelManager.shared.appendMyPlayListModelArray(myPlayListModel)
         self.navigationController?.popToRootViewController(animated: false)
     }
