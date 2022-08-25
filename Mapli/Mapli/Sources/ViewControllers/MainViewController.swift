@@ -76,7 +76,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             DispatchQueue.main.async {
                 let myPlayList = self.myPlayListModelManager.myPlayListModelArray[indexPath.item]
-                let imageName = myPlayList.titleImageName
+                let imageName = myPlayList.titleImageString
                 cell.imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize)
                 cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
                 cell.pliName.text = myPlayList.title

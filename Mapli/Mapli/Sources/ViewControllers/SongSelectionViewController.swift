@@ -124,6 +124,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 			let chooseTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "ChooseTemplateVC") as! ChooseTemplateViewController
             appleMusicPlayList.songsString = selectedMusicList
 			chooseTemplateVC.selectedMusicList = appleMusicPlayList
+            chooseTemplateVC.chooseTemplateViewControllerType = .add
 			self.navigationController?.pushViewController(chooseTemplateVC, animated: true)
 		} else {
 			showToastMessage("최소 1곡 이상 선택해주세요.", y: view.frame.height - 120)

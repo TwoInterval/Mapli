@@ -28,11 +28,18 @@ class MyPlayListDetailedScreenViewController: UIViewController {
     @objc private func onTapRightBarButtonItem() {
         let actionSheet = UIAlertController(title: "메뉴", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let shareAction =  UIAlertAction(title: "공유하기", style: UIAlertAction.Style.default){_ in
-            guard let imageName = self.myPlayListModel?.playListImageName else { return }
+            guard let imageName = self.myPlayListModel?.myPlayListImageString else { return }
             guard let image = ImageDataManager.shared.fetchImage(named: imageName) else { return }
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
+        }
+        let editAction =  UIAlertAction(title: "편집하기", style: UIAlertAction.Style.default){_ in
+            let storyBoard = UIStoryboard(name: "ChooseTemplateStoryboard", bundle: nil)
+            guard let viewController = storyBoard.instantiateViewController(withIdentifier: "ChooseTemplateVC") as? ChooseTemplateViewController else { return }
+            viewController.chooseTemplateViewControllerType = .edit
+            viewController.myPlayListModel = self.myPlayListModel
+            self.navigationController?.pushViewController(viewController, animated: false)
         }
         let destructiveAction = UIAlertAction(title: "삭제하기", style: UIAlertAction.Style.destructive){(_) in
             self.popRemoveAlert()
@@ -41,6 +48,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
             self.dismiss(animated: true)
         }
         actionSheet.addAction(shareAction)
+        actionSheet.addAction(editAction)
         actionSheet.addAction(destructiveAction)
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true)
@@ -49,7 +57,7 @@ class MyPlayListDetailedScreenViewController: UIViewController {
     private func setImageView() {
         myPlayListImageView.layer.cornerRadius = 20
         guard let myPlayListModel = myPlayListModel else { return }
-        guard let imageName = myPlayListModel.playListImageName else { return }
+        guard let imageName = myPlayListModel.myPlayListImageString else { return }
         myPlayListImageView.image = ImageDataManager.shared.fetchImage(named: imageName)
     }
     
