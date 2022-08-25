@@ -9,8 +9,6 @@ import UIKit
 
 class PreviewMyPlayListViewController: UIViewController {
     @IBOutlet var templateCollectionView: UICollectionView!
-    @IBOutlet var templateCollectionViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var templateCollectionViewBottomConstraint: NSLayoutConstraint!
     
     var myPlayListModel: MyPlayListModel? = nil
     var selectedMusicList: AppleMusicPlayList!
@@ -25,9 +23,13 @@ class PreviewMyPlayListViewController: UIViewController {
     }
     
     private func setConstraint() {
-        templateCollectionViewTopConstraint.constant = CGFloat(UIScreen.getDevice().previewTopPadding)
-        templateCollectionViewBottomConstraint.constant = CGFloat(UIScreen.getDevice().previewBottomPadding)
-        
+        templateCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        templateCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: CGFloat(UIScreen.getDevice().previewTopPadding)).isActive = true
+        templateCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -CGFloat(UIScreen.getDevice().previewBottomPadding)).isActive = true
+        templateCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        templateCollectionView.widthAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().previewImageViewWidth)).isActive = true
+        templateCollectionView.heightAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().previewImageViewHeight)).isActive = true
+
         guard let myPlayListModel = myPlayListModel else { return }
         var insetMultiplier = CGFloat(1)
         switch myPlayListModel.template {
@@ -48,6 +50,7 @@ class PreviewMyPlayListViewController: UIViewController {
         guard let image = UIImage(named: templateImage) else { return }
         templateCollectionView.backgroundView = UIImageView(image: image)
 		templateCollectionView.layer.borderWidth = 0.5
+        templateCollectionView.layer.cornerRadius = 20
 		templateCollectionView.layer.borderColor = UIColor.gray.cgColor
     }
     

@@ -144,6 +144,32 @@ extension UIScreen {
 			}
 		}
 		
+        var previewImageViewWidth: Int {
+            switch self {
+            case .iPhone13: return 350
+            case .iPhone13ProMax: return 384
+            case .iPhoneMini: return 337
+            case .iPhone11ProMax: return 372
+            case .iPhone11: return 337
+            case .iPhone8Plus: return 370
+            case .iPhone8: return 335
+            case .iPhoneSE: return 276
+            }
+        }
+        
+        var previewImageViewHeight: Int {
+            switch self {
+            case .iPhone13: return 515
+            case .iPhone13ProMax: return 565
+            case .iPhoneMini: return 495
+            case .iPhone11ProMax: return 546
+            case .iPhone11: return 492
+            case .iPhone8Plus: return 515
+            case .iPhone8: return 493
+            case .iPhoneSE: return 412
+            }
+        }
+        
 		var previewTopPadding: Int {
 			switch self {
 			case .iPhone13: return 97

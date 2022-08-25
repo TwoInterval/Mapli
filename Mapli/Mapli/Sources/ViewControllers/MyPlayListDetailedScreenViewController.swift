@@ -22,10 +22,11 @@ class MyPlayListDetailedScreenViewController: UIViewController {
     }
 	private func setConstraint() {
 		myPlayListImageView.translatesAutoresizingMaskIntoConstraints = false
-		myPlayListImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-		myPlayListImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-		myPlayListImageView.widthAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().templatesWidth)).isActive = true
-		myPlayListImageView.heightAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().templatesHeight)).isActive = true
+        myPlayListImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        myPlayListImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: CGFloat(UIScreen.getDevice().previewTopPadding)).isActive = true
+        myPlayListImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -CGFloat(UIScreen.getDevice().previewBottomPadding)).isActive = true
+        myPlayListImageView.widthAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().previewImageViewWidth)).isActive = true
+		myPlayListImageView.heightAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().previewImageViewHeight)).isActive = true
 	}
     private func setNavigationBar() {
         let image = UIImage(systemName: "ellipsis.circle")?.withTintColor(UIColor(named: "TextColor") ?? UIColor.black, renderingMode: .alwaysOriginal)
