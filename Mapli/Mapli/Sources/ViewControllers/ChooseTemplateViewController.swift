@@ -248,6 +248,8 @@ extension ChooseTemplateViewController: UICollectionViewDataSource, UICollection
 			cell.templatesCheckImageView.image = resize(image: UIImage(named: "Selected")!, width: 50, height: 50)
             cell.template = templateImage
 			cell.isSelected = templatesList[indexPath.item].isCheck
+			cell.layer.borderWidth = 0.5
+			cell.layer.borderColor = UIColor.gray.cgColor
 			return cell
 		} else {
 			return UICollectionViewCell()

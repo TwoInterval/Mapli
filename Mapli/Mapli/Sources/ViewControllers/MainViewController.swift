@@ -80,7 +80,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 cell.imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize)
                 cell.imageView.image = ImageDataManager.shared.fetchImage(named: imageName)
                 cell.pliName.text = myPlayList.title
-				cell.imageView.layer.borderWidth = 0.1
+				cell.imageView.layer.borderWidth = 0.5
 				cell.imageView.layer.borderColor = UIColor.gray.cgColor
             }
 			

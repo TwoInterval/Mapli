@@ -122,7 +122,7 @@ extension UIScreen {
 			switch self {
 			case .iPhone13: return 210
 			case .iPhone13ProMax: return 229
-			case .iPhoneMini: return 202
+			case .iPhoneMini: return 187
 			case .iPhone11ProMax: return 221
 			case .iPhone11: return 199
 			case .iPhone8Plus: return 199
@@ -135,7 +135,7 @@ extension UIScreen {
 			switch self {
 			case .iPhone13: return 309
 			case .iPhone13ProMax: return 337
-			case .iPhoneMini: return 297
+			case .iPhoneMini: return 270
 			case .iPhone11ProMax: return 327
 			case .iPhone11: return 296
 			case .iPhone8Plus: return 295
