@@ -16,20 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HKo-4m-xOF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HKo-4m-xOF">
                                 <rect key="frame" x="20" y="178" width="374" height="550"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="HKo-4m-xOF" secondAttribute="height" multiplier="350:515" id="C7Y-kI-NoV"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HKo-4m-xOF" secondAttribute="trailing" constant="20" id="NjR-xy-dZs"/>
-                            <constraint firstItem="HKo-4m-xOF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="iz4-CO-B3d"/>
-                            <constraint firstItem="HKo-4m-xOF" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="tcr-CA-uJB"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="myPlayListImageView" destination="HKo-4m-xOF" id="av5-sc-GBU"/>

@@ -47,6 +47,8 @@ class PreviewMyPlayListViewController: UIViewController {
         guard let templateImage = myPlayListModel?.template.rawValue else { return }
         guard let image = UIImage(named: templateImage) else { return }
         templateCollectionView.backgroundView = UIImageView(image: image)
+		templateCollectionView.layer.borderWidth = 0.5
+		templateCollectionView.layer.borderColor = UIColor.gray.cgColor
     }
     
     private func configureNavigationBar() {
