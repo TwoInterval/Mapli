@@ -11,12 +11,14 @@ __앱에 기본적으로 준비된 템플릿들은 별도 결제없이 모두 �
 ## 링크
 https://apps.apple.com/kr/app/mapli/id1640465875
 ## 버전
-1.0
+2.0
 ## 개발 환경
 Xcode 13.4.1  
 Swift5
 ## Target
 iOS 15
+## 개발기간
+7/15 ~ 8/25
 
 ## :people_hugging: Authors
 |Drogba|Hatchling|Lau|
