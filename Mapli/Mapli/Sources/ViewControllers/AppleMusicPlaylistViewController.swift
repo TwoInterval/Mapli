@@ -174,15 +174,7 @@ private extension AppleMusicPlaylistViewController {
 					let songsString = song.map {
 						return $0.title
 					}
-					var imageUrl = song[0].imageURL
-					imageUrl = imageUrl.replacingOccurrences(of: "{w}", with: "\(song[0].width)")
-					imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "\(song[0].height)")
-					
-					if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
-						if let image = UIImage(data: data) {
-							self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: image, songs: song, songsString: songsString))
-						}
-					}
+					self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: song[0].image, songs: song, songsString: songsString))
                 }
 				self?.collectionView.reloadData()
 			}

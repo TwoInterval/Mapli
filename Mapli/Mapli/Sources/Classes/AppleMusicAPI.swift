@@ -38,7 +38,14 @@ class AppleMusicAPI {
 		let songs = try JSONDecoder().decode(SongDatum.self, from: data)
 		var mySongs = [MySong]()
 		for song in songs.data {
-			mySongs.append(MySong(title: song.attributes.name, imageURL: song.attributes.artwork.url, id: id, width: song.attributes.artwork.width, height: song.attributes.artwork.height, isCheck: false))
+			var imageUrl = song.attributes.artwork.url
+			imageUrl = imageUrl.replacingOccurrences(of: "{w}", with: "\(song.attributes.artwork.width)")
+			imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "\(song.attributes.artwork.height)")
+			if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
+				if let image = UIImage(data: data) {
+					mySongs.append(MySong(title: song.attributes.name, image: image, artistName: song.attributes.artistName, id: id, isCheck: false))
+				}
+			}
 		}
 		return mySongs
 	}

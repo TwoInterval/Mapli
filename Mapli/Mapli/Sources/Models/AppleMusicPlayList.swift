@@ -16,9 +16,8 @@ struct AppleMusicPlayList {
 
 struct MySong {
 	var title: String
-	var imageURL: String
+	var image: UIImage
+	var artistName: String
 	var id: String
-	var width: Int
-	var height: Int
 	var isCheck: Bool
 }
