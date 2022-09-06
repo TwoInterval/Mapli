@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	@IBOutlet weak var tableView: UITableView!
@@ -22,6 +23,8 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	private var searchMusicList = [MySong]()
 	
     var appleMusicPlayList: AppleMusicPlayList!
+	
+	let player = MPMusicPlayerController.applicationMusicPlayer
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
