@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	@IBOutlet weak var tableView: UITableView!
@@ -22,6 +23,8 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	private var searchMusicList = [MySong]()
 	
     var appleMusicPlayList: AppleMusicPlayList!
+	
+	let player = MPMusicPlayerController.applicationMusicPlayer
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -143,10 +146,14 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 			if isFiltering {
 				let song = searchMusicList[indexPath.row]
 				cell.songTitle.text = song.title
+				cell.artistName.text = song.artistName
+				cell.albumImage.image = song.image
 				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			} else {
                 let song = appleMusicPlayList.songs[indexPath.row]
 				cell.songTitle.text = song.title
+				cell.artistName.text = song.artistName
+				cell.albumImage.image = song.image
 				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 			}
 			
@@ -191,6 +198,10 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 				}
 			}
 		}
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 50
 	}
 }
 

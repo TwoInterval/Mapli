@@ -9,6 +9,8 @@ import UIKit
 
 class SongSelectionTableViewCell: UITableViewCell {
 	@IBOutlet weak var songTitle: UILabel!
+	@IBOutlet weak var artistName: UILabel!
+	@IBOutlet weak var albumImage: UIImageView!
 	@IBOutlet weak var checkmark: UIImageView!
 	
     override func awakeFromNib() {
