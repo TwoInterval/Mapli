@@ -27,5 +27,4 @@ class SongSelectionTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-
 }

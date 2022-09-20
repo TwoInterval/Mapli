@@ -23,8 +23,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	private var searchMusicList = [MySong]()
 	
     var appleMusicPlayList: AppleMusicPlayList!
-	
-	let player = MPMusicPlayerController.applicationMusicPlayer
+	var musicPlayer = MPMusicPlayerController.applicationMusicPlayer
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -64,6 +63,13 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 			}
 		}
 	}
+	
+//	@IBAction func playButtonTapped(_ sender: UIButton) {
+//		print(appleMusicPlayList.songs[0].id)
+//		self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[0].id])
+//		self.musicPlayer.play()
+//		print("2")
+//	}
 	
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		navigationItem.searchController = nil
