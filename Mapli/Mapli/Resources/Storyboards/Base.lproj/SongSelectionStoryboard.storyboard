@@ -74,25 +74,36 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAM-lO-Ojj">
-                                                    <rect key="frame" x="72" y="24" width="273" height="21"/>
+                                                    <rect key="frame" x="72" y="24" width="228" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="금요일에 만나요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tt-nG-W7B">
-                                                    <rect key="frame" x="72" y="5" width="273" height="21"/>
+                                                    <rect key="frame" x="72" y="5" width="228" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-cH-1VM">
+                                                    <rect key="frame" x="299" y="9" width="40" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="playButtonTapped:" destination="rXU-ps-pap" eventType="touchUpInside" id="8P2-xZ-bnW"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="albumImage" destination="gjj-lX-op9" id="B8t-9M-qwz"/>
                                             <outlet property="artistName" destination="YAM-lO-Ojj" id="HfC-wh-mYo"/>
                                             <outlet property="checkmark" destination="hL1-vG-Ljt" id="fNQ-K2-Jcd"/>
+                                            <outlet property="playButton" destination="MlW-cH-1VM" id="ePP-Rh-Wbl"/>
                                             <outlet property="songTitle" destination="9tt-nG-W7B" id="NHt-7Q-G2a"/>
                                         </connections>
                                     </tableViewCell>
@@ -135,6 +146,7 @@
         <image name="Selected" width="24" height="24"/>
         <image name="UnSelected" width="24" height="24"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <namedColor name="TextColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

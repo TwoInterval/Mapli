@@ -20,4 +20,5 @@ struct MySong {
 	var artistName: String
 	var id: String
 	var isCheck: Bool
+	var isPlaying: Bool
 }

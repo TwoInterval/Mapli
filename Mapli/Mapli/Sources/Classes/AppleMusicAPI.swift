@@ -43,7 +43,7 @@ class AppleMusicAPI {
 			imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "\(song.attributes.artwork.height)")
 			if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
 				if let image = UIImage(data: data) {
-					mySongs.append(MySong(title: song.attributes.name, image: image, artistName: song.attributes.artistName, id: song.attributes.playParams.catalogID, isCheck: false))
+					mySongs.append(MySong(title: song.attributes.name, image: image, artistName: song.attributes.artistName, id: song.attributes.playParams.catalogID, isCheck: false, isPlaying: false))
 				}
 			}
 		}
