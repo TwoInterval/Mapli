@@ -19,6 +19,7 @@ struct MySong {
 	var image: UIImage
 	var artistName: String
 	var id: String
+	var catalogID: String
 	var isCheck: Bool
 	var isPlaying: Bool
 }

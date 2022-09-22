@@ -256,13 +256,13 @@ extension SongSelectionViewController: CellButtonTappedDelegate {
 				appleMusicPlayList.songs[playingIndex!].isPlaying = false
 				appleMusicPlayList.songs[index].isPlaying = true
 				playingIndex = index
-				self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[index].id])
+				self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[index].catalogID])
 				self.musicPlayer.play()
 			}
 		} else {
 			appleMusicPlayList.songs[index].isPlaying = true
 			playingIndex = index
-			self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[index].id])
+			self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[index].catalogID])
 			self.musicPlayer.play()
 		}
 		tableView.reloadData()
