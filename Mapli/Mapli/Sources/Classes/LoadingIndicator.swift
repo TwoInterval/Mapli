@@ -10,7 +10,6 @@ import UIKit
 class LoadingIndicator {
     static func showLoading() {
         DispatchQueue.main.async {
-            // 최상단에 있는 window 객체 획득
             guard let window = UIApplication.shared.windows.last else { return }
             
             let loadingIndicatorView: UIActivityIndicatorView
@@ -18,9 +17,8 @@ class LoadingIndicator {
                 loadingIndicatorView = existedView
             } else {
                 loadingIndicatorView = UIActivityIndicatorView(style: .large)
-                /// 다른 UI가 눌리지 않도록 indicatorView의 크기를 full로 할당
                 loadingIndicatorView.frame = window.frame
-                loadingIndicatorView.color = .brown
+                loadingIndicatorView.color = .gray
                 window.addSubview(loadingIndicatorView)
             }
 

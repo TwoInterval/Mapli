@@ -140,7 +140,7 @@ private extension AppleMusicPlaylistViewController {
 			.sink { [weak self] playlist in
                 if !playlist.isEmpty {
                     self?.collectionView.backgroundView = nil
-                } else if self?.viewModel.isFetchingAPI == false {
+                } else if self?.viewModel.isInitializing == false {
                     self?.collectionView.backgroundView = self?.setEmptyView()
                 }
                 for list in playlist {
@@ -158,7 +158,10 @@ private extension AppleMusicPlaylistViewController {
 					}
 					self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: song[0].image, songs: song, songsString: songsString))
                 }
-				self?.collectionView.reloadData()
+                self?.collectionView.reloadData()
+                if self?.appleMusicPlaylist.count == self?.viewModel.playlists.count && self?.viewModel.playlists.count != 0 {
+                    self?.viewModel.isInitializing = false
+                }
 			}
 			.store(in: &cancelBag)
 	}
