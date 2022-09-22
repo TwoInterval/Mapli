@@ -64,7 +64,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 				if let cell = tableView.cellForRow(at: indexPath) as? SongSelectionTableViewCell {
 					cell.selectionStyle = .none
                     appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
-                    cell.checkmark.image = (appleMusicPlayList.songs[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+                    cell.checkmark.image = (appleMusicPlayList.songs[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 				}
 			}
 		}
