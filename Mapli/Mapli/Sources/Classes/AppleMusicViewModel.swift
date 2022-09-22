@@ -12,7 +12,15 @@ import StoreKit
 class AppleMusicViewModel: ObservableObject {
 	@Published var mySongs = [MySong]()
 	@Published var playlists = [Playlist]()
-    @Published var isFetchingAPI = true
+    @Published var isFetchingAPI = true {
+        didSet {
+            if isFetchingAPI {
+                LoadingIndicator.showLoading()
+            } else {
+                LoadingIndicator.hideLoading()
+            }
+        }
+    }
 	var usetToken = String()
 
 	init() {
@@ -36,6 +44,7 @@ extension AppleMusicViewModel {
 	func fetchAPI() {
 		Task {
 			do {
+                self.isFetchingAPI = true
 				self.usetToken = try await AppleMusicAPI().fetchUserToken()
 				self.playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
                 self.isFetchingAPI = false

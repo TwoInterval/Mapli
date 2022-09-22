@@ -101,21 +101,6 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appleMusicPlaylist.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionFooter :
-            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reusableView", for: indexPath) as? AppleMusicPlayListCollectionViewFooter else {
-                return UICollectionReusableView()
-            }
-            if viewModel.playlists.count == appleMusicPlaylist.count && viewModel.playlists.count != 0 {
-                footer.label.text = ""
-            }
-            return footer
-            default:
-            return UICollectionReusableView()
-        }
-    }
         
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
@@ -157,12 +142,8 @@ private extension AppleMusicPlaylistViewController {
                     self?.collectionView.backgroundView = nil
                 } else if self?.viewModel.isFetchingAPI == false {
                     self?.collectionView.backgroundView = self?.setEmptyView()
-                    self?.collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).forEach{
-                        guard let footer = $0 as? AppleMusicPlayListCollectionViewFooter else { return }
-                        footer.label.text = ""
-                    }
                 }
-				for list in playlist {
+                for list in playlist {
 					self?.viewModel.fetchMySong(playlistId: list.id)
 				}
             }

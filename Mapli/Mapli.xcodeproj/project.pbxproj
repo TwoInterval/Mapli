@@ -25,6 +25,7 @@
 		0A091E5328A6538F00680E8D /* EBS훈민정음L.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */; };
 		0A091E5428A6538F00680E8D /* Eulyoo1945-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */; };
 		0A2DFBED28900E0B00A68A73 /* PreviewMyPlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */; };
+		0AB1A3CD28DC921A003D836F /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1A3CC28DC921A003D836F /* LoadingIndicator.swift */; };
 		0AE2237128AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2237028AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf */; };
 		8E45725B289C078300516E83 /* AppleMusicPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */; };
 		8E45725D289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */; };
@@ -78,6 +79,7 @@
 		0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBS훈민정음L.otf"; sourceTree = "<group>"; };
 		0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eulyoo1945-SemiBold.otf"; sourceTree = "<group>"; };
 		0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListViewController.swift; sourceTree = "<group>"; };
+		0AB1A3CC28DC921A003D836F /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		0AE2237028AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEuljiro10yearslaterOTF.otf; sourceTree = "<group>"; };
 		8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistViewController.swift; sourceTree = "<group>"; };
 		8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */,
 				E2821A5D2899976B00982AE7 /* CustomTapGesture.swift */,
 				0A091E2D28A11ACC00680E8D /* ImageDataManager.swift */,
+				0AB1A3CC28DC921A003D836F /* LoadingIndicator.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
 				E2821A5C2897FB6800982AE7 /* UIScreen+.swift in Sources */,
 				0A091E4028A54A6B00680E8D /* UIFont+.swift in Sources */,
+				0AB1A3CD28DC921A003D836F /* LoadingIndicator.swift in Sources */,
 				E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */,
 				E21944442896735F005BE37B /* AppleMusicPlayList.swift in Sources */,
 				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,
