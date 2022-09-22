@@ -134,6 +134,7 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
             return UICollectionViewCell()
         }
     }
+	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize + 27)
 	}
