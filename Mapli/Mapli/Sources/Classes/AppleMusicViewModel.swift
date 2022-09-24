@@ -16,7 +16,7 @@ class AppleMusicViewModel: ObservableObject {
     @Published var isInitializing = true {
         didSet {
             if isInitializing {
-                LoadingIndicator.showLoading()
+                LoadingIndicator.showLoading(loadingText: "플레이리스트를 불러옵니다.")
             } else {
                 LoadingIndicator.hideLoading()
             }
