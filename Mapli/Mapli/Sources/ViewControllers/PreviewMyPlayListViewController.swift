@@ -16,12 +16,12 @@ class PreviewMyPlayListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
+            self.configureNavigationBar()
             self.setConstraint()
             self.configureImageView()
-            self.configureNavigationBar()
         }
     }
-    
+
     private func setConstraint() {
         templateCollectionView.translatesAutoresizingMaskIntoConstraints = false
         templateCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: CGFloat(UIScreen.getDevice().previewTopPadding)).isActive = true
@@ -29,18 +29,20 @@ class PreviewMyPlayListViewController: UIViewController {
         templateCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         templateCollectionView.widthAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().previewImageViewWidth)).isActive = true
         templateCollectionView.heightAnchor.constraint(equalToConstant: CGFloat(UIScreen.getDevice().previewImageViewHeight)).isActive = true
-
-        guard let myPlayListModel = myPlayListModel else { return }
+        
         var insetMultiplier = CGFloat(1)
+        guard let songs = selectedMusicList.songsString else { return }
+        let songsCount = CGFloat(songs.count)
+        guard let myPlayListModel = myPlayListModel else { return }
         switch myPlayListModel.template {
         case .templates1:
-            insetMultiplier = 6
+            insetMultiplier = 4 + 0.2 * songsCount
         case .templates2:
-            insetMultiplier = 4
+            insetMultiplier = 3.2 + 0.2 * songsCount
         case .templates3:
-            insetMultiplier = 4
+            insetMultiplier = 3.2 + 0.2 * songsCount
         default:
-            insetMultiplier = 4.5
+            insetMultiplier = 3.7 + 0.2 * songsCount
         }
         templateCollectionView.contentInset.top = max((templateCollectionView.frame.height - templateCollectionView.contentSize.height) / insetMultiplier, 0)
     }
@@ -91,11 +93,11 @@ extension PreviewMyPlayListViewController: UICollectionViewDataSource, UICollect
         }
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var widthMultiplier = 0.8
         var heightMultiplier = 0.05
-        
+
         guard let myPlayListModel = myPlayListModel else { return CGSize() }
         switch myPlayListModel.template {
         case .templates1:
