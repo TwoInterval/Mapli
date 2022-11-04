@@ -14,4 +14,10 @@ extension UIView {
             layer.render(in: rendererContext.cgContext)
         }
     }
+	func transformToImage(x: CGFloat, y: CGFloat, size: CGSize) -> UIImage? {
+		let renderer = UIGraphicsImageRenderer(bounds: CGRect(x: x+19, y: y-20, width: size.width, height: size.height))
+		return renderer.image { rendererContext in
+			layer.render(in: rendererContext.cgContext)
+		}
+	}
 }

@@ -37,8 +37,20 @@ class AppleMusicAPI {
 		let (data, _) = try await URLSession.shared.data(for: musicRequest)
 		let songs = try JSONDecoder().decode(SongDatum.self, from: data)
 		var mySongs = [MySong]()
-		for song in songs.data {
-			mySongs.append(MySong(title: song.attributes.name, imageURL: song.attributes.artwork.url, id: id, width: song.attributes.artwork.width, height: song.attributes.artwork.height, isCheck: false))
+		for (idx, song) in songs.data.enumerated() {
+			var imageUrl = song.attributes.artwork.url
+			if idx == 0 {
+				imageUrl = imageUrl.replacingOccurrences(of: "{w}", with: "\(song.attributes.artwork.width)")
+				imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "\(song.attributes.artwork.height)")
+			} else {
+				imageUrl = imageUrl.replacingOccurrences(of: "{w}", with: "50")
+				imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "50")
+			}
+			if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
+				if let image = UIImage(data: data) {
+					mySongs.append(MySong(title: song.attributes.name, image: image, artistName: song.attributes.artistName, id: id, catalogID: song.attributes.playParams.catalogID, isCheck: false, isPlaying: false))
+				}
+			}
 		}
 		return mySongs
 	}

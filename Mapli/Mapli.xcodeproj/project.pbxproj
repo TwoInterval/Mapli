@@ -25,11 +25,13 @@
 		0A091E5328A6538F00680E8D /* EBS훈민정음L.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */; };
 		0A091E5428A6538F00680E8D /* Eulyoo1945-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */; };
 		0A2DFBED28900E0B00A68A73 /* PreviewMyPlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */; };
+		0AB1A3CD28DC921A003D836F /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB1A3CC28DC921A003D836F /* LoadingIndicator.swift */; };
 		0AE2237128AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AE2237028AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf */; };
 		8E45725B289C078300516E83 /* AppleMusicPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */; };
 		8E45725D289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */; };
 		8E556EAE289BEAEA008E6D97 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E556EAD289BEAEA008E6D97 /* MainCollectionViewCell.swift */; };
 		8E5CE480289BDF39009ABD5E /* AppleMusicInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E5CE47F289BDF39009ABD5E /* AppleMusicInfo.plist */; };
+		8EFD8A96290FBD2200379E18 /* NanumBarunGothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8EFD8A95290FBD2200379E18 /* NanumBarunGothic.otf */; };
 		E203411628B7945E00411A8A /* SongSelectionStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E203411828B7945E00411A8A /* SongSelectionStoryboard.storyboard */; };
 		E203411D28B7955700411A8A /* playListPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E203411F28B7955700411A8A /* playListPreview.storyboard */; };
 		E203412428B795BF00411A8A /* ChooseTemplateStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E203412628B795BF00411A8A /* ChooseTemplateStoryboard.storyboard */; };
@@ -57,6 +59,7 @@
 		E2821A62289B97A500982AE7 /* TemplatesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */; };
 		E2AD46C4289BA4AC00E513B7 /* TemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */; };
 		E2AD46C6289C46A900E513B7 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD46C5289C46A900E513B7 /* UIImageView+.swift */; };
+		E2C27510290FEB8400319885 /* NanumBarunGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2C2750F290FE9AF00319885 /* NanumBarunGothicBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,11 +81,13 @@
 		0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBS훈민정음L.otf"; sourceTree = "<group>"; };
 		0A091E4A28A6538F00680E8D /* Eulyoo1945-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eulyoo1945-SemiBold.otf"; sourceTree = "<group>"; };
 		0A2DFBEC28900E0B00A68A73 /* PreviewMyPlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMyPlayListViewController.swift; sourceTree = "<group>"; };
+		0AB1A3CC28DC921A003D836F /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		0AE2237028AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEuljiro10yearslaterOTF.otf; sourceTree = "<group>"; };
 		8E45725A289C078300516E83 /* AppleMusicPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistViewController.swift; sourceTree = "<group>"; };
 		8E45725C289C0AD800516E83 /* AppleMusicPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E556EAD289BEAEA008E6D97 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		8E5CE47F289BDF39009ABD5E /* AppleMusicInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppleMusicInfo.plist; sourceTree = "<group>"; };
+		8EFD8A95290FBD2200379E18 /* NanumBarunGothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothic.otf; sourceTree = "<group>"; };
 		E203411428B7944000411A8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E203411528B7945300411A8A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		E203411728B7945E00411A8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongSelectionStoryboard.storyboard; sourceTree = "<group>"; };
@@ -125,6 +130,7 @@
 		E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesModel.swift; sourceTree = "<group>"; };
 		E2AD46C5289C46A900E513B7 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		E2C2750F290FE9AF00319885 /* NanumBarunGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,8 @@
 		0A091E3C28A5485B00680E8D /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				8EFD8A95290FBD2200379E18 /* NanumBarunGothic.otf */,
+				E2C2750F290FE9AF00319885 /* NanumBarunGothicBold.otf */,
 				0AE2237028AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf */,
 				0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */,
 				0A091E4328A6538E00680E8D /* EBS훈민정음R.otf */,
@@ -276,6 +284,7 @@
 				E2821A532896F4A300982AE7 /* AppleMusicViewModel.swift */,
 				E2821A5D2899976B00982AE7 /* CustomTapGesture.swift */,
 				0A091E2D28A11ACC00680E8D /* ImageDataManager.swift */,
+				0AB1A3CC28DC921A003D836F /* LoadingIndicator.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -356,12 +365,14 @@
 				0A091E4F28A6538F00680E8D /* UhBee mysen.ttf in Resources */,
 				E203412B28B7960300411A8A /* AppleMusicPlaylist.storyboard in Resources */,
 				E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */,
+				E2C27510290FEB8400319885 /* NanumBarunGothicBold.otf in Resources */,
 				0A091E4C28A6538F00680E8D /* GowunBatang-Regular.ttf in Resources */,
 				0A091E5228A6538F00680E8D /* UhBee Seulvely.ttf in Resources */,
 				0A091E5028A6538F00680E8D /* UhBee mysen Bold.ttf in Resources */,
 				0AE2237128AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf in Resources */,
 				8E5CE480289BDF39009ABD5E /* AppleMusicInfo.plist in Resources */,
 				E21D996D288ABA590065CB2A /* Assets.xcassets in Resources */,
+				8EFD8A96290FBD2200379E18 /* NanumBarunGothic.otf in Resources */,
 				0A091E5428A6538F00680E8D /* Eulyoo1945-SemiBold.otf in Resources */,
 				0A091E5128A6538F00680E8D /* Eulyoo1945-Regular.otf in Resources */,
 				E203413C28B7988000411A8A /* Localizable.strings in Resources */,
@@ -404,6 +415,7 @@
 				E21D9964288ABA580065CB2A /* AppDelegate.swift in Sources */,
 				E2821A5C2897FB6800982AE7 /* UIScreen+.swift in Sources */,
 				0A091E4028A54A6B00680E8D /* UIFont+.swift in Sources */,
+				0AB1A3CD28DC921A003D836F /* LoadingIndicator.swift in Sources */,
 				E21944482896A6C6005BE37B /* ChooseTemplateViewController.swift in Sources */,
 				E21944442896735F005BE37B /* AppleMusicPlayList.swift in Sources */,
 				E2821A542896F4A300982AE7 /* AppleMusicViewModel.swift in Sources */,

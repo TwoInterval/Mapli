@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 	@IBOutlet weak var tableView: UITableView!
@@ -18,7 +19,9 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		let isSearchText = searchController?.searchBar.text?.isEmpty == false
 		return isActive && isSearchText
 	}
+	private var playingIndex: Int?
 	private var isSearchBar = false
+	private var musicPlayer = MPMusicPlayerController.applicationMusicPlayer
 	private var searchMusicList = [MySong]()
 	
     var appleMusicPlayList: AppleMusicPlayList!
@@ -29,6 +32,11 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		setupTableView()
 		setupNavigatoinBar()
 		initRefresh()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		musicPlayer.stop()
 	}
 	
 	@IBAction func searchButtonTapped(_ sender: UIButton) {
@@ -56,7 +64,7 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 				if let cell = tableView.cellForRow(at: indexPath) as? SongSelectionTableViewCell {
 					cell.selectionStyle = .none
                     appleMusicPlayList.songs[indexPath.row].isCheck.toggle()
-                    cell.checkmark.image = (appleMusicPlayList.songs[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "UnSelected")
+                    cell.checkmark.image = (appleMusicPlayList.songs[indexPath.row].isCheck) ? UIImage(named: "Selected") : UIImage(named: "Unselected")
 				}
 			}
 		}
@@ -112,6 +120,16 @@ class SongSelectionViewController: UIViewController, UISearchBarDelegate {
 		tableView.refreshControl = refresh
 	}
 	
+	private func createCell(cell: SongSelectionTableViewCell, indexPath: IndexPath, musicList: [MySong]) {
+		let song = musicList[indexPath.row]
+		cell.songTitle.text = song.title
+		cell.artistName.text = song.artistName
+		cell.albumImage.image = song.image
+		cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
+		cell.playButton.setImage(song.isPlaying ? UIImage(systemName: "stop.fill") : UIImage(systemName: "play.fill"), for: .normal)
+		cell.index = indexPath.row
+	}
+	
 	@objc private func updateUI(refresh: UIRefreshControl) {
 		refresh.endRefreshing()
 		self.tableView.reloadData()
@@ -140,14 +158,12 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		if let cell = tableView.dequeueReusableCell(withIdentifier: "SongSelectionTableCell", for: indexPath) as? SongSelectionTableViewCell {
 			
+			cell.cellDelegate = self
+			
 			if isFiltering {
-				let song = searchMusicList[indexPath.row]
-				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
+				createCell(cell: cell, indexPath: indexPath, musicList: searchMusicList)
 			} else {
-                let song = appleMusicPlayList.songs[indexPath.row]
-				cell.songTitle.text = song.title
-				cell.checkmark.image = song.isCheck ? UIImage(named: "Selected") : UIImage(named: "Unselected")
+				createCell(cell: cell, indexPath: indexPath, musicList: appleMusicPlayList.songs)
 			}
 			
 			return cell
@@ -192,6 +208,10 @@ extension SongSelectionViewController: UITableViewDataSource, UITableViewDelegat
 			}
 		}
 	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 50
+	}
 }
 
 extension SongSelectionViewController: UISearchResultsUpdating {
@@ -223,5 +243,28 @@ extension SongSelectionViewController {
 		} completion: { _ in
 			toastLabel.removeFromSuperview()
 		}
+	}
+}
+
+extension SongSelectionViewController: CellButtonTappedDelegate {
+	func playButtonTapped(index: Int) {
+		if playingIndex != nil {
+			if playingIndex == index && appleMusicPlayList.songs[playingIndex!].isPlaying == true {
+				appleMusicPlayList.songs[index].isPlaying = false
+				self.musicPlayer.stop()
+			} else {
+				appleMusicPlayList.songs[playingIndex!].isPlaying = false
+				appleMusicPlayList.songs[index].isPlaying = true
+				playingIndex = index
+				self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[index].catalogID])
+				self.musicPlayer.play()
+			}
+		} else {
+			appleMusicPlayList.songs[index].isPlaying = true
+			playingIndex = index
+			self.musicPlayer.setQueue(with: [appleMusicPlayList.songs[index].catalogID])
+			self.musicPlayer.play()
+		}
+		tableView.reloadData()
 	}
 }

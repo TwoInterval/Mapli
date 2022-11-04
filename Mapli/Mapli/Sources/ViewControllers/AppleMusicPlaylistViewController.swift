@@ -24,6 +24,11 @@ class AppleMusicPlaylistViewController: UIViewController {
 		initRefresh()
     }
 	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		viewModel.isInitializing = false
+	}
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "SongSelectionSegue" {
             guard let cell = sender as? AppleMusicPlaylistCollectionViewCell else { return }
@@ -101,21 +106,6 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return appleMusicPlaylist.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionFooter :
-            guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "reusableView", for: indexPath) as? AppleMusicPlayListCollectionViewFooter else {
-                return UICollectionReusableView()
-            }
-            if viewModel.playlists.count == appleMusicPlaylist.count && viewModel.playlists.count != 0 {
-                footer.label.text = ""
-            }
-            return footer
-            default:
-            return UICollectionReusableView()
-        }
-    }
         
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppleMusicPlaylistCell", for: indexPath) as? AppleMusicPlaylistCollectionViewCell {
@@ -134,6 +124,7 @@ extension AppleMusicPlaylistViewController: UICollectionViewDataSource, UICollec
             return UICollectionViewCell()
         }
     }
+	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: UIScreen.getDevice().playlistImageSize, height: UIScreen.getDevice().playlistImageSize + 27)
 	}
@@ -154,14 +145,10 @@ private extension AppleMusicPlaylistViewController {
 			.sink { [weak self] playlist in
                 if !playlist.isEmpty {
                     self?.collectionView.backgroundView = nil
-                } else if self?.viewModel.isFetchingAPI == false {
+                } else if self?.viewModel.isInitializing == false {
                     self?.collectionView.backgroundView = self?.setEmptyView()
-                    self?.collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionFooter).forEach{
-                        guard let footer = $0 as? AppleMusicPlayListCollectionViewFooter else { return }
-                        footer.label.text = ""
-                    }
                 }
-				for list in playlist {
+                for list in playlist {
 					self?.viewModel.fetchMySong(playlistId: list.id)
 				}
             }
@@ -174,17 +161,12 @@ private extension AppleMusicPlaylistViewController {
 					let songsString = song.map {
 						return $0.title
 					}
-					var imageUrl = song[0].imageURL
-					imageUrl = imageUrl.replacingOccurrences(of: "{w}", with: "\(song[0].width)")
-					imageUrl = imageUrl.replacingOccurrences(of: "{h}", with: "\(song[0].height)")
-					
-					if let data = try? Data(contentsOf: URL(string: imageUrl)!) {
-						if let image = UIImage(data: data) {
-							self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: image, songs: song, songsString: songsString))
-						}
-					}
+					self?.appleMusicPlaylist.append(AppleMusicPlayList(playListImage: song[0].image, songs: song, songsString: songsString))
                 }
-				self?.collectionView.reloadData()
+                self?.collectionView.reloadData()
+                if self?.appleMusicPlaylist.count == self?.viewModel.playlists.count && self?.viewModel.playlists.count != 0 {
+                    self?.viewModel.isInitializing = false
+                }
 			}
 			.store(in: &cancelBag)
 	}

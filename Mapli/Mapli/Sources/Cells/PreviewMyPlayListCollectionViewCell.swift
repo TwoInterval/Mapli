@@ -36,6 +36,18 @@ class PreviewMyPlayListCollectionViewCell: UICollectionViewCell {
         case .templates5:
             self.titleLabel.font = .font(size: 20, font: .GowunBatangRegular)
             self.titleLabel.textColor = .black
+		case .templates6:
+			self.titleLabel.font = .font(size: 20, font: .ChosunCentennial)
+			self.titleLabel.textColor = .black
+		case .templates7:
+			self.titleLabel.font = .font(size: 20, font: .NanumBarunGothicOTF)
+			self.titleLabel.textColor = .white
+		case .templates8:
+			self.titleLabel.font = .font(size: 20, font: .Eulyoo1945)
+			self.titleLabel.textColor = .black
+		case .templates9:
+			self.titleLabel.font = .font(size: 20, font: .Eulyoo1945)
+			self.titleLabel.textColor = .black
         }
         DispatchQueue.main.async {
             self.titleLabel.text = titleText

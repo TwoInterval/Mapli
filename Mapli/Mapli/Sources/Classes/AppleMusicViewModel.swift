@@ -12,7 +12,16 @@ import StoreKit
 class AppleMusicViewModel: ObservableObject {
 	@Published var mySongs = [MySong]()
 	@Published var playlists = [Playlist]()
-    @Published var isFetchingAPI = true
+    /// fetchAPI(), fetchMySong(playlistId: String), collectionView.reloadData() 모든 과정의 진행상황
+    @Published var isInitializing = true {
+        didSet {
+            if isInitializing {
+                LoadingIndicator.showLoading(loadingText: "플레이리스트를 불러옵니다.")
+            } else {
+                LoadingIndicator.hideLoading()
+            }
+        }
+    }
 	var usetToken = String()
 
 	init() {
@@ -36,9 +45,13 @@ extension AppleMusicViewModel {
 	func fetchAPI() {
 		Task {
 			do {
+                self.isInitializing = true
 				self.usetToken = try await AppleMusicAPI().fetchUserToken()
-				self.playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
-                self.isFetchingAPI = false
+				let playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
+                if playlists.isEmpty {
+                    self.isInitializing = false
+                }
+                self.playlists = playlists
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}
