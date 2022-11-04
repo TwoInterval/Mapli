@@ -18,4 +18,8 @@ enum Template: String, CaseIterable, Codable {
     case templates3
     case templates4
     case templates5
+	case templates6
+	case templates7
+	case templates8
+	case templates9
 }

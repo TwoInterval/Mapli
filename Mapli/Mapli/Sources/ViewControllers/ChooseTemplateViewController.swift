@@ -20,7 +20,7 @@ class ChooseTemplateViewController: UIViewController {
 	@IBOutlet weak private var collectionView: UICollectionView!
     
 	private let imagePicker = UIImagePickerController()
-    private var templatesList = [TemplatesModel(imageName: .templates1, isCheck: false), TemplatesModel(imageName: .templates2, isCheck: false), TemplatesModel(imageName: .templates3, isCheck: false), TemplatesModel(imageName: .templates4, isCheck: false), TemplatesModel(imageName: .templates5, isCheck: false)]
+    private var templatesList = [TemplatesModel(imageName: .templates1, isCheck: false), TemplatesModel(imageName: .templates2, isCheck: false), TemplatesModel(imageName: .templates3, isCheck: false), TemplatesModel(imageName: .templates4, isCheck: false), TemplatesModel(imageName: .templates5, isCheck: false), TemplatesModel(imageName: .templates6, isCheck: false), TemplatesModel(imageName: .templates7, isCheck: false), TemplatesModel(imageName: .templates8, isCheck: false), TemplatesModel(imageName: .templates9, isCheck: false)]
 	private var selectedTemplates: TemplatesModel?
     var selectedMusicList: AppleMusicPlayList!
     var myPlayListModel: MyPlayListModel!

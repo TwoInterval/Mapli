@@ -59,6 +59,7 @@
 		E2821A62289B97A500982AE7 /* TemplatesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */; };
 		E2AD46C4289BA4AC00E513B7 /* TemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */; };
 		E2AD46C6289C46A900E513B7 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AD46C5289C46A900E513B7 /* UIImageView+.swift */; };
+		E2C27510290FEB8400319885 /* NanumBarunGothicBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E2C2750F290FE9AF00319885 /* NanumBarunGothicBold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +130,7 @@
 		E2821A61289B97A500982AE7 /* TemplatesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2AD46C3289BA4AC00E513B7 /* TemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatesModel.swift; sourceTree = "<group>"; };
 		E2AD46C5289C46A900E513B7 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		E2C2750F290FE9AF00319885 /* NanumBarunGothicBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumBarunGothicBold.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				8EFD8A95290FBD2200379E18 /* NanumBarunGothic.otf */,
+				E2C2750F290FE9AF00319885 /* NanumBarunGothicBold.otf */,
 				0AE2237028AE369A0016F72E /* BMEuljiro10yearslaterOTF.otf */,
 				0A091E4928A6538F00680E8D /* EBS훈민정음L.otf */,
 				0A091E4328A6538E00680E8D /* EBS훈민정음R.otf */,
@@ -362,6 +365,7 @@
 				0A091E4F28A6538F00680E8D /* UhBee mysen.ttf in Resources */,
 				E203412B28B7960300411A8A /* AppleMusicPlaylist.storyboard in Resources */,
 				E21D9970288ABA590065CB2A /* LaunchScreen.storyboard in Resources */,
+				E2C27510290FEB8400319885 /* NanumBarunGothicBold.otf in Resources */,
 				0A091E4C28A6538F00680E8D /* GowunBatang-Regular.ttf in Resources */,
 				0A091E5228A6538F00680E8D /* UhBee Seulvely.ttf in Resources */,
 				0A091E5028A6538F00680E8D /* UhBee mysen Bold.ttf in Resources */,

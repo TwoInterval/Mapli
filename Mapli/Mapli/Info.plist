@@ -11,6 +11,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>NanumBarunGothic.otf</string>
+		<string>NanumBarunGothicBold.otf</string>
 		<string>ChosunCentennial_otf.otf</string>
 		<string>EBS훈민정음L.otf</string>
 		<string>EBS훈민정음R.otf</string>

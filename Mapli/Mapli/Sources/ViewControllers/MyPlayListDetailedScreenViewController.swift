@@ -64,7 +64,6 @@ class MyPlayListDetailedScreenViewController: UIViewController {
     }
     
     private func setImageView() {
-        myPlayListImageView.layer.cornerRadius = 20
         guard let myPlayListModel = myPlayListModel else { return }
         guard let imageName = myPlayListModel.myPlayListImageString else { return }
         myPlayListImageView.image = ImageDataManager.shared.fetchImage(named: imageName)

@@ -24,6 +24,11 @@ class AppleMusicPlaylistViewController: UIViewController {
 		initRefresh()
     }
 	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		viewModel.isInitializing = false
+	}
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "SongSelectionSegue" {
             guard let cell = sender as? AppleMusicPlaylistCollectionViewCell else { return }
