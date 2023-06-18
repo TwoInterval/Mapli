@@ -634,6 +634,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JGTT93XJ3D;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SXSNK823Y9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Apple Music의 Playlist를 가져오기 위해 필요한 AppleMusic 접근 권한입니다.";
@@ -648,10 +649,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TwoInterval.Mapli;
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TwoInterval.Mapli.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "mapli profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Mapli;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -667,6 +669,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JGTT93XJ3D;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SXSNK823Y9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mapli/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Apple Music의 Playlist를 가져오기 위해 필요한 AppleMusic 접근 권한입니다.";
@@ -681,10 +684,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.TwoInterval.Mapli;
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TwoInterval.Mapli.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "mapli profile";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Mapli;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
