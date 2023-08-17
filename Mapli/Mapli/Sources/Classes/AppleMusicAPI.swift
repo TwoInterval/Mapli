@@ -15,7 +15,7 @@ class AppleMusicAPI {
 		return try await SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken)
 	}
 
-	func fetchPlaylists(userToken: String) async throws -> [Playlist] {
+	func fetchPlaylists(userToken: String) async throws -> [Playlist]? {
 		guard let musicURL = URL(string: "https://api.music.apple.com/v1/me/library/playlists") else { throw NetworkError.invalidURL }
 		var musicRequest = URLRequest(url: musicURL)
 		musicRequest.httpMethod = "GET"
@@ -23,7 +23,13 @@ class AppleMusicAPI {
 		musicRequest.addValue(userToken, forHTTPHeaderField: "Music-User-Token")
 		
 		let (data, _) = try await URLSession.shared.data(for: musicRequest)
+		
+		if data.isEmpty {
+			return nil
+		}
+		
 		let playlists = try JSONDecoder().decode(PlaylistDatum.self, from: data)
+		
 		return playlists.data
 	}
 	

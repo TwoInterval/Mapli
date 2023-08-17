@@ -22,7 +22,7 @@ class AppleMusicViewModel: ObservableObject {
             }
         }
     }
-	var usetToken = String()
+	var userToken = String()
 
 	init() {
 		SKCloudServiceController.requestAuthorization { (status) in
@@ -46,12 +46,15 @@ extension AppleMusicViewModel {
 		Task {
 			do {
                 self.isInitializing = true
-				self.usetToken = try await AppleMusicAPI().fetchUserToken()
-				let playlists = try await AppleMusicAPI().fetchPlaylists(userToken: usetToken)
-                if playlists.isEmpty {
-                    self.isInitializing = false
-                }
-                self.playlists = playlists
+				self.userToken = try await AppleMusicAPI().fetchUserToken()
+				if let playlists = try await AppleMusicAPI().fetchPlaylists(userToken: userToken) {
+					if playlists.isEmpty {
+						self.isInitializing = false
+					}
+					self.playlists = playlists
+				} else {
+					self.isInitializing = false
+				}
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}
@@ -61,7 +64,7 @@ extension AppleMusicViewModel {
 	func fetchMySong(playlistId: String) {
 		Task {
 			do {
-				self.mySongs = try await AppleMusicAPI().fetchMySongs(userToken: usetToken, id: playlistId)
+				self.mySongs = try await AppleMusicAPI().fetchMySongs(userToken: userToken, id: playlistId)
 			} catch NetworkError.invalidURL {
 				print("Invalid URL ERROR!")
 			}
