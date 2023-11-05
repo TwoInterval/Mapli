@@ -9,7 +9,7 @@ __앱에 기본적으로 준비된 템플릿들은 별도 결제없이 모두 �
 
 # App Store
 ## 링크
-https://apps.apple.com/kr/app/mapli/id1640465875
+[https://apps.apple.com/kr/app/mapli/id1640465875](https://apps.apple.com/kr/app/mapli-%EB%A7%88%ED%94%8C%EB%A6%AC/id6450395293)
 ## 버전
 2.0
 ## 개발 환경
