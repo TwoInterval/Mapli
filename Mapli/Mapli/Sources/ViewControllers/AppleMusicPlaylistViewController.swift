@@ -143,6 +143,7 @@ private extension AppleMusicPlaylistViewController {
 		viewModel.$playlists
 			.receive(on: DispatchQueue.main)
 			.sink { [weak self] playlist in
+				print(playlist.isEmpty, self?.viewModel.isInitializing)
                 if !playlist.isEmpty {
                     self?.collectionView.backgroundView = nil
                 } else if self?.viewModel.isInitializing == false {
@@ -177,7 +178,6 @@ private extension AppleMusicPlaylistViewController {
 		let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
 		let backgroundButton = UIButton()
 
-		
 		guard let language = NSLocale.preferredLanguages.first else {return UIView()}
 		switch language.prefix(2) {
 		case "ko":
