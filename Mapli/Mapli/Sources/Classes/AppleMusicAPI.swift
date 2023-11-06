@@ -12,7 +12,8 @@ class AppleMusicAPI {
 	let developerToken = Bundle.main.apiKey
 	
 	func fetchUserToken() async throws -> String {
-		return try await SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken)
+		guard let token = try? await SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken) else { throw NetworkError.invalidUserToken }
+		return token
 	}
 
 	func fetchPlaylists(userToken: String) async throws -> [Playlist]? {

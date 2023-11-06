@@ -45,6 +45,7 @@ struct Meta: Codable {
 
 enum NetworkError: Error {
     case invalidURL
+	case invalidUserToken
 }
 
 class JSONNull: Codable, Hashable {
